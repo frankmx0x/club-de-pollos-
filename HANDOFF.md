@@ -1,51 +1,69 @@
 # HANDOFF — estado vivo
 
 > Reescrito en cada cierre de sesión. Última actualización: 2026-07-21 (America/Monterrey).
-> Sesión: **Etapa 0 — Instanciación del sistema de trabajo**.
+> Sesión: **Etapa 1 — Research de mercado (primera pasada)**. (Etapa 0 — instanciación del
+> sistema — cerró el mismo día, commit `2c0a437`.)
 
 ## Hecho (con evidencia)
 
-- Repo `frankmx0x/club-de-pollos-` inicializado en rama `claude/club-de-pollos-setup-975vyg`
-  con los 4 documentos + `reglas/` (LEYES, CONSTRUCCION, ADOPCION-OSS).
-  Evidencia: commit pusheado (ver `git log`).
-- DECISIONS.md con D-001…D-004 (sistema de trabajo, repo como fuente de verdad, roles
-  declarados, convenciones del entorno).
-- Verificado `TZ=America/Monterrey` en el entorno (`date` → 2026-07-21 CST).
+- **Research profundo completado y persistido** en
+  `docs/research/2026-07-21-mercado-cdp.md`. Evidencia del proceso: harness de deep
+  research con 109 agentes / 26 fuentes / 35 claims extraídos / 25 verificados
+  adversarialmente (20 confirmados, 5 refutados), más pasada complementaria de 6 búsquedas
+  dirigidas para los módulos sin cobertura (C, D, G). Dos niveles de evidencia marcados en
+  el reporte: [V] verificado vs [F1] fuente única.
+- **Hallazgo #1 (verificado):** "Club de Pollos" EXISTE como cadena operando (pollo frito,
+  fundada MTY ~2019, ~70-82 sucursales plausibles, fundadores en prensa: Arnoldo Ávila y
+  Abraham Torres). Disponibilidad/IMPI: [NO VERIFICADO].
+- CONCEPTO.md actualizado a v0.1: situación de marca (nueva sección 0), anclas de
+  Francisco del 2026-07-21 (pollo frito, bajo/medio, "más rico y más barato que KFC",
+  plaza MTY, piso+llevar+delivery, fase pre-apertura), e insumos de research para el
+  diseño del monitoreo.
+- Los 4 documentos + reglas/ de la Etapa 0 siguen vigentes sin cambios de fondo.
 
 ## En vuelo
 
-- CONCEPTO.md está en **v0 esqueleto**: estructura completa, pero todos los datos de
-  negocio marcados `[CONFIRMAR CON FRANCISCO]`. No se construye software hasta que
-  Francisco responda las preguntas de arranque (abajo).
+- **Forecast (research §F): marco paramétrico y sensibilidades listos; escenarios NO
+  publicados** — bloqueados por 3 datos de Francisco (relación con la marca, venta/unidad
+  de referencia, capital/ritmo). Es deliberado (regla: sin supuestos sostenidos no se
+  presenta a socios).
+- Research es iterativo: primera pasada entregada, esperando revisión de Francisco para
+  decidir qué módulos profundizar (candidatos: IMPI/legal, mapa de saturación ZMM, food
+  cost real, fracasos mexicanos documentados).
 
 ## Pendientes — de Francisco
 
-1. **Responder las preguntas de CONCEPTO.md v0** (están embebidas en el documento):
-   visión y diferenciador; concepto gastronómico (producto, formato, rango de precio);
-   fase actual; plaza de la primera sucursal y N previstas; qué debe ver el monitoreo
-   de cocina y de atención, quién lo consume; alcance de roles de Xavier y Juan
-   (¿Juan es socio?) y acuerdos económicos/equity si ya existen.
-2. Afinar las invariantes mínimas de GUIA.md (están marcadas "afinar con Francisco").
-3. Entorno: `GIT_AUTHOR_NAME`/`GIT_AUTHOR_EMAIL` están VACÍAS en este entorno (el brief
-   las daba por configuradas). Los commits salen como "Claude" del entorno gestionado.
-   Si quieres otra autoría, configúralas en la config del entorno de Claude Code.
-4. Decidir si esta rama se fusiona a una rama por defecto (`main`) — el repo nació
-   vacío, sin main; hoy todo vive en la rama de setup.
+1. **LA PREGUNTA #1: relación nuestra con la cadena Club de Pollos existente**
+   (¿franquicia / adquisición / somos parte / homónimo independiente?). Gobierna todo;
+   si es homónimo independiente hay riesgo legal de marca. Al responderse → DECISIONS.md.
+2. Búsqueda formal en IMPI/MarcaNet de "Club de Pollos" (titular, clases 43/29/30) — o
+   autorizar que preparemos el instrumento para hacerla (ley 6: research legal delicado,
+   Francisco ejecuta).
+3. Revisar el reporte (`docs/research/2026-07-21-mercado-cdp.md`) y responder las 10
+   preguntas de su sección 4 — en particular ticket objetivo, mezcla de canal, modelo
+   propio/franquicia, capital y ritmo.
+4. Datos internos si existen: conteo real de sucursales (82) y venta/unidad de referencia.
+5. Pendientes heredados de Etapa 0: invariantes de GUIA por afinar; `GIT_AUTHOR_*` vacías
+   en el entorno; decidir fusión de la rama de setup a `main`.
 
-## Pendientes — de Claude (bloqueados por lo de arriba)
+## Pendientes — de Claude
 
-- Volcar respuestas de Francisco a CONCEPTO.md v1 y registrar en DECISIONS.md lo que
-  constituya decisión (mismo día si toca acuerdos entre socios).
-- Cuando haya primer software: instanciar gate de verificación en CI (versiones
-  pineadas) según reglas/CONSTRUCCION.md.
+- Segunda pasada de research sobre los módulos que Francisco elija (bloqueado por su
+  revisión).
+- Al responderse la pregunta #1: registrar la decisión en DECISIONS.md y, si aplica,
+  correr el protocolo de adopción (reglas/ADOPCION-OSS.md aplica análogamente a adoptar
+  una MARCA/negocio existente: licencia→contrato de franquicia, salud→estados de la
+  cadena, README vs código→lo dicho vs lo operando).
+- Con los 3 datos bloqueantes: publicar escenarios conservador/base/optimista del §F.
 
 ## Siguiente paso
 
-Francisco responde las preguntas de arranque → sesión "Etapa 1 — CONCEPTO v1" que
-llena CONCEPTO.md, registra decisiones y define la primera pieza de software (si toca).
+Francisco lee el resumen ejecutivo del research y responde la pregunta #1 → sesión
+"Etapa 2" (profundización de research dirigida o CONCEPTO v1, según su respuesta).
 
 ## Prueba de continuidad
 
-Una sesión nueva sin este chat puede continuar leyendo, en orden: GUIA.md → este
-HANDOFF → DECISIONS.md. Todo lo dicho en el chat de arranque está persistido en estos
-documentos; ningún dato de negocio vive solo en el chat.
+Una sesión nueva sin este chat continúa con: GUIA.md → este HANDOFF → DECISIONS.md →
+`docs/research/2026-07-21-mercado-cdp.md` (resumen ejecutivo primero). Todo lo dicho y
+hallado hoy está persistido en el repo; ningún dato vive solo en el chat. Los 5 claims
+refutados están listados en el research §3 para que nadie los reuse.
