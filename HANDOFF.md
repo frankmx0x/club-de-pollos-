@@ -23,13 +23,19 @@
 
 - **RED DESBLOQUEADA (Francisco amplió el allowlist):** INEGI responde 200; Google host
   alcanzable. Se corrió el pipeline real del Radar → **Radar v1 con competencia DENUE dura**.
-- **Radar v1 (dato duro):** `extract_denue.py` procesó DENUE NL (211,350 unidades, corte
-  may-2026) → `data/competencia_corredor.json` (241 establecimientos de pollo del corredor).
-  Hallazgos [V-DENUE]: **Club de Pollos = 0 en el corredor**; **Santiago = 0 pollo frito de
-  cadena (hueco)**; **Allende ya tiene Church's**; norte (Tec/Contry) saturado. Ranking
-  provisional actualizado: Santiago 66 · Allende 63 · Carr.Nacional 54 · Garza Sada 40.
-- **Pendiente para completar el Radar:** Censo 2020 por AGEB (demografía real por colonia,
-  hoy [S]) y capa Google Places (ratings/abiertos, requiere key GCP).
+- **Radar v1b (competencia [V-DENUE] + demografía [V-Censo]):**
+  - `extract_denue.py` → DENUE NL (211,350 unidades, may-2026) → `competencia_corredor.json`
+    (241 estab.). Hallazgos: **Club de Pollos = 0 en el corredor**; **Santiago = 0 pollo
+    frito de cadena (hueco)**; **Allende ya tiene Church's**; norte (Tec/Contry) saturado.
+  - `extract_censo.py` → Censo 2020 AGEB NL → `demografia_corredor.json`. SES dura:
+    escolaridad Monterrey-corredor 12.3 > Santiago 10.3 > **Allende 9.2** (mejor encaje
+    bajo/medio); %internet 99 / 80 / 66. Cruza-valida POBTOT (Santiago 46,784; Allende
+    35,289 = censo).
+  - Ranking: **Santiago 66 · Allende 64 · Carr.Nacional 52 · Garza Sada 40**. Los dos
+    finalistas: Santiago (hueco de frito, ingreso medio, más población) vs Allende (mejor
+    encaje bajo/medio, pero ya hay Church's y menos población).
+- **Solo falta [S]→duro:** la RENTA (portales inmobiliarios, carga manual) y la capa
+  Google Places (ratings/abiertos, requiere key GCP).
 - **Forecast (§F):** sigue bloqueado por datos del franquiciador (ventas/unidad, términos).
 
 ## Pendientes — de Francisco

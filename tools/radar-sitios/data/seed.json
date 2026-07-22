@@ -3,14 +3,14 @@
     "titulo": "Radar de Sitios — corredor sur (ITESM → Allende)",
     "fecha": "2026-07-21",
     "tz": "America/Monterrey",
-    "version": "v1 — competencia con DATO DURO DENIE; demografía y renta aún [S]",
+    "version": "v1b — competencia [V-DENUE] + demografía [V-Censo]; renta aún [S]",
     "niveles": {
-      "V-DENUE": "Dato duro: DENUE INEGI Nuevo León, corte may-2026 (censo oficial de unidades económicas, georreferenciado). Ver data/competencia_corredor.json.",
-      "S": "Snippet de búsqueda, fuente única, sin verificar. PROVISIONAL.",
-      "F1": "Fuente única (oficial vía snippet)."
+      "V-DENUE": "DENUE INEGI NL, corte may-2026 (censo de unidades económicas, georreferenciado).",
+      "V-Censo": "Censo de Población y Vivienda 2020, INEGI (AGEB urbana NL). Proxies SES: escolaridad, % con auto, % con internet.",
+      "S": "Snippet de búsqueda, sin verificar. PROVISIONAL."
     },
-    "geo": "Competencia = restaurantes SCIAN 722* clasificados por nombre; corredor = polilínea ITESM→Contry→Estanzuela→Santiago→Allende, Monterrey a <=2 km de la línea (Santiago/Allende completos). Caveat: el buffer del extremo Tec roza el centro de Monterrey (KFC Chapultepec/Nuevo Repueblo cuentan como norte; no altera que el norte esté saturado).",
-    "escala_score": "0-100 provisional; combina demanda (demografía [S]), hueco de pollo frito (DENUE [V]), encaje bajo/medio ([S]) y renta ([S]). Mayor = mejor candidato."
+    "geo": "Competencia: SCIAN 722* por polilínea ITESM→Contry→Estanzuela→Santiago→Allende (MTY a <=2 km). Demografía: Santiago/Allende = total municipal; Monterrey-corredor = 99 AGEBs donde caen negocios del corredor (agregado, no dividido por sub-tramo).",
+    "escala_score": "0-100 provisional. Combina hueco de pollo frito (V-DENUE), encaje bajo/medio (V-Censo) y renta (S). Mayor = mejor candidato para el posicionamiento bajo/medio."
   },
   "tramos": [
     {
@@ -18,10 +18,14 @@
       "nombre": "Garza Sada / Tec / Contry",
       "orden_norte_sur": 1,
       "demografia": {
-        "poblacion_ancla": "DistritoTec ~30,000 hab + >20,000 estudiantes ITESM",
-        "ingreso": "medio / medio-alto",
-        "fuente": "TEC Food; Conecta Tec; Infonavit",
-        "confianza": "S"
+        "poblacion": 241104,
+        "escolaridad_grados": 12.33,
+        "pct_auto": 85.7,
+        "pct_internet": 99.0,
+        "ingreso": "medio-alto",
+        "nota": "Agregado del corredor MTY (99 AGEBs), no dividido por sub-tramo",
+        "fuente": "Censo 2020 INEGI",
+        "confianza": "V-Censo"
       },
       "competencia_denue": {
         "pollo_total": 118,
@@ -30,20 +34,23 @@
         "fuente": "DENUE may-2026", "confianza": "V-DENUE"
       },
       "renta_mxn_mes": {"rango": "comparar vs sur", "fuente": "Lamudi/Vivanuncios", "confianza": "S"},
-      "saturacion": "alta",
-      "encaje_bajo_medio": "medio",
+      "encaje_bajo_medio": "bajo (ingreso medio-alto)",
       "score": 40,
-      "score_notas": "El tramo MÁS saturado de pollo (118) y con más frito directo (5, incl. KFC Country). Máxima demanda estudiantil pero pelea frontal con KFC. Solo si el gancho de precio es real."
+      "score_notas": "El tramo MÁS saturado (118 pollo, 5 frito incl. KFC Country) y el de mayor ingreso (escolaridad 12.3). Máxima demanda estudiantil pero pelea frontal con KFC y mal encaje bajo/medio."
     },
     {
       "id": "carretera-nacional-estanzuela",
       "nombre": "Carretera Nacional / La Estanzuela",
       "orden_norte_sur": 2,
       "demografia": {
-        "poblacion_ancla": "corredor residencial en crecimiento",
-        "ingreso": "medio-alto (tramos premium: Valle Alto)",
-        "fuente": "listados inmobiliarios",
-        "confianza": "S"
+        "poblacion": 241104,
+        "escolaridad_grados": 12.33,
+        "pct_auto": 85.7,
+        "pct_internet": 99.0,
+        "ingreso": "medio-alto",
+        "nota": "Comparte el agregado del corredor MTY (mismo conjunto de AGEBs)",
+        "fuente": "Censo 2020 INEGI",
+        "confianza": "V-Censo"
       },
       "competencia_denue": {
         "pollo_total": 49,
@@ -53,20 +60,22 @@
         "fuente": "DENUE may-2026", "confianza": "V-DENUE"
       },
       "renta_mxn_mes": {"rango": "$12,000 – $50,112 (Trovit ~114 listados)", "fuente": "Trovit", "confianza": "S"},
-      "saturacion": "media-baja en frito",
       "encaje_bajo_medio": "bajo (ingreso alto)",
-      "score": 54,
-      "score_notas": "Hueco de pollo frito (solo 1) y anclas de tráfico fuertes, PERO ingreso alto choca con el posicionamiento bajo/medio. Ticket tendría que subir."
+      "score": 52,
+      "score_notas": "Hueco de frito (solo 1) y anclas fuertes, PERO ingreso medio-alto (escolaridad 12.3) choca con el posicionamiento bajo/medio."
     },
     {
       "id": "santiago-cercado",
       "nombre": "Santiago / El Cercado centro",
       "orden_norte_sur": 3,
       "demografia": {
-        "poblacion_ancla": "Santiago 46,784 hab (2020)",
-        "ingreso": "medio (pobreza moderada 11.7%)",
-        "fuente": "Data México / INEGI 2020",
-        "confianza": "S"
+        "poblacion": 46784,
+        "escolaridad_grados": 10.31,
+        "pct_auto": 93.8,
+        "pct_internet": 80.3,
+        "ingreso": "medio",
+        "fuente": "Censo 2020 INEGI (total municipal)",
+        "confianza": "V-Censo"
       },
       "competencia_denue": {
         "pollo_total": 42,
@@ -76,20 +85,22 @@
         "fuente": "DENUE may-2026", "confianza": "V-DENUE"
       },
       "renta_mxn_mes": {"rango": "desde $13,200; $280–450/m²", "fuente": "Inmuebles24/Lamudi", "confianza": "S"},
-      "saturacion": "42 pollo pero 0 frito de cadena → HUECO de frito",
       "encaje_bajo_medio": "medio",
       "score": 66,
-      "score_notas": "HALLAZGO DENUE: 42 lugares de pollo pero CERO pollo frito de cadena — hueco claro de frito en un municipio con anclas (Soriana, Cinépolis) e ingreso medio. Rival a vigilar: El Pollo Loco (asado, no frito)."
+      "score_notas": "HALLAZGO: 42 lugares de pollo pero CERO pollo frito de cadena (hueco), ingreso medio (escolaridad 10.3), anclas (Soriana, Cinépolis). Rival: El Pollo Loco (asado, no frito). Población mayor que Allende."
     },
     {
       "id": "allende-centro",
       "nombre": "Allende centro",
       "orden_norte_sur": 4,
       "demografia": {
-        "poblacion_ancla": "Allende 35,289 hab (2020)",
-        "ingreso": "bajo / medio (pobreza moderada 21.7%)",
-        "fuente": "Data México / INEGI 2020",
-        "confianza": "S"
+        "poblacion": 35289,
+        "escolaridad_grados": 9.19,
+        "pct_auto": 82.9,
+        "pct_internet": 66.2,
+        "ingreso": "bajo / medio",
+        "fuente": "Censo 2020 INEGI (total municipal)",
+        "confianza": "V-Censo"
       },
       "competencia_denue": {
         "pollo_total": 32,
@@ -98,10 +109,9 @@
         "fuente": "DENUE may-2026", "confianza": "V-DENUE"
       },
       "renta_mxn_mes": {"rango": "los tramos más baratos del corredor", "fuente": "icasas/Vivanuncios", "confianza": "S"},
-      "saturacion": "baja (32 pollo) pero Church's ya presente",
       "encaje_bajo_medio": "alto",
-      "score": 63,
-      "score_notas": "Mejor encaje bajo/medio (ingreso) + baja saturación total + renta baja. MATIZ DENUE: ya hay un Church's (pollo frito directo) — no está virgen. Riesgo: menor población (35k)."
+      "score": 64,
+      "score_notas": "MEJOR encaje bajo/medio con dato duro: escolaridad 9.2 (la más baja), %internet 66% (el más bajo) = segmento más sensible a precio, ideal para 'más barato que KFC'. Baja saturación (32). MATIZ: ya hay un Church's. Riesgo: población menor (35k)."
     }
   ],
   "club_de_pollos_en_corredor": {
@@ -109,7 +119,7 @@
     "confianza": "V-DENUE",
     "fuente": "DENUE INEGI 19, may-2026 (búsqueda directa en el censo, 0 coincidencias)",
     "confirmadas_fuera": ["Solidaridad", "Pablo Livas (Guadalupe) — norte/oriente del metro"],
-    "caveat": "DENUE corte may-2026; una unidad abierta muy recientemente podría no estar capturada. Confirmar contra directorio oficial.",
+    "caveat": "DENUE corte may-2026; una unidad muy reciente podría no estar capturada. Confirmar contra directorio oficial.",
     "lectura": "El territorio del corredor está genuinamente abierto para la franquicia."
   }
 }

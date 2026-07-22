@@ -1,0 +1,34 @@
+{
+ "_meta": {
+  "fuente": "Censo de Población y Vivienda 2020, INEGI (AGEB urbana NL)",
+  "confianza": "V-Censo",
+  "nota": "Proxies SES; el Censo no trae ingreso directo."
+ },
+ "Santiago": {
+  "pobtot": 46784,
+  "escolaridad_grados": 10.31,
+  "pct_auto": 93.8,
+  "pct_internet": 80.3,
+  "viviendas": 11384,
+  "fuente": "Censo 2020 INEGI, AGEB urbana NL",
+  "confianza": "V-Censo"
+ },
+ "Allende": {
+  "pobtot": 35289,
+  "escolaridad_grados": 9.19,
+  "pct_auto": 82.9,
+  "pct_internet": 66.2,
+  "viviendas": 9701,
+  "fuente": "Censo 2020 INEGI, AGEB urbana NL",
+  "confianza": "V-Censo"
+ },
+ "Monterrey-corredor": {
+  "pobtot": 241104,
+  "escolaridad_grados": 12.33,
+  "pct_auto": 85.7,
+  "pct_internet": 99.0,
+  "viviendas": 58796,
+  "fuente": "Censo 2020 INEGI, AGEB urbana NL",
+  "confianza": "V-Censo"
+ }
+}
