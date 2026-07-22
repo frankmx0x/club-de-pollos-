@@ -108,3 +108,19 @@
 - **Costos/acciones (ley 6):** crear el proyecto consume créditos del workspace de
   Francisco; conectar Lovable↔GitHub es un clic suyo en el editor de Lovable. Cualquier
   key (Google Places, futuro) va al manejo de secretos de Lovable/Supabase, jamás al repo.
+
+## 2026-07-22 · D-008 · Inputs de planeación: ticket $220 y trade-area 100k/unidad
+
+- **Decisión (inputs confirmados por Francisco):** ticket promedio **$220 MXN**; una sucursal
+  típica sirve **~100,000 personas** (trade-area de referencia del franquiciador). Se usan
+  como supuestos base del modelo de catchment y del forecast.
+- **Porqué / implicación:** cierran el modelo de `docs/analysis/2026-07-22-catchment-poblacion-radio.md`.
+  Resultado: a captura base (~7% del gasto QSR local) los 100k soportan ~$1.0M/mes; $600k
+  necesita ~4%. HALLAZGO (ley 9): Santiago (46,784) y Allende (35,289) NO tienen 100k
+  residentes → el sur solo cumple vía tráfico/turismo/delivery/captura alta, no residentes; el
+  tramo denso de Monterrey (Contry/Tec/Estanzuela, 241,104 hab en el corredor) cumple 100k en
+  ~2 km. Esto reordena la lectura del Radar.
+- **Pendiente [CONFIRMAR]:** ¿de dónde viene el ticket $220 y la trade-area 100k — dato del
+  franquiciador o meta de Francisco? Idealmente confirmar contra el AUV real de una sucursal
+  comparable. La captura σ real sigue por calibrar.
+- **Reemplaza:** afina los supuestos [CONFIRMAR] de ticket del research y del §F.

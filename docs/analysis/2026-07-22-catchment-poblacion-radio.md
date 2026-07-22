@@ -81,6 +81,55 @@ este modelo: es el **franquiciador**. Preguntas concretas a hacerle (due-diligen
 3. ¿Ticket promedio real y mezcla piso/llevar/delivery?
 Con esos 3, se despeja σ real y este marco pasa de estimación a forecast presentable a socios.
 
+## 5-bis. CALIBRADO con datos de Francisco (2026-07-22)
+
+Inputs confirmados por Francisco: **ticket = $220 MXN**; **una sucursal típica sirve
+~100,000 personas** (trade-area del franquiciador). Esto CIERRA el modelo.
+
+**A. Con 100,000 personas, ¿qué venta sale según la captura σ?** (Ventas = 100,000 × $147 × σ)
+
+| Captura σ (del gasto QSR) | Venta mensual | Transacciones/día (@$220) |
+|---|--:|--:|
+| 4% | ~$588,000 | ~89 |
+| 5% | ~$735,000 | ~111 |
+| 6% | ~$882,000 | ~134 |
+| **7% (base)** | **~$1,029,000** | ~156 |
+
+→ La trade-area de 100k del franquiciador, a captura base (7%), soporta **~$1.0M/mes**. El
+piso de **$600k solo necesita ~4%** de captura — cómodo. Cada +1% de captura ≈ +$147k/mes.
+Penetración implícita para $1M: ~2.3% de los 100k como clientes activos (visita ~2×/mes).
+
+**B. ¿En qué RADIO caben 100,000 residentes?** (R = √(100,000 / π·D))
+
+| Densidad de la colonia | Radio para 100k |
+|---|--:|
+| Densa (Contry/Tec ~8k/km²) | **~2.0 km** |
+| Suburbana (Estanzuela/Valle Alto ~4k) | ~2.8 km |
+| Pueblo (Santiago/Allende ~2.5k) | ~3.6 km |
+
+## 5-ter. ⚠️ HALLAZGO que reordena la decisión (ley 9)
+
+**Santiago (46,784 hab) y Allende (35,289 hab) NO tienen 100,000 residentes** — ni en un
+radio grande; son municipios chicos (dato Censo 2020, nuestro pipeline). No pueden cumplir la
+"sucursal típica de 100k" con residentes. En cambio, el tramo Monterrey del corredor tiene
+**241,104 personas** en sus 99 AGEBs (dato Censo), así que **100k caben en ~2 km** en las
+colonias densas (Contry, Tecnológico, La Estanzuela).
+
+Esto tensiona el ranking previo del Radar, que favorecía al sur por hueco de frito + encaje
+bajo/medio:
+- **A favor del sur (Santiago/Allende):** 0 competidores de pollo frito (captura σ MÁS alta al
+  no repartir el gasto) · Carretera Nacional = tráfico intermunicipal fuerte · Santiago es
+  destino de fin de semana (Pueblo Mágico) · delivery amplía alcance. Estos NO son residentes,
+  y el modelo residencial los subestima — pero son reales.
+- **A favor del norte denso (Contry/Tec/Estanzuela):** cumple los 100k residentes en ~2 km sin
+  depender de tráfico ni turismo. Pero ingreso más alto (peor encaje bajo/medio) y algo más de
+  competencia.
+
+**Conclusión honesta:** con la vara de "100k personas por unidad", el sur solo funciona si su
+demanda viene de **tráfico + captura alta + delivery**, no de residentes. El norte cumple por
+residentes pero pelea encaje y competencia. Esto es exactamente lo que el Radar debe mostrar:
+población-en-radio JUNTO A hueco, encaje y anclas — no un solo número.
+
 ## 6. Cómo se conecta al Radar
 
 - Con σ base y la venta objetivo, el Radar puede pintar, por colonia, si su **población en
