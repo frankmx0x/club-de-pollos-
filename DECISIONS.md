@@ -90,3 +90,21 @@
   llenar el Radar con datos completos, Francisco amplía el allowlist para la etapa de datos.
   Los secretos (key de Google Cloud) van al manejo de secretos de la plataforma de deploy o
   a `.env` gitignored — jamás al repo ni al entorno.
+
+## 2026-07-21 · D-007 · Radar v2 = web app en Lovable (presentación) sobre datos de NUESTRO repo
+
+- **Decisión:** La web app interactiva del Radar (mapa geográfico + panel + sliders de
+  score) se construye en **Lovable** (React) y se conecta a GitHub. **La fuente de verdad
+  de los DATOS y el pipeline sigue siendo el repo `club-de-pollos-`**; Lovable es capa de
+  PRESENTACIÓN desacoplada (invariante b) que consume un snapshot compacto de nuestros
+  datos (`tools/radar-sitios/data/app_data.json`, 241 puntos + 4 zonas, con fecha y
+  fuente). El código del app sincroniza a su propio repo de GitHub.
+- **Porqué:** Francisco prefiere Lovable (más pulido y rápido de iterar). Conectar a GitHub
+  mantiene el código versionado; separar datos (nuestro repo) de presentación (Lovable)
+  respeta la invariante de fuente de verdad y evita datos ficticios (ley 4): el app nace
+  con datos duros DENUE+Censo.
+- **Reemplaza:** Complementa D-006 (stack de datos). El esquema `radar.html` del repo
+  queda como vista rápida/offline; el tablero principal pasa a Lovable.
+- **Costos/acciones (ley 6):** crear el proyecto consume créditos del workspace de
+  Francisco; conectar Lovable↔GitHub es un clic suyo en el editor de Lovable. Cualquier
+  key (Google Places, futuro) va al manejo de secretos de Lovable/Supabase, jamás al repo.
