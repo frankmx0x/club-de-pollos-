@@ -34,8 +34,16 @@
   - Ranking: **Santiago 66 · Allende 64 · Carr.Nacional 52 · Garza Sada 40**. Los dos
     finalistas: Santiago (hueco de frito, ingreso medio, más población) vs Allende (mejor
     encaje bajo/medio, pero ya hay Church's y menos población).
+- **Anclas de demanda [V-DENUE]:** `extract_denue.py` extendido → `anclas_corredor.json`
+  (1,183: 528 escuelas, 253 supermercados, 172 farmacias, 137 gimnasios, 93 bancos) con
+  conteo por zona. `build_appdata.py` empaqueta todo + bloque **fuentes** (procedencia
+  oficial INEGI + última sincronización real) → `app_data.json` (150 KB) para la web app.
+- **Radar v2 (Lovable):** Francisco crea el proyecto él mismo (modo Build) pegando el
+  prompt y adjuntando `app_data.json`. Pendiente: crear + conectar a GitHub. El spec
+  incluye mapa Leaflet, panel, sliders de score, capas de anclas y panel de fuentes.
 - **Solo falta [S]→duro:** la RENTA (portales inmobiliarios, carga manual) y la capa
-  Google Places (ratings/abiertos, requiere key GCP).
+  Google Places (ratings/abiertos, requiere key GCP). Choropleth de densidad = v2.1
+  (necesita polígonos AGEB del Marco Geoestadístico, gratis).
 - **Forecast (§F):** sigue bloqueado por datos del franquiciador (ventas/unidad, términos).
 
 ## Pendientes — de Francisco

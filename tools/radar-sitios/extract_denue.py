@@ -48,6 +48,16 @@ MTY_BUFFER_KM = 2.0
 POLLO_KW = ("pollo", "kfc", "church", "popeye", "rostiz", "pollos", "fried chicken", "campero")
 POLLO_FRITO_KW = ("kfc", "church", "popeye", "frito", "fried", "broaster", "crispy", "club de pollo")
 
+# Anclas de demanda: otras unidades económicas del corredor (no competidores), por SCIAN.
+# Generan tráfico / demanda alrededor de un local candidato.
+ANCLAS = {
+    "escuela": lambda a: a.startswith("611"),
+    "supermercado": lambda a: a.startswith("4621"),
+    "banco": lambda a: a.startswith("5221"),
+    "farmacia": lambda a: a.startswith("46411"),
+    "gimnasio": lambda a: a.startswith("71394"),
+}
+
 
 def norm(s: str) -> str:
     s = (s or "").lower()
@@ -117,45 +127,55 @@ def main() -> int:
     enc = "latin-1"
     pollo, sat_total, sat_pollo = [], {}, {}
     tramo_counts = {}
+    anclas, ancla_counts = [], {}
 
     with csv_path.open(encoding=enc, newline="") as f:
         r = csv.DictReader(f)
         for row in r:
-            act = (row.get("codigo_act") or "").strip()
-            if not act.startswith("722"):  # servicios de preparación de alimentos y bebidas
-                continue
             cve_mun = (row.get("cve_mun") or "").strip().zfill(3)
             if cve_mun not in MUN:
                 continue
             lat, lon = fnum(row.get("latitud")), fnum(row.get("longitud"))
             if not in_corridor(cve_mun, lat, lon):
                 continue
-
+            act = (row.get("codigo_act") or "").strip()
             mun = MUN[cve_mun]
             tramo = nearest_tramo(lat, lon)
-            sat_total[mun] = sat_total.get(mun, 0) + 1
 
-            name = row.get("nom_estab") or ""
-            blob = norm(name) + " " + norm(row.get("nombre_act"))
-            is_pollo = any(k in blob for k in POLLO_KW)
-            if is_pollo:
-                sat_pollo[mun] = sat_pollo.get(mun, 0) + 1
-                tramo_counts[tramo] = tramo_counts.get(tramo, 0) + 1
-                pollo.append({
-                    "nombre": name.strip(),
-                    "scian": act,
-                    "actividad": (row.get("nombre_act") or "").strip(),
-                    "pollo_frito": any(k in blob for k in POLLO_FRITO_KW),
-                    "tramo": tramo,
-                    "colonia": (row.get("nomb_asent") or "").strip(),
-                    "municipio": mun,
-                    "ageb": (row.get("ageb") or "").strip(),
-                    "cp": (row.get("cod_postal") or "").strip(),
-                    "personal": (row.get("per_ocu") or "").strip(),
-                    "lat": lat, "lon": lon,
-                    "fuente": "DENUE INEGI 19 (may-2026)",
-                    "confianza": "V-DENUE",
-                })
+            if act.startswith("722"):  # restaurantes: competencia potencial
+                sat_total[mun] = sat_total.get(mun, 0) + 1
+                name = row.get("nom_estab") or ""
+                blob = norm(name) + " " + norm(row.get("nombre_act"))
+                if any(k in blob for k in POLLO_KW):
+                    sat_pollo[mun] = sat_pollo.get(mun, 0) + 1
+                    tramo_counts[tramo] = tramo_counts.get(tramo, 0) + 1
+                    pollo.append({
+                        "nombre": name.strip(),
+                        "scian": act,
+                        "actividad": (row.get("nombre_act") or "").strip(),
+                        "pollo_frito": any(k in blob for k in POLLO_FRITO_KW),
+                        "tramo": tramo,
+                        "colonia": (row.get("nomb_asent") or "").strip(),
+                        "municipio": mun,
+                        "ageb": (row.get("ageb") or "").strip(),
+                        "cp": (row.get("cod_postal") or "").strip(),
+                        "personal": (row.get("per_ocu") or "").strip(),
+                        "lat": lat, "lon": lon,
+                        "fuente": "DENUE INEGI 19 (may-2026)",
+                        "confianza": "V-DENUE",
+                    })
+                continue
+
+            for cat, fn in ANCLAS.items():  # anclas de demanda (no restaurantes)
+                if fn(act):
+                    ancla_counts.setdefault(cat, {})
+                    ancla_counts[cat][tramo] = ancla_counts[cat].get(tramo, 0) + 1
+                    anclas.append({
+                        "nombre": (row.get("nom_estab") or "").strip()[:40],
+                        "cat": cat, "tramo": tramo, "municipio": mun,
+                        "lat": lat, "lon": lon,
+                    })
+                    break
 
     pollo.sort(key=lambda x: (x["municipio"], not x["pollo_frito"], x["colonia"]))
     DATA.mkdir(exist_ok=True)
@@ -170,8 +190,14 @@ def main() -> int:
                     "pollo_por_tramo": tramo_counts,
                     "fuente": "DENUE INEGI 19 (may-2026)"},
                    ensure_ascii=False, indent=1), encoding="utf-8")
+    (DATA / "anclas_corredor.json").write_text(
+        json.dumps({"_meta": {"fuente": "DENUE INEGI Nuevo León, corte may-2026",
+                              "corte": "2026-05-12", "confianza": "V-DENUE", "n": len(anclas)},
+                    "conteo_por_tramo": ancla_counts, "anclas": anclas},
+                   ensure_ascii=False, indent=1), encoding="utf-8")
 
     print(f"OK. Competencia de pollo en corredor: {len(pollo)}")
+    print(f"   Anclas de demanda: {len(anclas)} { {k: sum(v.values()) for k, v in ancla_counts.items()} }")
     print(f"   Restaurantes 722* por municipio: {sat_total}")
     print(f"   Pollo por municipio: {sat_pollo}")
     print(f"   Pollo por tramo: {tramo_counts}")

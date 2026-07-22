@@ -3,7 +3,7 @@
     "titulo": "Radar de Sitios — corredor sur (ITESM → Allende)",
     "fecha": "2026-07-21",
     "tz": "America/Monterrey",
-    "version": "v1b — competencia [V-DENUE] + demografía [V-Censo]; renta aún [S]",
+    "version": "v1c — competencia + anclas de demanda [V-DENUE] + demografía [V-Censo]; renta aún [S]",
     "niveles": {
       "V-DENUE": "DENUE INEGI NL, corte may-2026 (censo de unidades económicas, georreferenciado).",
       "V-Censo": "Censo de Población y Vivienda 2020, INEGI (AGEB urbana NL). Proxies SES: escolaridad, % con auto, % con internet.",
