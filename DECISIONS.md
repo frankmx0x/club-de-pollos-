@@ -48,3 +48,25 @@
   bloquea dominios necesarios.
 - **Porqué:** Env vars del entorno son visibles; fechas correctas en esta bitácora.
 - **Reemplaza:** Nada (arranque).
+
+## 2026-07-21 · D-005 · Entramos como FRANQUICIATARIOS de Club de Pollos (no creando la marca)
+
+- **Decisión:** El proyecto NO crea la marca Club de Pollos; entramos como
+  **franquiciatarios** de la cadena existente (marca real verificada en el research del
+  mismo día: pollo frito, fundada en Monterrey ~2019, fundadores Arnoldo Ávila y Abraham
+  Torres). Territorio objetivo a asegurar: **zona sur de Monterrey, corredor ITESM →
+  Allende, NL**. Plan de crecimiento: **empezar con 1 franquicia/año y acelerar, hasta
+  llegar a 10 unidades en 5-6 años**.
+- **Porqué:** Aclarado por Francisco el 2026-07-21. El framing "cadena que estoy creando"
+  del brief de arranque fue un error de redacción. Esto resuelve la pregunta #1 del
+  research (relación con la marca) y elimina el riesgo legal de marca por homonimia.
+- **Reemplaza / corrige:** El supuesto "marca nueva que estamos creando" de CONCEPTO v0 y
+  v0.1 y del brief de arranque. Cierra la open question #1 del research
+  `docs/research/2026-07-21-mercado-cdp.md` y responde parcialmente sus preguntas #6
+  (zona = corredor sur) y #8 (modelo = franquicia).
+- **Nota (ley 6 — instrumento delicado, dinero/legal):** firmar la franquicia y asegurar
+  la exclusividad territorial es operación de dinero y legal. Claude prepara el
+  instrumento (checklist de due-diligence al franquiciador: términos, regalías,
+  exclusividad de zona, ventas/unidad reales, capex); Francisco ejecuta la firma. Los
+  números finos (cuota inicial, % de regalías, inversión/unidad) SOLO los da Francisco
+  desde el franquiciador — [CONFIRMAR].

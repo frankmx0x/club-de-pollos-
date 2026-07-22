@@ -1,65 +1,91 @@
-# CONCEPTO — Club de Pollos (v0.1)
+# CONCEPTO — Club de Pollos (v0.2)
 
 > La verdad de lo PLANEADO. Nada de software se construye si no está aquí primero.
-> Estado: **v0.1** — v0 creada 2026-07-21; actualizada el mismo día con el research de
-> mercado (`docs/research/2026-07-21-mercado-cdp.md`). Todo hueco marcado
+> Estado: **v0.2** — v0 creada 2026-07-21; v0.1 con el research de mercado
+> (`docs/research/2026-07-21-mercado-cdp.md`); v0.2 el mismo día al aclarar Francisco que
+> entramos como FRANQUICIATARIOS (ver DECISIONS D-005). Todo hueco marcado
 > `[CONFIRMAR CON FRANCISCO]` espera SU dato; nada se inventa.
 
-## 0. Situación de la marca (hallazgo del research, 2026-07-21)
+## 0. Situación de la marca — RESUELTO (DECISIONS D-005, 2026-07-21)
 
-**"Club de Pollos" existe HOY como cadena operando en México** (verificado): pollo frito,
-fundada en Monterrey ~2019, ~70-82 sucursales plausibles en NL/Tamaulipas y expansión,
-modelo de franquicia; fundadores identificados en prensa: Arnoldo Ávila y Abraham Torres
-(El Mañana, nov-2022). Registro IMPI y disponibilidad de la marca: [NO VERIFICADO].
+**Club de Pollos es una cadena existente; nosotros entramos como franquiciatarios.** No
+creamos la marca (el "cadena que estoy creando" del brief fue error de redacción). Marca
+verificada en el research: pollo frito, fundada en Monterrey ~2019, fundadores Arnoldo
+Ávila y Abraham Torres, modelo de franquicia, ~70-82 sucursales plausibles.
 
-> ⚠️ **La pregunta que gobierna el proyecto:** ¿cuál es NUESTRA relación con esa cadena?
-> ¿Franquicia, adquisición, somos parte del grupo, o proyecto independiente homónimo (=
-> riesgo legal de marca)? [CONFIRMAR CON FRANCISCO]. Ninguna decisión de dinero antes de
-> resolver esto y la búsqueda formal en IMPI.
+Implicaciones de operar como franquiciatario (no como creadores de marca):
+- La **propuesta de marca, receta y menú los define el franquiciador**; no los inventamos.
+- Nuestra palanca competitiva es la **operación**: selección de sitios, ejecución en
+  cocina y atención, y **exclusividad territorial** de la zona.
+- El instrumento crítico ahora es el **contrato de franquicia** (no el registro IMPI, que
+  ya es problema del franquiciador). Due-diligence antes de firmar (ley 6): Claude prepara
+  el checklist, Francisco ejecuta.
 
-## 1. Visión del negocio
+## 1. Nuestro rol y visión (como franquiciatario)
 
-Cadena de restaurantes dirigida por Francisco (director) con Xavier y Juan.
+Grupo franquiciatario dirigido por Francisco (director) con Xavier y Juan.
 
-- Ancla dada por Francisco (2026-07-21): pollo frito, segmento bajo/medio, "más rico y
-  más barato que KFC, sin exagerar". Referencia de mercado: ticket QSR MX ~$250-281 MXN
-  (2025-26, fuente única — ver research §C).
-- Visión (qué queremos ser, en una frase de Francisco): [CONFIRMAR CON FRANCISCO]
-- Diferenciador concreto vs KFC (~375 unidades MX), Pollo Feliz (>1,000, asado), Popeyes
-  (en MTY desde 2022, pipeline nacional 300+/10 años): [CONFIRMAR CON FRANCISCO]
+- Ancla del franquiciador (confirmar contra el contrato): pollo frito, segmento bajo/medio,
+  "más rico y más barato que KFC, sin exagerar". Referencia de mercado: ticket QSR MX
+  ~$250-281 MXN (2025-26, fuente única — ver research §C).
+- Nuestra visión como operador (qué queremos ser en nuestra zona, en una frase de
+  Francisco): [CONFIRMAR CON FRANCISCO]
+- Por qué ganamos en el corredor sur (sitios, servicio, tiempos) — NO "cómo diferimos de
+  KFC", que es tarea del franquiciador: [CONFIRMAR CON FRANCISCO]
 
-## 2. Concepto gastronómico
+## 2. Concepto gastronómico (dado por el franquiciador)
 
-- Producto central: pollo frito (ancla de Francisco, 2026-07-21). Receta/estilo y
-  guarniciones: [CONFIRMAR CON FRANCISCO]
-- Formato de servicio: piso + para llevar + delivery (ancla de Francisco). Dato de
-  research que condiciona el diseño: las apps retienen 30-35% del ticket — cada peso por
-  app vale ~$0.65-0.70 vs piso (verificado). Mezcla de canal objetivo: [CONFIRMAR CON
+- Producto central: pollo frito. Receta/estilo, menú y guarniciones los fija la marca:
+  [CONFIRMAR contra el manual de franquicia]
+- Formato de servicio: piso + para llevar + delivery (ancla de Francisco). Dato de research
+  que condiciona la operación: las apps retienen 30-35% del ticket — cada peso por app vale
+  ~$0.65-0.70 vs piso (verificado). Mezcla de canal objetivo por unidad: [CONFIRMAR CON
   FRANCISCO]
-- Ticket objetivo con número (por debajo de la referencia QSR ~$250-281): [CONFIRMAR CON
-  FRANCISCO]
+- Ticket real de la marca (por unidad): [CONFIRMAR — dato del franquiciador, no estimar]
 
 ## 3. Socios y estructura
 
 - Francisco — Director. Decide.
 - Xavier — Socio. Operativo Aux Administrativo. Alcance exacto: [CONFIRMAR CON FRANCISCO]
 - Juan — Operativo Gerencial. ¿Socio o empleado?: [CONFIRMAR CON FRANCISCO]
-- Reparto económico / equity: [CONFIRMAR CON FRANCISCO] — al definirse, va a
-  DECISIONS.md el mismo día (invariante de negocio con socios).
+- Reparto económico / equity del grupo franquiciatario: [CONFIRMAR CON FRANCISCO] — al
+  definirse, va a DECISIONS.md el mismo día (invariante de negocio con socios).
 
-## 4. Fases
+## 4. Fases y plan de crecimiento (DECISIONS D-005)
 
-- Fase actual: pre-apertura, definiendo concepto (ancla de Francisco, 2026-07-21).
-- Plaza inicial: Monterrey y área metropolitana (ancla de Francisco). ZMM: 5.34M hab, 18
-  municipios (Censo 2020). Zona específica: [CONFIRMAR CON FRANCISCO — con el mapa de
-  saturación de la segunda pasada de research enfrente]
-- Sucursales previstas a mediano plazo (N y ritmo): [CONFIRMAR CON FRANCISCO — bloquea el
-  forecast del research §F junto con capital y venta/unidad de referencia]
+- Fase actual: pre-apertura, asegurando la zona y preparando la primera unidad.
+- **Territorio a asegurar: zona sur de Monterrey, corredor ITESM → Allende, NL.** Unidades
+  de Club de Pollos confirmadas hoy en el metro norte/centro (Escobedo, San Nicolás vía
+  Rappi/directorio); NINGUNA confirmada aún en el corredor sur — [CONFIRMAR contra el
+  directorio oficial completo si la zona está libre]. Definición municipal/polígono exacta
+  para el contrato: [CONFIRMAR — Monterrey sur, y plausiblemente Santiago y Allende].
+- **Plan: empezar con 1 franquicia/año y acelerar, hasta 10 unidades en 5-6 años.** Nota
+  para el forecast: 1/año lineal daría 5-6 en 5-6 años; llegar a 10 exige que la segunda
+  mitad promedie ~2/año (la "aceleración"). Curva año-por-año: [CONFIRMAR CON FRANCISCO]
+- Tensión a vigilar en la selección de sitios (ley 9, no relitiga la zona): el corredor de
+  Carretera Nacional tiende a ingreso medio-alto en tramos, mientras el posicionamiento es
+  bajo/medio. La densidad estudiantil (ITESM) y los centros de Santiago/Allende encajan
+  mejor con el ticket bajo/medio. Validar demografía en el micro-sitio, no en el corredor
+  como bloque.
 
 Nota de arquitectura ya decidida: aunque la fase 1 sea UNA sucursal, todo el software
-lleva `branch_id` desde el día uno (ver reglas/CONSTRUCCION.md).
+lleva `branch_id` desde el día uno (ver reglas/CONSTRUCCION.md). Con 10 unidades a 5-6
+años, esto no es teórico.
 
-## 5. Sistema de monitoreo (diseño futuro)
+## 5. Economía de unidad como franquiciatario (marco para el forecast)
+
+Capas del P&L por unidad, sobre lo ya modelado en research §F:
+
+- **Ventas/unidad reales de Club de Pollos**: [CONFIRMAR — dato del franquiciador; es el
+  número que gobierna el forecast, más que cualquier benchmark internacional].
+- **Cuota inicial de franquicia** (capex de una vez): [CONFIRMAR — no público].
+- **Regalías** (% recurrente sobre ventas): [CONFIRMAR — la categoría ronda ~5%, no CdP].
+- **Fondo de publicidad** (% recurrente, si aplica): [CONFIRMAR].
+- **Inversión por unidad** (obra, equipo): [CONFIRMAR — rango categoría $0.8-2.1M MXN].
+- Sobre esas capas aplican food cost (~28-35% estimado industria), renta, nómina, y la
+  retención de delivery 30-35% [V]. Sensibilidades del research §F siguen vigentes.
+
+## 6. Sistema de monitoreo (diseño futuro)
 
 Se diseñará aquí ANTES de construirse. Preguntas abiertas para que valga la pena:
 
@@ -70,7 +96,9 @@ Se diseñará aquí ANTES de construirse. Preguntas abiertas para que valga la p
 - ¿Quién lo consume y con qué frecuencia? (Francisco diario, socios semanal…):
   [CONFIRMAR CON FRANCISCO]
 - Integraciones previstas (POS, cámaras, WhatsApp, proveedor de AI): [CONFIRMAR CON
-  FRANCISCO] — cada una desacoplada en su capa (reglas/CONSTRUCCION.md).
+  FRANCISCO] — cada una desacoplada en su capa (reglas/CONSTRUCCION.md). Nota de
+  franquicia: el franquiciador puede MANDAR un POS/sistema; nuestro monitoreo se acopla a
+  lo que exija, no lo reemplaza. [CONFIRMAR qué sistemas obliga la marca.]
 - Insumos del research (2026-07-21) para este diseño: (a) medir mezcla y margen POR CANAL
   desde el día uno — apps retienen 30-35% del ticket; (b) las bitácoras obligatorias de
   NOM-251 (temperaturas, limpieza, plagas, recepción de materia prima, capacitación) son
@@ -78,7 +106,7 @@ Se diseñará aquí ANTES de construirse. Preguntas abiertas para que valga la p
   cumplimiento COFEPRIS como subproducto; (c) alerta de precio del insumo (el pollo puede
   moverse ~9% en una quincena) como señal de primera clase del dashboard financiero.
 
-## 6. Software previsto (además del monitoreo)
+## 7. Software previsto (además del monitoreo)
 
 Mencionado en el arranque: dashboards, herramientas financieras y de gestión.
 Prioridad y alcance de cada una: [CONFIRMAR CON FRANCISCO]

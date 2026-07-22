@@ -3,6 +3,18 @@
 **Fecha:** 2026-07-21 (America/Monterrey) · **Etapa:** 1 — Research de mercado (primera pasada)
 **Para:** Francisco (director), y presentación a socios tras su revisión.
 
+> **Actualización 2026-07-21 (posterior al research):** Francisco aclaró que entramos como
+> **franquiciatarios** de Club de Pollos (no creando la marca — fue un error de redacción
+> del brief). Territorio: zona sur de Monterrey, corredor ITESM → Allende NL; plan 1
+> franquicia/año acelerando a 10 en 5-6 años. **Esto resuelve la "pregunta #1" que marca
+> este reporte** (ver DECISIONS D-005). El cuerpo del reporte se conserva como snapshot de
+> la investigación (no se reescribe la historia); todo el análisis de insumo, canal,
+> competencia y benchmarks sigue vigente. Lo que el nuevo marco de franquicia cambia:
+> (a) el AUV a modelar es el de Club de Pollos mismo (dato del franquiciador), no los
+> benchmarks internacionales; (b) el P&L suma regalías + posible fondo de publicidad sobre
+> las capas ya modeladas; (c) la exclusividad territorial del contrato sustituye al "mapa
+> de hueco" como palanca principal de la zona.
+
 ## Método y niveles de evidencia
 
 Este reporte usa DOS niveles de evidencia, marcados en cada dato:
