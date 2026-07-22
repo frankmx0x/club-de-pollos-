@@ -29,8 +29,18 @@
   cambio a franquicia AFINA qué falta: el número que gobierna ya no son los benchmarks
   internacionales sino **las ventas/unidad reales de Club de Pollos + los términos de
   franquicia** (cuota, regalías, inversión/unidad), todos datos del franquiciador.
-- Research iterativo: primera pasada entregada. Con el modelo aclarado, los candidatos a
-  segunda pasada se reordenan (abajo).
+- **Research del corredor sur:** primera pasada hecha. La verificación automatizada FALLÓ
+  (403 en todas las fuentes hiperlocales); se RESCATÓ la capa de búsqueda a
+  `docs/research/2026-07-21-corredor-sur.md`, marcado nivel [S] (snippet, sin verificar).
+  Hipótesis principal: norte del corredor (Garza Sada/Tec) saturado de pollo frito; hueco
+  hacia el sur; Allende encaja mejor con bajo/medio que Santiago (más ingreso). TODO
+  requiere confirmación manual/herramienta antes de decidir sitio.
+- **Evaluación de herramientas:** mapzot.ai descartado (cobertura MX no verificable, precio
+  enterprise). Google lanzó (2025-26) Grounding-with-Maps (Gemini API, $25/1k prompts),
+  Places Aggregate API y Places Insights en BigQuery — **México SÍ cubierto** (preview, top
+  cities; Santiago/Allende [CONFIRMAR]). Stack recomendado: Google Places + INEGI (gratis)
+  + dato del franquiciador. NO decidido/registrado aún; requiere key de Google Cloud
+  (a secret management, no al repo).
 
 ## Pendientes — de Francisco
 
@@ -61,9 +71,14 @@
 
 ## Siguiente paso
 
-Con la pregunta #1 resuelta, el camino más útil es que Claude prepare el **checklist de
-due-diligence de franquicia** para tu reunión con el franquiciador (o que profundice el
-research del corredor sur). Francisco elige cuál abrir como Etapa 2.
+Decisiones abiertas para Francisco (ninguna tomada aún):
+1. **Herramientas:** ¿(a) doc de recomendación de herramientas para DECISIONS con costos y
+   modo de adopción, (b) diseño de la consulta de saturación del corredor con Places
+   Aggregate + INEGI para correr con key de Google Cloud, o ambos?
+2. **Corredor:** el mapa de hipótesis está; el siguiente paso natural es confirmarlo con
+   herramienta de mapas (resolvería los 403) o visita de campo.
+3. **Franquicia:** checklist de due-diligence al franquiciador sigue pendiente y es el
+   entregable que desbloquea el forecast.
 
 ## Prueba de continuidad
 
