@@ -124,3 +124,20 @@
   franquiciador o meta de Francisco? Idealmente confirmar contra el AUV real de una sucursal
   comparable. La captura σ real sigue por calibrar.
 - **Reemplaza:** afina los supuestos [CONFIRMAR] de ticket del research y del §F.
+
+## 2026-07-22 · D-009 · Los priors del franquiciador son SOFT; se triangulan con fuentes externas
+
+- **Decisión (método):** Ticket $220 y trade-area 100k/unidad (D-008) provienen del
+  franquiciador pero son de **baja robustez** (experiencia + algo de análisis, no estudio
+  formal — dicho por Francisco). Se tratan como **priors blandos**, y se calibran/triangulan
+  contra fuentes externas públicas (estudios de mercado, ratios de industria). El dato del
+  franquiciador NO se toma como verdad; sirve de ancla para calibrar lo externo y viceversa.
+- **Triangulación (ver `docs/analysis/2026-07-22-catchment-poblacion-radio.md` §5-quater):**
+  ticket $220 consistente con QSR MX $250-281 [F1] (plausible); 100k/unidad es OPTIMISTA
+  (KFC opera a ~347k hab/unidad, Pollo Feliz <130k) — es el input más débil; AUV meta
+  ~US$360-600k/año sano vs benchmarks. Marco para socios: **$600k piso, $800k base, $1M
+  upside** (el $1M pende del prior más blando).
+- **Sobre mapzot.ai (re-mencionado):** se mantiene descartado (D-006) — cobertura MX sin
+  verificar + de pago; la calibración externa se hace con fuentes públicas + INEGI.
+- **Reemplaza:** matiza la confianza de D-008 (no la anula); D-008 sigue como los inputs, D-009
+  fija su nivel de confianza y el método.

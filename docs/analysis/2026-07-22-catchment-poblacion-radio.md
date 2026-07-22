@@ -130,6 +130,37 @@ demanda viene de **tráfico + captura alta + delivery**, no de residentes. El no
 residentes pero pelea encaje y competencia. Esto es exactamente lo que el Radar debe mostrar:
 población-en-radio JUNTO A hueco, encaje y anclas — no un solo número.
 
+## 5-quater. Triangulación de los priors del franquiciador (2026-07-22)
+
+Francisco: el ticket $220 y los 100k/unidad **son del franquiciador, pero de BAJA robustez**
+(experiencia + algo de análisis). Se tratan como **priors SOFT**, a calibrar contra fuentes
+externas. Método de la casa: verificar contra la fuente, no contra la afirmación.
+
+**Ticket $220** → vs QSR MX ~$250-281 [F1]. Está ~12-22% por debajo del promedio QSR:
+consistente con "value / bajo-medio, más barato que KFC". **Plausible, riesgo bajo.**
+
+**Trade-area 100k/unidad** → cross-check con ratios población/unidad (conteos públicos [F1],
+MX ~130M hab 2024):
+- KFC: 375 unidades → ~**347,000** hab/unidad.
+- Pollo Feliz: >1,000 unidades → **<130,000** hab/unidad.
+→ 100k/unidad es DENSO: ~3.5× más denso que KFC, en zona de Pollo Feliz. Es concebible como
+*trade-area urbana* (catchments que se traslapan), pero es el prior **más optimista**. Si el
+comportamiento real se parece más a KFC, el catchment efectivo necesario sería mayor a 100k.
+Los ratios nacionales mezclan lo rural (subestiman densidad urbana), así que es una cota, no
+un veredicto. **Optimista; el input más débil del modelo.**
+
+**Cross-check de AUV:** meta $600k-$1M/mes = ~US$360k-600k/año/unidad (@~20 MXN/USD). Vs
+benchmarks EE.UU. 2024 [V]: Campero $3.17M, Cane's $6.56M, Chick-fil-A $7.49M. La meta MX es
+~1/5 a 1/10 del AUV gringo — lo esperado para un mercado de precio-valor. **Orden de magnitud
+sano.** (Las cadenas MX no publican AUV — KFC no garantiza cifras — por eso se calibra por
+ratios, no por un número limpio.)
+
+**Veredicto de robustez para socios:**
+- **$600k = piso defendible** (solo ~4% de captura; resiliente aunque los 100k sean optimistas).
+- **$800k = base razonable** (~5.4% captura).
+- **$1M = upside** — depende de que los 100k Y la captura base (~7%) se cumplan a la vez; el
+  input más blando (100k) es justo el que lo sostiene. Presentar como techo, no como base.
+
 ## 6. Cómo se conecta al Radar
 
 - Con σ base y la venta objetivo, el Radar puede pintar, por colonia, si su **población en
