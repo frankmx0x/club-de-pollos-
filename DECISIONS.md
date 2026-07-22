@@ -70,3 +70,23 @@
   exclusividad de zona, ventas/unidad reales, capex); Francisco ejecuta la firma. Los
   números finos (cuota inicial, % de regalías, inversión/unidad) SOLO los da Francisco
   desde el franquiciador — [CONFIRMAR].
+
+## 2026-07-21 · D-006 · Stack de datos para decisión de sitio + construir "Radar de Sitios"
+
+- **Decisión:** El análisis de ubicación se construye sobre este stack: **INEGI DENUE +
+  Censo 2020 por AGEB (gratis, base)** + **Google Places Aggregate API + Grounding-with-Maps
+  (capa de validación/calidad, key GCP)** + **datos del franquiciador (ground truth)**. Se
+  descarta **mapzot.ai**. Se difiere **Places Insights en BigQuery** hasta tener varias
+  unidades. Se construye en el repo la herramienta **Radar de Sitios** (`tools/radar-sitios/`),
+  fases v0 (gratis) → v1 (con key) → v2 (integrado). Diseño en CONCEPTO §8.
+- **Porqué:** Google cubre México de forma verificable (lista oficial de cobertura del
+  preview incluye México); INEGI es fuente oficial gratuita y baja a nivel AGEB; mapzot no
+  tenía cobertura MX verificable y es precio enterprise de venta asistida. El tráfico
+  peatonal real no lo da ninguna API oficial → se sustituye con anclas + visita de campo.
+- **Reemplaza:** Nada (primera decisión de herramientas). Cierra la evaluación de mapzot.
+- **Bloqueo registrado (evidencia, ley 1):** hoy `www.inegi.org.mx` y las APIs de Google
+  están **denegadas por la política de red del entorno** — el proxy responde `403 CONNECT`
+  (registrado en `recentRelayFailures`). Es configuración editable (no arquitectura); para
+  llenar el Radar con datos completos, Francisco amplía el allowlist para la etapa de datos.
+  Los secretos (key de Google Cloud) van al manejo de secretos de la plataforma de deploy o
+  a `.env` gitignored — jamás al repo ni al entorno.

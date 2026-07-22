@@ -110,3 +110,42 @@ Se diseñará aquí ANTES de construirse. Preguntas abiertas para que valga la p
 
 Mencionado en el arranque: dashboards, herramientas financieras y de gestión.
 Prioridad y alcance de cada una: [CONFIRMAR CON FRANCISCO]
+
+## 8. Radar de Sitios — herramienta de decisión de ubicación (DECISIONS D-006)
+
+Primera pieza de software del proyecto. Propósito: convertir "¿dónde pongo la unidad 1?"
+en un **ranking de micro-zonas del corredor sur con evidencia**, no en opinión.
+
+**Capas de datos y quién las aporta:**
+| Capa | Fuente | Aporta | Costo |
+|---|---|---|---|
+| Oferta (competencia) | INEGI **DENUE** (directorio de unidades económicas, coords + giro) | Cada pollo/QSR/rosticería del corredor georreferenciado | Gratis, sin key |
+| Demanda (demografía) | INEGI **Censo 2020 por AGEB** | Población, densidad, escolaridad por colonia | Gratis |
+| Competencia viva + rating | Google **Places Aggregate API** | Conteos por radio + rating; valida qué del DENUE sigue abierto | Key GCP (preview) |
+| Reseñas / debilidades | **Grounding with Maps** (Gemini) | De qué se quejan los competidores por sitio | ~$25 USD/1k |
+| Rentas | Portales inmobiliarios (carga manual) | $/m² por tramo | Manual |
+| Ground truth | **El franquiciador** | Ventas/unidad reales de zonas análogas | Solo Francisco |
+
+**Análisis (score por punto, no por corredor):** malla de puntos sobre el corredor; cada
+punto recibe score = f(demanda en radio, oferta/saturación en radio, encaje bajo/medio,
+renta como % de venta, anti-canibalización con futuras unidades 2-10). Cada número lleva
+fuente y nivel de confianza ([V]/[F1]/[S]); los huecos se ven como huecos (invariante d:
+jamás un ausente disfrazado de 0).
+
+**Fases:**
+- **v0** (sin key, gratis): pipeline DENUE + Censo AGEB → mapa/tabla del corredor con
+  semáforo por micro-zona. Entregable abrible en el teléfono para la visita de campo.
+- **v1** (con key GCP → secret management, jamás al repo): capas Google (abiertos, ratings,
+  conteos, reseñas); recálculo del score.
+- **v2**: integrado al sistema de gestión, reutilizable para sitios 2-10.
+
+**Honestidad de diseño (ley 4):** el tráfico peatonal real NO existe en API oficial de
+Google (los "popular times" no se exponen programáticamente) — era el brillo de mapzot y
+tampoco lo tendríamos verificable para MX. Sustituto honesto: anclas de tráfico como proxy
++ **checklist de visita de campo** (conteo manual en hora pico de los 2-3 finalistas). El
+Radar reduce 40 km a 3 candidatos; los ojos de Francisco deciden entre esos 3.
+
+**Estado actual:** v0 sembrado con datos [S] rescatados (ver
+`docs/research/2026-07-21-corredor-sur.md` y `tools/radar-sitios/`). Bloqueado para datos
+completos: INEGI y APIs de Google están vetados por la política de red del entorno
+(evidencia: 403 CONNECT en el proxy) — [CONFIRMAR CON FRANCISCO: ampliar allowlist].
