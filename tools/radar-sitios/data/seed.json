@@ -1,12 +1,16 @@
 {
   "_meta": {
-    "titulo": "Radar de Sitios — datos semilla del corredor sur (ITESM → Allende)",
+    "titulo": "Radar de Sitios — corredor sur (ITESM → Allende)",
     "fecha": "2026-07-21",
     "tz": "America/Monterrey",
-    "nivel_evidencia": "[S] = snippet de búsqueda, fuente única, SIN verificación adversarial. PROVISIONAL. Confirmar antes de decidir sitio o firmar renta.",
-    "origen": "Rescatado de docs/research/2026-07-21-corredor-sur.md (fase de fetch del research automatizado falló con 403; capa de búsqueda salvada del journal).",
-    "pendiente_datos_completos": "INEGI DENUE + Censo AGEB y Google Places bloqueados por política de red del entorno (403 CONNECT). Al abrir allowlist, este seed se reemplaza por datos completos georreferenciados.",
-    "escala_score": "0-100, mayor = mejor candidato. Modelo transparente en radar.html; pesos visibles. Score es PROVISIONAL sobre datos [S]."
+    "version": "v1 — competencia con DATO DURO DENIE; demografía y renta aún [S]",
+    "niveles": {
+      "V-DENUE": "Dato duro: DENUE INEGI Nuevo León, corte may-2026 (censo oficial de unidades económicas, georreferenciado). Ver data/competencia_corredor.json.",
+      "S": "Snippet de búsqueda, fuente única, sin verificar. PROVISIONAL.",
+      "F1": "Fuente única (oficial vía snippet)."
+    },
+    "geo": "Competencia = restaurantes SCIAN 722* clasificados por nombre; corredor = polilínea ITESM→Contry→Estanzuela→Santiago→Allende, Monterrey a <=2 km de la línea (Santiago/Allende completos). Caveat: el buffer del extremo Tec roza el centro de Monterrey (KFC Chapultepec/Nuevo Repueblo cuentan como norte; no altera que el norte esté saturado).",
+    "escala_score": "0-100 provisional; combina demanda (demografía [S]), hueco de pollo frito (DENUE [V]), encaje bajo/medio ([S]) y renta ([S]). Mayor = mejor candidato."
   },
   "tramos": [
     {
@@ -14,21 +18,22 @@
       "nombre": "Garza Sada / Tec / Contry",
       "orden_norte_sur": 1,
       "demografia": {
-        "poblacion_ancla": "DistritoTec ~30,000 hab (452 ha, 24 colonias) + >20,000 estudiantes ITESM en campus",
+        "poblacion_ancla": "DistritoTec ~30,000 hab + >20,000 estudiantes ITESM",
         "ingreso": "medio / medio-alto",
-        "fuente": "TEC Food oficial; Conecta Tec (DistritoTec); Infonavit",
+        "fuente": "TEC Food; Conecta Tec; Infonavit",
         "confianza": "S"
       },
-      "competencia_pollo_frito": [
-        {"marca": "KFC Country", "dir": "Av. Eugenio Garza Sada 3367, col. Altavista, 64840", "rating": 4.1, "fuente": "kfc.com.mx store-locator; restaurantguru", "confianza": "S"},
-        {"marca": "KFC Tecnológico", "dir": "tramo Tec (listado Rappi)", "rating": null, "fuente": "rappi.com.mx", "confianza": "S"},
-        {"marca": "Church's Chicken", "dir": "Garza Sada Sur 3431", "rating": null, "fuente": "restaurantguru", "confianza": "S"}
-      ],
-      "renta_mxn_mes": {"rango": "comparar vs sur (Contry/Garza Sada)", "fuente": "Lamudi/Vivanuncios", "confianza": "S"},
+      "competencia_denue": {
+        "pollo_total": 118,
+        "pollo_frito_directo": 5,
+        "fritos": ["KFC Country (Altavista)", "KFC Chapultepec (borde central)", "Crispy Tenders (La Primavera)", "KFC (Nuevo Repueblo, borde central)", "Fried Chicken Louisiana (Villa Florida)"],
+        "fuente": "DENUE may-2026", "confianza": "V-DENUE"
+      },
+      "renta_mxn_mes": {"rango": "comparar vs sur", "fuente": "Lamudi/Vivanuncios", "confianza": "S"},
       "saturacion": "alta",
       "encaje_bajo_medio": "medio",
-      "score": 42,
-      "score_notas": "Demanda estudiantil máxima, PERO saturado de pollo frito directo (KFC×2 + Church's). Entrar = pelea frontal con KFC. Solo si el gancho de precio es real."
+      "score": 40,
+      "score_notas": "El tramo MÁS saturado de pollo (118) y con más frito directo (5, incl. KFC Country). Máxima demanda estudiantil pero pelea frontal con KFC. Solo si el gancho de precio es real."
     },
     {
       "id": "carretera-nacional-estanzuela",
@@ -37,18 +42,21 @@
       "demografia": {
         "poblacion_ancla": "corredor residencial en crecimiento",
         "ingreso": "medio-alto (tramos premium: Valle Alto)",
-        "fuente": "perfil de corredor; listados inmobiliarios",
+        "fuente": "listados inmobiliarios",
         "confianza": "S"
       },
-      "competencia_pollo_frito": [],
-      "competencia_indirecta": [
-        {"marca": "Soriana Híper Estanzuela (rosticería)", "dir": "Carretera Nacional 7877, La Estanzuela", "fuente": "tiendasinfo; Foursquare", "confianza": "S"}
-      ],
-      "renta_mxn_mes": {"rango": "$12,000 – $50,112 (40 m² ~$12k; nuevos 2025 ~$25k; Valle Alto PB ~$50k)", "fuente": "Trovit (~114 listados)", "confianza": "S"},
-      "saturacion": "media (anclas, poco pollo frito confirmado)",
+      "competencia_denue": {
+        "pollo_total": 49,
+        "pollo_frito_directo": 1,
+        "fritos": ["Bonanza Pollo Frito (Cortijo del Río)"],
+        "indirecta": ["Soriana Híper Estanzuela (Carr. Nacional 7877)"],
+        "fuente": "DENUE may-2026", "confianza": "V-DENUE"
+      },
+      "renta_mxn_mes": {"rango": "$12,000 – $50,112 (Trovit ~114 listados)", "fuente": "Trovit", "confianza": "S"},
+      "saturacion": "media-baja en frito",
       "encaje_bajo_medio": "bajo (ingreso alto)",
-      "score": 55,
-      "score_notas": "Posible hueco de pollo frito, pero ingreso alto choca con posicionamiento bajo/medio. Anclas de tráfico fuertes (Soriana)."
+      "score": 54,
+      "score_notas": "Hueco de pollo frito (solo 1) y anclas de tráfico fuertes, PERO ingreso alto choca con el posicionamiento bajo/medio. Ticket tendría que subir."
     },
     {
       "id": "santiago-cercado",
@@ -56,21 +64,22 @@
       "orden_norte_sur": 3,
       "demografia": {
         "poblacion_ancla": "Santiago 46,784 hab (2020)",
-        "ingreso": "medio (pobreza moderada 11.7% — baja vs estado)",
+        "ingreso": "medio (pobreza moderada 11.7%)",
         "fuente": "Data México / INEGI 2020",
         "confianza": "S"
       },
-      "competencia_pollo_frito": [
-        {"marca": "El Pollo Loco (asado)", "dir": "Plaza Presa de la Boca, Santiago", "rating": null, "fuente": "Lamudi (plaza anclada)", "confianza": "S"}
-      ],
-      "competencia_indirecta": [
-        {"marca": "Soriana Híper Los Cavazos (Grill Boutique)", "dir": "Carretera Nacional 588, Santiago (abrió dic-2024)", "fuente": "ABC Noticias 2024", "confianza": "S"}
-      ],
-      "renta_mxn_mes": {"rango": "desde $13,200; plazas $280–450/m² (Tarantella, Tulea)", "fuente": "Inmuebles24/Lamudi/Vivanuncios", "confianza": "S"},
-      "saturacion": "media",
+      "competencia_denue": {
+        "pollo_total": 42,
+        "pollo_frito_directo": 0,
+        "fritos": [],
+        "indirecta": ["El Pollo Loco (Presa de la Boca, asado)", "Soriana Híper Los Cavazos (Carr. Nacional 588)"],
+        "fuente": "DENUE may-2026", "confianza": "V-DENUE"
+      },
+      "renta_mxn_mes": {"rango": "desde $13,200; $280–450/m²", "fuente": "Inmuebles24/Lamudi", "confianza": "S"},
+      "saturacion": "42 pollo pero 0 frito de cadena → HUECO de frito",
       "encaje_bajo_medio": "medio",
-      "score": 63,
-      "score_notas": "Tráfico de anclas (Soriana, Cinépolis) + centro popular. Riesgo: El Pollo Loco ya presente. Ingreso medio, no bajo."
+      "score": 66,
+      "score_notas": "HALLAZGO DENUE: 42 lugares de pollo pero CERO pollo frito de cadena — hueco claro de frito en un municipio con anclas (Soriana, Cinépolis) e ingreso medio. Rival a vigilar: El Pollo Loco (asado, no frito)."
     },
     {
       "id": "allende-centro",
@@ -78,23 +87,29 @@
       "orden_norte_sur": 4,
       "demografia": {
         "poblacion_ancla": "Allende 35,289 hab (2020)",
-        "ingreso": "bajo / medio (pobreza moderada 21.7% — casi doble que Santiago)",
+        "ingreso": "bajo / medio (pobreza moderada 21.7%)",
         "fuente": "Data México / INEGI 2020",
         "confianza": "S"
       },
-      "competencia_pollo_frito": [],
-      "renta_mxn_mes": {"rango": "los tramos más baratos del corredor (menor evidencia)", "fuente": "icasas/Vivanuncios", "confianza": "S"},
-      "saturacion": "baja (sin evidencia de pollo frito de cadena)",
+      "competencia_denue": {
+        "pollo_total": 32,
+        "pollo_frito_directo": 2,
+        "fritos": ["Church's Allende (Res. San Javier) — 2 registros, prob. 1 tienda"],
+        "fuente": "DENUE may-2026", "confianza": "V-DENUE"
+      },
+      "renta_mxn_mes": {"rango": "los tramos más baratos del corredor", "fuente": "icasas/Vivanuncios", "confianza": "S"},
+      "saturacion": "baja (32 pollo) pero Church's ya presente",
       "encaje_bajo_medio": "alto",
-      "score": 68,
-      "score_notas": "Mejor encaje bajo/medio (demografía) + menor saturación aparente + renta baja. Riesgo: menor población (35k) → validar demanda. Candidato #1 provisional."
+      "score": 63,
+      "score_notas": "Mejor encaje bajo/medio (ingreso) + baja saturación total + renta baja. MATIZ DENUE: ya hay un Church's (pollo frito directo) — no está virgen. Riesgo: menor población (35k)."
     }
   ],
   "club_de_pollos_en_corredor": {
-    "hallazgo": "NINGUNA unidad confirmada en el corredor sur.",
+    "hallazgo": "CERO unidades de Club de Pollos en todo el corredor (Monterrey sur + Santiago + Allende).",
+    "confianza": "V-DENUE",
+    "fuente": "DENUE INEGI 19, may-2026 (búsqueda directa en el censo, 0 coincidencias)",
     "confirmadas_fuera": ["Solidaridad", "Pablo Livas (Guadalupe) — norte/oriente del metro"],
-    "senal": "Marca promueve 'sucursales disponibles / sé tu propio dueño' (Facebook oficial) → corredor sur plausiblemente LIBRE.",
-    "confianza": "S",
-    "pendiente": "Confirmar contra directorio oficial (hoy 403) y Google Maps."
+    "caveat": "DENUE corte may-2026; una unidad abierta muy recientemente podría no estar capturada. Confirmar contra directorio oficial.",
+    "lectura": "El territorio del corredor está genuinamente abierto para la franquicia."
   }
 }

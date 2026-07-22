@@ -1,0 +1,20 @@
+{
+ "restaurantes_722_por_municipio": {
+  "Santiago": 352,
+  "Monterrey": 1255,
+  "Allende": 195
+ },
+ "pollo_por_municipio": {
+  "Monterrey": 166,
+  "Santiago": 43,
+  "Allende": 32
+ },
+ "pollo_por_tramo": {
+  "Tec/Garza Sada": 78,
+  "Santiago": 42,
+  "Carr.Nacional/Estanzuela": 49,
+  "Contry": 40,
+  "Allende": 32
+ },
+ "fuente": "DENUE INEGI 19 (may-2026)"
+}

@@ -1,0 +1,6 @@
+# Volcado masivo DENUE (grande, no versionar — se descarga con curl; ver extract_denue.py)
+*.zip
+conjunto_de_datos/
+diccionario_de_datos/
+metadatos/
+# Sí se versionan los derivados chicos: data/*.json

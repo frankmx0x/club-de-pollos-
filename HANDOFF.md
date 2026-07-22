@@ -21,10 +21,15 @@
 
 ## En vuelo / bloqueado
 
-- **BLOQUEO DE RED (evidencia, ley 1):** INEGI (`www.inegi.org.mx`) y APIs de Google están
-  **denegadas por la política de red del entorno** — proxy responde `403 CONNECT`
-  (`recentRelayFailures`). Es configuración editable, no arquitectura. Sin esto, el Radar
-  se queda en datos semilla [S]; con esto, se llena con DENUE + Censo + Places completos.
+- **RED DESBLOQUEADA (Francisco amplió el allowlist):** INEGI responde 200; Google host
+  alcanzable. Se corrió el pipeline real del Radar → **Radar v1 con competencia DENUE dura**.
+- **Radar v1 (dato duro):** `extract_denue.py` procesó DENUE NL (211,350 unidades, corte
+  may-2026) → `data/competencia_corredor.json` (241 establecimientos de pollo del corredor).
+  Hallazgos [V-DENUE]: **Club de Pollos = 0 en el corredor**; **Santiago = 0 pollo frito de
+  cadena (hueco)**; **Allende ya tiene Church's**; norte (Tec/Contry) saturado. Ranking
+  provisional actualizado: Santiago 66 · Allende 63 · Carr.Nacional 54 · Garza Sada 40.
+- **Pendiente para completar el Radar:** Censo 2020 por AGEB (demografía real por colonia,
+  hoy [S]) y capa Google Places (ratings/abiertos, requiere key GCP).
 - **Forecast (§F):** sigue bloqueado por datos del franquiciador (ventas/unidad, términos).
 
 ## Pendientes — de Francisco

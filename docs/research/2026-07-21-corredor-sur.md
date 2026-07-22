@@ -24,6 +24,24 @@ Por lo tanto:
   sur es exactamente donde la web abierta no alcanza y Google Places API + INEGI (con key)
   sí llegarían.
 
+> **ADDENDUM 2026-07-21 [V-DENUE] — datos duros ya obtenidos.** Tras abrir el allowlist de
+> red, se descargó el censo oficial **DENUE INEGI Nuevo León (corte may-2026)** y se
+> extrajo la competencia real del corredor (pipeline `tools/radar-sitios/extract_denue.py`).
+> Esto **supera** las hipótesis [S] de abajo en lo referente a competencia y presencia de
+> Club de Pollos. Resultados duros (SCIAN 722*, geo-filtrados a la polilínea del corredor):
+> - **Club de Pollos: 0 unidades en todo el corredor** (búsqueda directa en el censo) →
+>   territorio genuinamente abierto. Caveat: corte may-2026.
+> - **Pollo (todo) por tramo:** Tec/Garza Sada 78 · Contry 40 · Carr.Nacional/Estanzuela 49
+>   · Santiago 42 · Allende 32. **Frito directo:** Tec/Garza Sada 5 · Allende 2 (Church's) ·
+>   Carr.Nacional 1 · **Santiago 0**.
+> - **Hallazgo que refina la decisión:** Santiago tiene 42 lugares de pollo pero **0 pollo
+>   frito de cadena** (hueco de frito); Allende ya tiene un **Church's** (no está virgen).
+> - Caveat de método: el buffer de 2 km del extremo Tec roza el centro de Monterrey (2 de
+>   los 5 fritos del norte son borde central); no altera que el norte esté saturado.
+> Datos vivos en `tools/radar-sitios/data/competencia_corredor.json` (241 establecimientos)
+> y reflejados en el Radar (`radar.html`). La demografía y las rentas SIGUEN en [S] hasta
+> bajar el Censo por AGEB.
+
 ---
 
 ## 1. Resumen accionable (hipótesis, [S])
