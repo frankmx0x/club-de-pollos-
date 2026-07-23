@@ -203,6 +203,42 @@ cadena" local vale ~8% del gasto QSR. Entonces:
   el Radar por colonia debe encontrar. Marco de venta para socios se sostiene: **$600k piso /
   $800k base / $1M upside** (el $1M exige captura casi-monopólica o tráfico alto).
 
+## 5-sexies. POBLACIÓN EN RADIO por colonia — DATO DURO (2026-07-22)
+
+Motor: `extract_poblacion_radio.py`. Suma POBTOT (Censo 2020) de los AGEBs cuyo centroide
+cae en el radio. Centroide de AGEB derivado del promedio de coords DENUE (aprox; evita
+shapefiles). **Cobertura validada: Monterrey 98.6% · Santiago 97.2% · Allende 99.8%** de la
+población censal → método confiable [V-Censo aprox]. Datos vivos en `data/poblacion_radio.json`.
+
+| Colonia | Pob @1.5km | Pob @2.0km | Pob @2.5km | ¿Llega a 100k? | Venta est. @2km* |
+|---|--:|--:|--:|:--:|--:|
+| **Tecnológico** | 49,673 | **98,753** | 150,505 | Sí (~2 km) | ~$871k |
+| **Contry** | 47,008 | 84,405 | 119,905 | Sí (~2.5 km) | ~$744k |
+| **San Ángel** | 39,573 | 70,637 | 105,827 | Sí (~2.5 km) | ~$623k |
+| La Estanzuela | 38,147 | 46,462 | 57,140 | No | ~$410k |
+| Valle Alto | 33,658 | 40,581 | 47,172 | No (premium, baja densidad) | ~$358k |
+| La Herradura | 8,687 | 8,708 | 14,554 | No (exclusiva) | ~$77k |
+| El Cercado (Santiago) | 10,552 | 13,215 | 15,903 | No | ~$117k |
+| Centro de Allende | 11,907 | 18,331 | 22,423 | No | ~$162k |
+
+*Venta estimada = pob@2km × $147/persona/mes × σ 6% (base, ingreso medio). Sin ajuste por
+ingreso ni tráfico/turismo/delivery — solo residentes.
+
+**Confirmado con dato duro:**
+- El objetivo de **100k solo lo cumplen las colonias densas del norte** (Tecnológico ~99k@2km;
+  Contry ~120k@2.5km; San Ángel ~106k@2.5km). Ahí $800k-$1M es alcanzable por residentes.
+- **Santiago (El Cercado 13k@2km) y Allende (Centro 18k@2km) están MUY por debajo** de 100k —
+  su venta residencial tope ~$117k-$162k/mes. Solo llegan a las metas con **tráfico de
+  Carretera Nacional + turismo (Pueblo Mágico) + delivery + captura casi-monopólica** (0
+  competidores) — real, pero dependiente de tráfico y más difícil de suscribir.
+- **Valle Alto y La Herradura**: pocos residentes (premium/baja densidad) + ingreso alto (mal
+  encaje bajo/medio) → descartables para este posicionamiento.
+
+**El punto óptimo intermedio con nombre:** las candidatas que combinan población suficiente +
+ingreso no-tan-alto + competencia manejable son **Contry, San Ángel y (con matiz de ingreso)
+Tecnológico** — a validar contra su SES exacto y su competencia de frito por colonia (fase
+colonias del plan).
+
 ## 6. Cómo se conecta al Radar
 
 - Con σ base y la venta objetivo, el Radar puede pintar, por colonia, si su **población en

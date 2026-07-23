@@ -1,0 +1,135 @@
+{
+ "_meta": {
+  "fuente": "Censo 2020 POBTOT por AGEB + centroide AGEB derivado de DENUE",
+  "metodo": "aprox: centroide de AGEB = promedio de coords de establecimientos DENUE",
+  "confianza": "V-Censo aprox",
+  "radios_km": [
+   1.5,
+   2.0,
+   2.5
+  ]
+ },
+ "cobertura": {
+  "Monterrey": {
+   "pob_censo": 1142952,
+   "pob_con_centroide": 1126989,
+   "cobertura_pct": 98.6
+  },
+  "Santiago": {
+   "pob_censo": 43019,
+   "pob_con_centroide": 41824,
+   "cobertura_pct": 97.2
+  },
+  "Allende": {
+   "pob_censo": 28843,
+   "pob_con_centroide": 28781,
+   "cobertura_pct": 99.8
+  }
+ },
+ "colonias": [
+  {
+   "colonia": "Contry",
+   "centro": {
+    "lat": 25.63715,
+    "lon": -100.27916
+   },
+   "n_estab_centro": 805,
+   "poblacion_en_radio": {
+    "1.5km": 47008,
+    "2.0km": 84405,
+    "2.5km": 119905
+   }
+  },
+  {
+   "colonia": "Tecnológico",
+   "centro": {
+    "lat": 25.64965,
+    "lon": -100.29286
+   },
+   "n_estab_centro": 187,
+   "poblacion_en_radio": {
+    "1.5km": 49673,
+    "2.0km": 98753,
+    "2.5km": 150505
+   }
+  },
+  {
+   "colonia": "La Estanzuela",
+   "centro": {
+    "lat": 25.58718,
+    "lon": -100.24934
+   },
+   "n_estab_centro": 504,
+   "poblacion_en_radio": {
+    "1.5km": 38147,
+    "2.0km": 46462,
+    "2.5km": 57140
+   }
+  },
+  {
+   "colonia": "Valle Alto",
+   "centro": {
+    "lat": 25.58033,
+    "lon": -100.25253
+   },
+   "n_estab_centro": 152,
+   "poblacion_en_radio": {
+    "1.5km": 33658,
+    "2.0km": 40581,
+    "2.5km": 47172
+   }
+  },
+  {
+   "colonia": "La Herradura",
+   "centro": {
+    "lat": 25.56053,
+    "lon": -100.23207
+   },
+   "n_estab_centro": 26,
+   "poblacion_en_radio": {
+    "1.5km": 8687,
+    "2.0km": 8708,
+    "2.5km": 14554
+   }
+  },
+  {
+   "colonia": "San Ángel",
+   "centro": {
+    "lat": 25.66228,
+    "lon": -100.29503
+   },
+   "n_estab_centro": 287,
+   "poblacion_en_radio": {
+    "1.5km": 39573,
+    "2.0km": 70637,
+    "2.5km": 105827
+   }
+  },
+  {
+   "colonia": "El Cercado (Santiago)",
+   "centro": {
+    "lat": 25.40192,
+    "lon": -100.13409
+   },
+   "n_estab_centro": 455,
+   "poblacion_en_radio": {
+    "1.5km": 10552,
+    "2.0km": 13215,
+    "2.5km": 15903
+   }
+  },
+  {
+   "colonia": "Centro de Allende",
+   "centro": {
+    "lat": 25.28092,
+    "lon": -100.01937
+   },
+   "n_estab_centro": 713,
+   "poblacion_en_radio": {
+    "1.5km": 11907,
+    "2.0km": 18331,
+    "2.5km": 22423
+   }
+  }
+ ]
+}
