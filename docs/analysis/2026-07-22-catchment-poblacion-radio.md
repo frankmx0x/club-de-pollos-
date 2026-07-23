@@ -161,6 +161,48 @@ ratios, no por un número limpio.)
 - **$1M = upside** — depende de que los 100k Y la captura base (~7%) se cumplan a la vez; el
   input más blando (100k) es justo el que lo sostiene. Presentar como techo, no como base.
 
+## 5-quinquies. Calibración externa LIGERA (2026-07-22, búsquedas dirigidas)
+
+**Ticket $220 → VALIDADO.** Precios KFC MX 2025-26: combos individuales $199-299, bucket para
+dos $199, 12 piezas ~$499 [F1, menús KFC]. Un ticket promedio ~$220 (mezcla individual+familiar)
+es realista y consistente con "más barato que KFC" (precio por pieza menor; los buckets suben el
+promedio). Riesgo bajo.
+
+**Gasto per cápita → CALIBRADO con ENIGH 2024 (INEGI).** Hogares gastaron ~$3,896/trimestre =
+**~$1,299/mes/hogar** en alimentos fuera del hogar; ÷ ~3.6 personas ≈ **$361/persona/mes** en
+TODO lo que se come fuera (restaurantes, taquerías, calle, QSR). El QSR es un subconjunto → mi
+supuesto de **$147/persona/mes en QSR ≈ 41% de eso: plausible**. [F1, ENIGH 2024]
+- **Clave para bajo/medio:** los deciles bajos gastan 9.4% de su gasto en comer fuera vs 36% el
+  decil 10 [F1, ENIGH]. El segmento bajo/medio gasta MENOS per cápita → su QSR per cápita ronda
+  ~**$100-130** (estimación), no $147. Baja la demanda esperada en Allende/Santiago.
+
+**Captura σ → CALIBRADA con market share.** El pollo en QSR ≈ **8% de las ventas del sector
+QSR** (2018), de las cuales ~1/3 fue KFC [F1, 2018]. Es decir, el "pastel de pollo frito de
+cadena" local vale ~8% del gasto QSR. Entonces:
+- σ = captura LOCAL de una unidad bien puesta (mayor que el promedio nacional, que se diluye).
+- **Cota dura:** en zona 0-competidores (Santiago/Allende) te acercas a capturar ese ~8% (+ algo
+  de sustitución); donde hay KFC/Popeyes lo repartes.
+- **Banda σ recalibrada (reemplaza mi 4/7/10% supuesto):** **conservador ~4% · base ~6% ·
+  optimista ~8%.** Mi 10% previo era optimista de más (excede el 8% de share del pollo → exigiría
+  robar gasto a no-pollo).
+
+**Recálculo con inputs calibrados (100k personas):**
+| | per cápita $147 (zona ingreso medio) | per cápita ~$115 (bajo/medio) |
+|---|--:|--:|
+| σ=4% | $588k | $460k |
+| σ=6% (base) | **$882k** | **$690k** |
+| σ=8% | $1,176k | $920k |
+
+**Conclusión calibrada:**
+- **Doble restricción del sur:** Santiago/Allende no tienen 100k residentes Y su per cápita es
+  más bajo → solo llegan a $800k-$1M vía tráfico/turismo/delivery/captura casi-monopólica.
+- **El norte denso** (Contry/Tec) sí tiene la población y mayor per cápita, pero σ está disputada
+  (KFC presente) y el encaje bajo/medio es peor.
+- **El punto óptimo es intermedio:** una colonia **densa-suficiente, ingreso medio, con pocos
+  competidores de frito** — ni el norte saturado ni el sur despoblado. Eso es exactamente lo que
+  el Radar por colonia debe encontrar. Marco de venta para socios se sostiene: **$600k piso /
+  $800k base / $1M upside** (el $1M exige captura casi-monopólica o tráfico alto).
+
 ## 6. Cómo se conecta al Radar
 
 - Con σ base y la venta objetivo, el Radar puede pintar, por colonia, si su **población en
