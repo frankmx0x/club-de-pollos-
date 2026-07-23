@@ -66,6 +66,36 @@ Y el back-solve ya lo tenemos: El Cercado necesita **~5.4×** su base residencia
 $600k. La pregunta que el conteo responde: **¿el tráfico medido da para ese 5×?** Si sí, el sur
 es viable; si no, el norte (Contry) es el camino seguro.
 
+## Resultados del DESK PASS (2026-07-22)
+
+Lo que se obtuvo y lo que NO (honesto):
+- **Macro (con fuente):** Semana Santa 2026, NL esperaba **>700,000 personas** en parques del
+  estado, con **Cola de Caballo entre los de mayor afluencia** [NL Gob]; SS2025 = 136k
+  hospedados / $1,282 MDP (estatal). Perfil: day-trip, ~US$60/persona, comida central.
+- **Fuentes de la cifra dura CONFIRMADAS, pero portal-gated:**
+  - **TDPA de la carretera:** SICT `appdatosviales.sctcloud.com.mx` (portal interactivo:
+    mapa → estación de Carretera Nacional/Fed. 85 → TDPA + histórico 2009-2025, descarga
+    PDF/CSV/Excel). **No extraíble por fetch** (portal JS / 403). Pull manual de ~5 min.
+  - **Afluencia Cola de Caballo:** el parque cobra entrada → tiene conteo; se pide al
+    parque/municipio de Santiago (no público).
+  - Prensa y `vialidades.com.mx` devolvieron **403** al fetch.
+
+**Por qué estas dos cifras DECIDEN — la palanca del tráfico (ilustrativo, [estimación]):**
+`venta_visitante/mes ≈ TDPA × tasa_captura × ticket × 30`. Los corredores federales
+suburbanos suelen traer **decenas de miles de vehículos/día** (a confirmar en SICT):
+
+| TDPA (veh/día) | Captura 0.2% | Captura 0.5% | Captura 1.0% |
+|---|--:|--:|--:|
+| 15,000 | $198k/mes | $495k/mes | $990k/mes |
+| 25,000 | $330k/mes | $825k/mes | $1.65M/mes |
+| 40,000 | $528k/mes | $1.32M/mes | $2.64M/mes |
+
+→ Con un flujo de decenas de miles/día, **capturar apenas 0.3-0.5% cierra el 5×** que el sur
+necesita. La apuesta se reduce a DOS números medibles: **(1) el TDPA real** (SICT / conteo) y
+**(2) la tasa de captura** (conteo de campo: cuántos de los que pasan se detienen y compran).
+Caveat: el TDPA es promedio anual; el turismo se concentra en fin de semana → la venta es
+grumosa (findes fuertes, entre semana floja) → por eso se combina con base residencial.
+
 ## Reparto (ley 6: Claude prepara, Francisco ejecuta)
 
 - **Claude (desk):** perseguir TDPA (SICT), visitantes (Observatorio NL/DATATUR), y afinar el
