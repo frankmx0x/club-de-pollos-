@@ -273,6 +273,45 @@ MENOR ahí (menos sensibles al "barato") — norte quizá optimista. (2) El mode
 el sur se beneficia de tráfico/turismo/delivery no contados. (3) Radio por centroide aprox
 (cobertura 97-99.8%). (4) Escolaridad del catchment 2 km, no de la colonia exacta.
 
+## 5-octies. DATO DURO del turismo del sur — rehabilita a Santiago (2026-07-22)
+
+Fuente: **OSETUR / Observatorio de Turismo NL, datos abiertos** (catalogodatos.nl.gob.mx,
+dataset "Visitantes a Parques de Nuevo León"). [V-OSETUR]
+
+**Cola de Caballo (Santiago) — visitantes/mes:** Ene 25,143 · Feb 27,618 · Mar 41,287 ·
+Abr 41,514 · May 20,887 · Jun 24,379 · Jul 38,723 · Ago 38,709 · Sep 24,415 · Oct 24,062
+→ **306,737 en 10 meses ≈ ~368,000/año** (~30,700/mes; picos ~41k en Semana Santa y ~38k en
+verano). **Es el parque #1 de NL** (vs Grutas García 137k, Asta Bandera MTY 110k en 10 meses).
+
+**Recálculo del sur (El Cercado), residencial + captura de ese flujo turístico:**
+`venta = residencial ($111k) + visitantes_Cola_Caballo/mes × captura × ticket $220`
+
+| Captura del flujo turístico | Venta visitante | + residencial | Total/mes |
+|---|--:|--:|--:|
+| 3% | $203k | $111k | $314k |
+| 5% | $338k | $111k | $449k |
+| **8%** | **$540k** | $111k | **$651k** |
+
+→ A **~8% de captura de SOLO Cola de Caballo**, El Cercado clava el piso de $600k. Y es
+**conservador**: no cuenta Presa de la Boca, el pueblo/plaza, ni el pass-through de Carretera
+Nacional (todos suman). El flujo turístico del sur es **grande y verificado**, no una esperanza.
+
+**Corrección honesta (ley 2/9):** mi lectura previa "El Cercado tope ~$111k" era
+**residencial-only y subestimaba mucho al sur**. Con el dato duro, Francisco tenía razón: el
+sur es una jugada de **flujo turístico real**, y la incógnita se reduce a **UN número medible
+en campo — la tasa de captura** (qué % de los ~30,700/mes se detiene y compra). El denominador
+(volumen) ya es dato duro.
+
+**Condiciones para que aplique:** (1) el local DEBE estar sobre la ruta highway→pueblo→Cola de
+Caballo (El Cercado / carretera a la cascada), no en cualquier punto de Santiago; (2) demanda
+estacional/de fin de semana (picos Semana Santa/verano) → combinar con base residencial y
+entre semana; (3) la captura % se confirma con el conteo de campo del plan de testeo.
+
+**A/B/C actualizado:** el camino B (sur) deja de ser apuesta a ciegas — tiene ancla de demanda
+dura. Trade-off real: **Contry** (residencial predecible ~$810k, pero ingreso alto/mal encaje
++ KFC) vs **El Cercado/Santiago** (turístico, ~$450-650k+ a captura moderada, encaje bajo/medio,
+0 competidores de frito, pero estacional y crítico-en-ubicación).
+
 ## 6. Cómo se conecta al Radar
 
 - Con σ base y la venta objetivo, el Radar puede pintar, por colonia, si su **población en
