@@ -3,7 +3,7 @@
     "titulo": "Radar de Sitios — corredor sur (ITESM → Allende)",
     "fecha": "2026-07-21",
     "tz": "America/Monterrey",
-    "version": "v1c — competencia + anclas de demanda [V-DENUE] + demografía [V-Censo]; renta aún [S]",
+    "version": "v1d — + capa turística (OSETUR) y tráfico (SICT+crecimiento) en Santiago",
     "niveles": {
       "V-DENUE": "DENUE INEGI NL, corte may-2026 (censo de unidades económicas, georreferenciado).",
       "V-Censo": "Censo de Población y Vivienda 2020, INEGI (AGEB urbana NL). Proxies SES: escolaridad, % con auto, % con internet.",
@@ -30,10 +30,21 @@
       "competencia_denue": {
         "pollo_total": 118,
         "pollo_frito_directo": 5,
-        "fritos": ["KFC Country (Altavista)", "KFC Chapultepec (borde central)", "Crispy Tenders (La Primavera)", "KFC (Nuevo Repueblo, borde central)", "Fried Chicken Louisiana (Villa Florida)"],
-        "fuente": "DENUE may-2026", "confianza": "V-DENUE"
+        "fritos": [
+          "KFC Country (Altavista)",
+          "KFC Chapultepec (borde central)",
+          "Crispy Tenders (La Primavera)",
+          "KFC (Nuevo Repueblo, borde central)",
+          "Fried Chicken Louisiana (Villa Florida)"
+        ],
+        "fuente": "DENUE may-2026",
+        "confianza": "V-DENUE"
       },
-      "renta_mxn_mes": {"rango": "comparar vs sur", "fuente": "Lamudi/Vivanuncios", "confianza": "S"},
+      "renta_mxn_mes": {
+        "rango": "comparar vs sur",
+        "fuente": "Lamudi/Vivanuncios",
+        "confianza": "S"
+      },
       "encaje_bajo_medio": "bajo (ingreso medio-alto)",
       "score": 40,
       "score_notas": "El tramo MÁS saturado (118 pollo, 5 frito incl. KFC Country) y el de mayor ingreso (escolaridad 12.3). Máxima demanda estudiantil pero pelea frontal con KFC y mal encaje bajo/medio."
@@ -55,11 +66,20 @@
       "competencia_denue": {
         "pollo_total": 49,
         "pollo_frito_directo": 1,
-        "fritos": ["Bonanza Pollo Frito (Cortijo del Río)"],
-        "indirecta": ["Soriana Híper Estanzuela (Carr. Nacional 7877)"],
-        "fuente": "DENUE may-2026", "confianza": "V-DENUE"
+        "fritos": [
+          "Bonanza Pollo Frito (Cortijo del Río)"
+        ],
+        "indirecta": [
+          "Soriana Híper Estanzuela (Carr. Nacional 7877)"
+        ],
+        "fuente": "DENUE may-2026",
+        "confianza": "V-DENUE"
       },
-      "renta_mxn_mes": {"rango": "$12,000 – $50,112 (Trovit ~114 listados)", "fuente": "Trovit", "confianza": "S"},
+      "renta_mxn_mes": {
+        "rango": "$12,000 – $50,112 (Trovit ~114 listados)",
+        "fuente": "Trovit",
+        "confianza": "S"
+      },
       "encaje_bajo_medio": "bajo (ingreso alto)",
       "score": 52,
       "score_notas": "Hueco de frito (solo 1) y anclas fuertes, PERO ingreso medio-alto (escolaridad 12.3) choca con el posicionamiento bajo/medio."
@@ -81,13 +101,37 @@
         "pollo_total": 42,
         "pollo_frito_directo": 0,
         "fritos": [],
-        "indirecta": ["El Pollo Loco (Presa de la Boca, asado)", "Soriana Híper Los Cavazos (Carr. Nacional 588)"],
-        "fuente": "DENUE may-2026", "confianza": "V-DENUE"
+        "indirecta": [
+          "El Pollo Loco (Presa de la Boca, asado)",
+          "Soriana Híper Los Cavazos (Carr. Nacional 588)"
+        ],
+        "fuente": "DENUE may-2026",
+        "confianza": "V-DENUE"
       },
-      "renta_mxn_mes": {"rango": "desde $13,200; $280–450/m²", "fuente": "Inmuebles24/Lamudi", "confianza": "S"},
+      "renta_mxn_mes": {
+        "rango": "desde $13,200; $280–450/m²",
+        "fuente": "Inmuebles24/Lamudi",
+        "confianza": "S"
+      },
       "encaje_bajo_medio": "medio",
       "score": 66,
-      "score_notas": "HALLAZGO: 42 lugares de pollo pero CERO pollo frito de cadena (hueco), ingreso medio (escolaridad 10.3), anclas (Soriana, Cinépolis). Rival: El Pollo Loco (asado, no frito). Población mayor que Allende."
+      "score_notas": "HALLAZGO: 42 lugares de pollo pero CERO pollo frito de cadena (hueco), ingreso medio (escolaridad 10.3), anclas (Soriana, Cinépolis). Rival: El Pollo Loco (asado, no frito). Población mayor que Allende.",
+      "turismo": {
+        "atraccion": "Cola de Caballo (Santiago)",
+        "visitantes_mes": 30673,
+        "visitantes_anio_aprox": 368000,
+        "fuente_visitantes": "OSETUR / Observatorio de Turismo NL (datos abiertos)",
+        "confianza_visitantes": "V-OSETUR",
+        "tdpa_2014": 19389,
+        "tdpa_hoy_est": 27144,
+        "tdpa_rango_hoy": "25,205–30,053",
+        "tdpa_crecimiento": "~+40% 2014→2026 (parque vehicular NL, INEGI VMRC / ICV)",
+        "tdpa_fuente": "SICT Datos Viales 2014 (dato) × crecimiento (estimación)",
+        "venta_turismo_5pct": 337410,
+        "venta_total_est": 448416,
+        "confianza": "V-OSETUR (visitantes) · SICT+estimación (tráfico)",
+        "nota": "Captura turística 5% = SUPUESTO, a confirmar con conteo de campo. Conservador: solo Cola de Caballo (no incluye Presa de la Boca, pueblo, ni pass-through de ~27k veh/día)."
+      }
     },
     {
       "id": "allende-centro",
@@ -105,10 +149,17 @@
       "competencia_denue": {
         "pollo_total": 32,
         "pollo_frito_directo": 2,
-        "fritos": ["Church's Allende (Res. San Javier) — 2 registros, prob. 1 tienda"],
-        "fuente": "DENUE may-2026", "confianza": "V-DENUE"
+        "fritos": [
+          "Church's Allende (Res. San Javier) — 2 registros, prob. 1 tienda"
+        ],
+        "fuente": "DENUE may-2026",
+        "confianza": "V-DENUE"
       },
-      "renta_mxn_mes": {"rango": "los tramos más baratos del corredor", "fuente": "icasas/Vivanuncios", "confianza": "S"},
+      "renta_mxn_mes": {
+        "rango": "los tramos más baratos del corredor",
+        "fuente": "icasas/Vivanuncios",
+        "confianza": "S"
+      },
       "encaje_bajo_medio": "alto",
       "score": 64,
       "score_notas": "MEJOR encaje bajo/medio con dato duro: escolaridad 9.2 (la más baja), %internet 66% (el más bajo) = segmento más sensible a precio, ideal para 'más barato que KFC'. Baja saturación (32). MATIZ: ya hay un Church's. Riesgo: población menor (35k)."
@@ -118,7 +169,10 @@
     "hallazgo": "CERO unidades de Club de Pollos en todo el corredor (Monterrey sur + Santiago + Allende).",
     "confianza": "V-DENUE",
     "fuente": "DENUE INEGI 19, may-2026 (búsqueda directa en el censo, 0 coincidencias)",
-    "confirmadas_fuera": ["Solidaridad", "Pablo Livas (Guadalupe) — norte/oriente del metro"],
+    "confirmadas_fuera": [
+      "Solidaridad",
+      "Pablo Livas (Guadalupe) — norte/oriente del metro"
+    ],
     "caveat": "DENUE corte may-2026; una unidad muy reciente podría no estar capturada. Confirmar contra directorio oficial.",
     "lectura": "El territorio del corredor está genuinamente abierto para la franquicia."
   }

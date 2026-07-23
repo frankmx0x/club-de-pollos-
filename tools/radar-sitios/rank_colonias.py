@@ -37,10 +37,17 @@ COLONIAS = [
     ("Centro de Allende", "centro", "004"),
 ]
 
-# TDPA conocido (SICT Datos Viales) — dato puntual, marcado con año
-TDPA = {"El Cercado (Santiago)": {"veh_dia": 19389, "anio": 2014,
+# TDPA (SICT Datos Viales 2014) proyectado a hoy con crecimiento del parque vehicular NL.
+# NL: ~1.8M veh (2014) → ~2.8M hoy (+55%, El Horizonte); ICV +30% 2015-24; El Norte +52%/8a.
+# Central usado: +40% (rango +30% a +55%). El corredor Carr. Nacional probablemente lo supera.
+GROW = 1.40
+TDPA = {"El Cercado (Santiago)": {
+        "veh_dia_2014": 19389, "veh_dia_hoy_est": int(19389*GROW),
+        "rango_hoy": [int(19389*1.30), int(19389*1.55)],
+        "crecimiento": "+40% aprox 2014→2026 (parque vehicular NL, INEGI VMRC / ICV)",
         "tramo": "Carretera Nacional (Cd. Victoria–Monterrey), est. El Cercado",
-        "nota": "2014, piso; la zona creció, hoy probablemente mayor"}}
+        "fuente": "SICT Datos Viales 2014 + crecimiento parque vehicular NL",
+        "confianza": "SICT 2014 (dato) × crecimiento (estimación)"}}
 
 
 def percapita_por_ses(esc):

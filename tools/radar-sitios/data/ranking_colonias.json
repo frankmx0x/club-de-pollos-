@@ -101,10 +101,16 @@
    "venta_turismo": 337410,
    "venta_total": 448416,
    "tdpa": {
-    "veh_dia": 19389,
-    "anio": 2014,
+    "veh_dia_2014": 19389,
+    "veh_dia_hoy_est": 27144,
+    "rango_hoy": [
+     25205,
+     30052
+    ],
+    "crecimiento": "+40% aprox 2014→2026 (parque vehicular NL, INEGI VMRC / ICV)",
     "tramo": "Carretera Nacional (Cd. Victoria–Monterrey), est. El Cercado",
-    "nota": "2014, piso; la zona creció, hoy probablemente mayor"
+    "fuente": "SICT Datos Viales 2014 + crecimiento parque vehicular NL",
+    "confianza": "SICT 2014 (dato) × crecimiento (estimación)"
    },
    "subscores": {
     "hueco": 100,
