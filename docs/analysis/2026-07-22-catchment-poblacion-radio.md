@@ -312,6 +312,39 @@ dura. Trade-off real: **Contry** (residencial predecible ~$810k, pero ingreso al
 + KFC) vs **El Cercado/Santiago** (turístico, ~$450-650k+ a captura moderada, encaje bajo/medio,
 0 competidores de frito, pero estacional y crítico-en-ubicación).
 
+## 5-nonies. RANKING INTEGRADO con capa turística + TDPA (2026-07-22)
+
+Motor: `rank_colonias.py` (ahora con capa turística OSETUR). `data/ranking_colonias.json`.
+Venta total = residencial (pob×percápita×σ6%) + turismo (visitantes atracción <=5 km × 5%
+captura × $220). **La captura turística 5% es SUPUESTO — el conteo de campo lo confirma.**
+TDPA (SICT): Carretera Nacional est. El Cercado ≈ **19,389 veh/día (2014)** — piso, hoy mayor.
+
+| # | Colonia | Pob 2km | Frito | Escol. | V. residencial | Flujo tur/mes | V. turismo | **V. TOTAL** |
+|--:|---|--:|--:|--:|--:|--:|--:|--:|
+| 1 | Tecnológico | 98,753 | 6 | 12.0 | $948k | 0 | $0 | $948k |
+| 2 | Contry | 84,405 | 2 | 12.9 | $810k | 0 | $0 | $810k |
+| 3 | San Ángel | 70,637 | 6 | 12.9 | $678k | 0 | $0 | $678k |
+| 4 | **El Cercado (Santiago)** | 13,215 | **0** | 10.8 | $111k | **30,673** | **$337k** | **$448k** |
+| 5 | La Estanzuela | 46,462 | 0 | 12.5 | $446k | 0 | $0 | $446k |
+| 6 | Valle Alto | 40,581 | 0 | 12.1 | $390k | 0 | $0 | $390k |
+| 7 | Centro de Allende | 18,331 | 2 | 9.9 | $126k | 0 | $0 | $126k |
+
+**El Cercado sube de #7 a #4** al contar Cola de Caballo. A 5% de captura = $448k; a **8% =
+$651k** (clava el piso). Y es CONSERVADOR: solo Cola de Caballo (no Presa de la Boca, pueblo,
+ni el pass-through de ~19,400 veh/día). Es la ÚNICA candidata con **0 competidores de frito +
+encaje bajo/medio real (escol. 10.8) + ancla de demanda dura**.
+
+**La decisión final, ya con todo el dato duro:**
+- **Ruta A — volumen residencial predecible:** Contry $810k (2 fritos, ingreso alto → flexionar
+  posicionamiento). Máxima venta segura, peor encaje.
+- **Ruta B — turístico/bajo-medio fiel:** El Cercado $448-651k (0 fritos, encaje real, tourism
+  duro), pero pende de la captura (campo) y de un sitio SOBRE la ruta a la cascada.
+- Allende ($126k) y las premium (Valle Alto/Herradura) quedan fuera.
+
+Nota metodológica: el norte usa per cápita $160 (ingreso alto) — posiblemente optimista en σ;
+El Cercado no cuenta pueblo/Presa/TDPA — posiblemente conservador. Los dos sesgos empujan el
+ranking hacia el MEDIO, reforzando a El Cercado y Contry como los dos reales.
+
 ## 6. Cómo se conecta al Radar
 
 - Con σ base y la venta objetivo, el Radar puede pintar, por colonia, si su **población en

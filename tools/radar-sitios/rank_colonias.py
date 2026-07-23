@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Radar de Sitios — mini-ranking de colonias candidatas (síntesis).
+"""Radar de Sitios — mini-ranking de colonias candidatas (síntesis + capa turística).
 
 Combina, por colonia candidata (centro derivado de DENUE):
   - población en radio 2 km (Censo POBTOT sobre AGEBs con centroide en el radio),
   - competencia de POLLO FRITO en 2 km (DENUE, todo NL),
   - SES del catchment: escolaridad y % internet ponderados (Censo AGEB en el radio),
-  - venta estimada = pob × gasto per cápita (por SES) × σ base 6%,
-  - un score compuesto transparente (hueco / encaje / demanda vs meta 100k).
+  - venta residencial estimada = pob × gasto per cápita (por SES) × σ base 6%,
+  - CAPA TURÍSTICA: visitantes de atracciones OSETUR cercanas (<=5 km) × captura × ticket,
+  - venta_total = residencial + turismo,
+  - score compuesto transparente (hueco / encaje / demanda).
 
 Uso: rank_colonias.py <denue_19.csv> <censo_ageb.csv>
 Salida: data/ranking_colonias.json  (+ tabla en consola)
@@ -22,6 +24,8 @@ HERE = pathlib.Path(__file__).parent
 DATA = HERE / "data"
 R_KM = 2.0
 SIGMA_BASE = 0.06
+R_TOUR = 5.0        # km: atracción accesible desde la colonia
+CAPT_TUR = 0.05     # captura del flujo turístico (SUPUESTO, a confirmar en campo)
 
 COLONIAS = [
     ("Contry", "contry", "039"),
@@ -33,12 +37,17 @@ COLONIAS = [
     ("Centro de Allende", "centro", "004"),
 ]
 
+# TDPA conocido (SICT Datos Viales) — dato puntual, marcado con año
+TDPA = {"El Cercado (Santiago)": {"veh_dia": 19389, "anio": 2014,
+        "tramo": "Carretera Nacional (Cd. Victoria–Monterrey), est. El Cercado",
+        "nota": "2014, piso; la zona creció, hoy probablemente mayor"}}
+
 
 def percapita_por_ses(esc):
     if esc is None: return 130
-    if esc >= 11.5: return 160   # ingreso alto
-    if esc >= 10.0: return 140   # medio
-    return 115                   # bajo/medio
+    if esc >= 11.5: return 160
+    if esc >= 10.0: return 140
+    return 115
 
 
 def key(mun, loc, ageb):
@@ -46,6 +55,26 @@ def key(mun, loc, ageb):
         try: return int(str(x).strip())
         except: return -1
     return (i(mun), i(loc), (ageb or "").strip().upper().zfill(4))
+
+
+def cargar_atracciones():
+    try:
+        pk = json.loads((DATA / "visitantes_parques_nl.json").read_text(encoding="utf-8"))["parques"]
+    except Exception:
+        return []
+    meses = ["v_enero","v_febrero","v_marzo","v_abril","v_mayo","v_junio",
+             "v_julio","v_agosto","v_septiembre","v_octubre","v_noviembre","v_diciembre"]
+    atr = []
+    for p in pk:
+        p = {k.strip(): v for k, v in p.items()}  # el header del xlsx trae espacios ('latitud ')
+        try:
+            lat = float(str(p.get("latitud")).strip()); lon = float(str(p.get("longitud")).strip())
+        except (TypeError, ValueError):
+            continue
+        vals = [float(p[m]) for m in meses if isinstance(p.get(m), (int, float))]
+        if vals:
+            atr.append((lat, lon, p.get("parque", ""), sum(vals)/len(vals)))  # visitantes/mes promedio
+    return atr
 
 
 def main():
@@ -66,17 +95,15 @@ def main():
         if act.startswith("722"):
             blob = den.norm(row.get("nom_estab")) + " " + den.norm(row.get("nombre_act"))
             if any(k2 in blob for k2 in den.POLLO_FRITO_KW):
-                fritos.append((lat, lon, (row.get("nom_estab") or "").strip()))
+                fritos.append((lat, lon))
     ageb_cent = {k: (v[0]/v[2], v[1]/v[2]) for k, v in agsum.items() if v[2] > 0}
 
-    # Censo: POBTOT, GRAPROES, VPH_INTER, VIVPAR_HAB por AGEB
     ses = {}
     with open(censo_csv, encoding="latin-1", newline="") as f:
         r = csv.reader(f); h = [c.lstrip("﻿") for c in next(r)]
         ix = {n: h.index(n) for n in ["MUN", "LOC", "AGEB", "MZA", "POBTOT", "GRAPROES", "VPH_INTER", "VIVPAR_HAB"]}
         def num(x):
-            x = (x or "").strip()
-            try: return float(x)
+            try: return float((x or "").strip())
             except: return None
         def i(x):
             try: return int((x or "").strip())
@@ -88,6 +115,7 @@ def main():
                     "inter": num(row[ix["VPH_INTER"]]), "viv": num(row[ix["VIVPAR_HAB"]])}
 
     cent_ses = [(ageb_cent[k], ses[k]) for k in ageb_cent if k in ses]
+    atracciones = cargar_atracciones()
 
     rows = []
     for name, tok, mun in COLONIAS:
@@ -95,19 +123,30 @@ def main():
         if not pts: continue
         clat = sum(p[0] for p in pts)/len(pts); clon = sum(p[1] for p in pts)/len(pts)
         pob = escn = escd = intn = intd = 0.0
-        for (alat, alon), d in cent_ses:
+        for (alat, alon), dd in cent_ses:
             if den._haversine_km(clat, clon, alat, alon) <= R_KM:
-                pob += d["pob"]
-                if d["esc"] is not None: escn += d["esc"]*d["pob"]; escd += d["pob"]
-                if d["inter"] is not None and d["viv"]: intn += d["inter"]; intd += d["viv"]
+                pob += dd["pob"]
+                if dd["esc"] is not None: escn += dd["esc"]*dd["pob"]; escd += dd["pob"]
+                if dd["inter"] is not None and dd["viv"]: intn += dd["inter"]; intd += dd["viv"]
         esc = round(escn/escd, 2) if escd else None
         pct_int = round(100*intn/intd, 1) if intd else None
-        nfrito = sum(1 for flat, flon, _ in fritos if den._haversine_km(clat, clon, flat, flon) <= R_KM)
+        nfrito = sum(1 for flat, flon in fritos if den._haversine_km(clat, clon, flat, flon) <= R_KM)
         pc = percapita_por_ses(esc)
-        venta = int(pob * pc * SIGMA_BASE)
-        rows.append({"colonia": name, "pob_2km": int(pob), "frito_2km": nfrito,
-                     "escolaridad": esc, "pct_internet": pct_int, "percapita": pc,
-                     "venta_est_mxn": venta})
+        venta_res = int(pob * pc * SIGMA_BASE)
+
+        # Capa turística: visitantes/mes de atracciones a <=R_TOUR km
+        flujo = 0.0; atr_cerca = []
+        for alat, alon, aname, vmes in atracciones:
+            if den._haversine_km(clat, clon, alat, alon) <= R_TOUR:
+                flujo += vmes; atr_cerca.append(f"{aname} (~{int(vmes):,}/mes)")
+        venta_tur = int(flujo * CAPT_TUR * 220)
+        rows.append({"colonia": name, "centro": {"lat": round(clat, 5), "lon": round(clon, 5)},
+                     "pob_2km": int(pob), "frito_2km": nfrito, "escolaridad": esc,
+                     "pct_internet": pct_int, "percapita": pc,
+                     "venta_residencial": venta_res,
+                     "flujo_turistico_mes": int(flujo), "atracciones": atr_cerca,
+                     "venta_turismo": venta_tur, "venta_total": venta_res + venta_tur,
+                     "tdpa": TDPA.get(name)})
 
     # Score compuesto (transparente): hueco 40 / encaje 40 / demanda 20
     maxf = max((x["frito_2km"] for x in rows), default=1) or 1
@@ -116,23 +155,26 @@ def main():
     for x in rows:
         hueco = 100*(1 - x["frito_2km"]/maxf)
         encaje = 100*(emax - x["escolaridad"])/(emax - emin) if x["escolaridad"] is not None and emax > emin else 50
-        demanda = min(100, 100*x["pob_2km"]/100000)  # % de la meta 100k
+        demanda = min(100, 100*x["pob_2km"]/100000)
         x["subscores"] = {"hueco": round(hueco), "encaje": round(encaje), "demanda": round(demanda)}
         x["score"] = round(0.4*hueco + 0.4*encaje + 0.2*demanda)
-    rows.sort(key=lambda x: -x["score"])
+    rows.sort(key=lambda x: -x["venta_total"])  # ordena por venta total (residencial + turismo)
 
-    out = {"_meta": {"radio_km": R_KM, "sigma_base": SIGMA_BASE,
-                     "fuente": "DENUE may-2026 (competencia/centroides) + Censo 2020 (pob/SES)",
+    out = {"_meta": {"radio_km": R_KM, "sigma_base": SIGMA_BASE, "radio_turismo_km": R_TOUR,
+                     "captura_turismo": CAPT_TUR,
+                     "fuente": "DENUE may-2026 + Censo 2020 + OSETUR visitantes parques + SICT TDPA",
                      "percapita_regla": ">=11.5 esc→$160 · 10-11.5→$140 · <10→$115",
-                     "confianza": "V-DENUE + V-Censo (radio aprox por centroide)"}, "colonias": rows}
-    DATA.mkdir(exist_ok=True)
+                     "nota": "captura turística 5% = SUPUESTO a confirmar con conteo de campo",
+                     "confianza": "V-DENUE + V-Censo + V-OSETUR (radio/captura aprox)"}, "colonias": rows}
     (DATA / "ranking_colonias.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
 
-    print(f"MINI-RANKING de colonias (radio {R_KM} km, σ base {int(SIGMA_BASE*100)}%):\n")
-    print(f"  {'#':2}{'colonia':22}{'score':>6}{'pob2km':>9}{'frito':>6}{'escol':>7}{'venta est':>12}")
+    print(f"MINI-RANKING de colonias (radio {R_KM}km, σ {int(SIGMA_BASE*100)}%, captura turismo {int(CAPT_TUR*100)}%):\n")
+    print(f"  {'#':2}{'colonia':22}{'pob2km':>8}{'frito':>6}{'escol':>6}{'v.resid':>10}{'flujo tur':>10}{'v.turismo':>10}{'V.TOTAL':>11}")
     for i, x in enumerate(rows, 1):
-        print(f"  {i:<2}{x['colonia']:22}{x['score']:>6}{x['pob_2km']:>9,}{x['frito_2km']:>6}"
-              f"{x['escolaridad'] if x['escolaridad'] else 0:>7}{('$'+format(x['venta_est_mxn'],',')):>12}")
+        print(f"  {i:<2}{x['colonia']:22}{x['pob_2km']:>8,}{x['frito_2km']:>6}"
+              f"{(x['escolaridad'] or 0):>6}{('$'+format(x['venta_residencial'],',')):>10}"
+              f"{x['flujo_turistico_mes']:>10,}{('$'+format(x['venta_turismo'],',')):>10}"
+              f"{('$'+format(x['venta_total'],',')):>11}")
 
 
 if __name__ == "__main__":
