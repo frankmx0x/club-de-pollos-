@@ -1,0 +1,116 @@
+{
+ "_meta": {
+  "radio_km": 2.0,
+  "sigma_base": 0.06,
+  "fuente": "DENUE may-2026 (competencia/centroides) + Censo 2020 (pob/SES)",
+  "percapita_regla": ">=11.5 esc→$160 · 10-11.5→$140 · <10→$115",
+  "confianza": "V-DENUE + V-Censo (radio aprox por centroide)"
+ },
+ "colonias": [
+  {
+   "colonia": "El Cercado (Santiago)",
+   "pob_2km": 13215,
+   "frito_2km": 0,
+   "escolaridad": 10.77,
+   "pct_internet": 88.9,
+   "percapita": 140,
+   "venta_est_mxn": 111006,
+   "subscores": {
+    "hueco": 100,
+    "encaje": 71,
+    "demanda": 13
+   },
+   "score": 71
+  },
+  {
+   "colonia": "Centro de Allende",
+   "pob_2km": 18331,
+   "frito_2km": 2,
+   "escolaridad": 9.9,
+   "pct_internet": 74.8,
+   "percapita": 115,
+   "venta_est_mxn": 126483,
+   "subscores": {
+    "hueco": 67,
+    "encaje": 100,
+    "demanda": 18
+   },
+   "score": 70
+  },
+  {
+   "colonia": "Valle Alto",
+   "pob_2km": 40581,
+   "frito_2km": 0,
+   "escolaridad": 12.1,
+   "pct_internet": 96.1,
+   "percapita": 160,
+   "venta_est_mxn": 389577,
+   "subscores": {
+    "hueco": 100,
+    "encaje": 27,
+    "demanda": 41
+   },
+   "score": 59
+  },
+  {
+   "colonia": "La Estanzuela",
+   "pob_2km": 46462,
+   "frito_2km": 0,
+   "escolaridad": 12.49,
+   "pct_internet": 99.3,
+   "percapita": 160,
+   "venta_est_mxn": 446035,
+   "subscores": {
+    "hueco": 100,
+    "encaje": 14,
+    "demanda": 46
+   },
+   "score": 55
+  },
+  {
+   "colonia": "Contry",
+   "pob_2km": 84405,
+   "frito_2km": 2,
+   "escolaridad": 12.9,
+   "pct_internet": 107.1,
+   "percapita": 160,
+   "venta_est_mxn": 810288,
+   "subscores": {
+    "hueco": 67,
+    "encaje": 1,
+    "demanda": 84
+   },
+   "score": 44
+  },
+  {
+   "colonia": "Tecnológico",
+   "pob_2km": 98753,
+   "frito_2km": 6,
+   "escolaridad": 12.02,
+   "pct_internet": 99.9,
+   "percapita": 160,
+   "venta_est_mxn": 948028,
+   "subscores": {
+    "hueco": 0,
+    "encaje": 30,
+    "demanda": 99
+   },
+   "score": 32
+  },
+  {
+   "colonia": "San Ángel",
+   "pob_2km": 70637,
+   "frito_2km": 6,
+   "escolaridad": 12.92,
+   "pct_internet": 99.4,
+   "percapita": 160,
+   "venta_est_mxn": 678115,
+   "subscores": {
+    "hueco": 0,
+    "encaje": 0,
+    "demanda": 71
+   },
+   "score": 14
+  }
+ ]
+}

@@ -239,6 +239,40 @@ ingreso no-tan-alto + competencia manejable son **Contry, San Ángel y (con mati
 Tecnológico** — a validar contra su SES exacto y su competencia de frito por colonia (fase
 colonias del plan).
 
+## 5-septies. MINI-RANKING de colonias y la contradicción del concepto (2026-07-22)
+
+Motor: `rank_colonias.py` → `data/ranking_colonias.json`. Combina pob@2km (Censo) +
+competencia frito@2km (DENUE) + escolaridad del catchment (Censo) + venta estimada
+(pob × gasto per cápita por SES × σ 6%). Score compuesto 0.4 hueco / 0.4 encaje / 0.2 demanda.
+
+| Colonia | Score | Pob 2km | Frito 2km | Escol. | Venta est./mes |
+|---|--:|--:|--:|--:|--:|
+| El Cercado (Santiago) | 71 | 13,215 | 0 | 10.8 | $111k |
+| Centro de Allende | 70 | 18,331 | 2 | 9.9 | $126k |
+| Valle Alto | 59 | 40,581 | 0 | 12.1 | $390k |
+| La Estanzuela | 55 | 46,462 | 0 | 12.5 | $446k |
+| Contry | 44 | 84,405 | 2 | 12.9 | $810k |
+| Tecnológico | 32 | 98,753 | 6 | 12.0 | $948k |
+| San Ángel | 14 | 70,637 | 6 | 12.9 | $678k |
+
+**HALLAZGO (ley 9) — el "score" y la venta apuntan a lados opuestos.** Las colonias que
+ganan el score (El Cercado, Allende) por hueco+encaje topan en ~$110-126k/mes de residentes.
+Las que generan $600k-$1M (Contry, Tecnológico, San Ángel) son las peor rankeadas: saturadas
+(2-6 fritos) e ingreso alto (mal encaje "más barato que KFC"). **El posicionamiento bajo/medio
+apunta a zonas sin la población para la meta de venta.**
+
+**La decisión (de Francisco):**
+- **A · Revenue-first:** Contry (~$810k, 2 fritos) — flexionar posicionamiento a "mejor a
+  precio justo", no el más barato. [recomendado si $600k+ es meta firme]
+- **B · Posicionamiento-first:** sur (El Cercado/Allende) — residentes ~$110-160k; apostar a
+  tráfico Carretera Nacional + turismo + delivery ×4-6. Dependiente de tráfico.
+- **C · Redefinir meta:** unidad chica bajo/medio al sur, renta baja, $200-300k/mes.
+
+**Caveats:** (1) per cápita subido a $160 en ingreso alto infla el norte, pero σ podría ser
+MENOR ahí (menos sensibles al "barato") — norte quizá optimista. (2) El modelo es residencial;
+el sur se beneficia de tráfico/turismo/delivery no contados. (3) Radio por centroide aprox
+(cobertura 97-99.8%). (4) Escolaridad del catchment 2 km, no de la colonia exacta.
+
 ## 6. Cómo se conecta al Radar
 
 - Con σ base y la venta objetivo, el Radar puede pintar, por colonia, si su **población en
