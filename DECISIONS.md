@@ -125,6 +125,26 @@
   comparable. La captura σ real sigue por calibrar.
 - **Reemplaza:** afina los supuestos [CONFIRMAR] de ticket del research y del §F.
 
+## 2026-07-23 · D-010 · El app se edita DIRECTO en su repo; Lovable deja de ser el editor
+
+- **Decisión:** El código del Radar (`frankmx0x/club-pollos-radar`) se edita **directamente en
+  el repo** (clonado en la sesión, commit + push a `main`). **Lovable deja de usarse como
+  editor**; queda solo como preview/hosting que sincroniza desde GitHub. Los datos siguen
+  saliendo del pipeline de ESTE repo y se copian con `tools/radar-sitios/sync_app.sh`
+  (nunca a mano). Gate antes de cada commit del app: `tsc --noEmit` + `vite build`.
+- **Porqué (evidencia, ley 1/4):** al integrar la capa turística, el agente de Lovable
+  **ignoró el `app_data.json` subido y escribió las cifras a mano, inventándolas**:
+  visitantes 30,673→"30,000"; TDPA 2014 19,389→"18,500"; crecimiento +40%→"+45%"; venta
+  turismo $337,410→"90,000"; venta total $448,416→"360,000". Un editor que parafrasea datos
+  es incompatible con la invariante de que ningún dato se inventa. Además, prompts en
+  lenguaje natural no dan control fino de UI ni gate de verificación.
+- **Corregido:** commit `dcedd47` en el repo del app restaura la salida real del pipeline y
+  cambia los tipos de `Turismo` de string a number (el dato viaja numérico; el formato vive
+  en la vista, helper `mxn()`). Verificado: tsc exit 0, build exit 0.
+- **Reemplaza:** supersede la parte de **D-007** que ponía a Lovable como constructor del app.
+  Se mantiene de D-007: la separación datos (este repo, fuente de verdad) / presentación
+  (repo del app), y que las keys nunca van al repo.
+
 ## 2026-07-22 · D-009 · Los priors del franquiciador son SOFT; se triangulan con fuentes externas
 
 - **Decisión (método):** Ticket $220 y trade-area 100k/unidad (D-008) provienen del
