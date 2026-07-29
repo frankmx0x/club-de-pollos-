@@ -145,6 +145,27 @@
   Se mantiene de D-007: la separación datos (este repo, fuente de verdad) / presentación
   (repo del app), y que las keys nunca van al repo.
 
+## 2026-07-23 · D-011 · Deploy propio a Cloudflare Workers; prod deja de depender de Lovable
+
+- **Decisión:** Producción se publica con **GitHub Actions → Cloudflare Workers** desde el
+  repo del app (`.github/workflows/deploy.yml`): cada push a `main` corre
+  `bun install → tsc --noEmit (gate) → build → deploy`. El `wrangler.json` lo genera nitro
+  en el build (worker `frankmx0x-club-pollos-radar`, assets desde `.output/public`).
+  Pasos de puesta en marcha en `DEPLOY.md` del repo del app.
+- **Porqué:** cerrar la salida de Lovable (D-010) también en el deploy. Antes NO existía
+  prod: el proyecto nunca se publicó (`is_published: false`), solo había preview de Lovable.
+- **Secrets:** `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` viven en los secrets de
+  GitHub — jamás en el repo ni en el entorno. **Los crea Francisco** (cuenta + token);
+  hasta entonces el workflow existe pero no publica.
+- **Límite honesto (ley 1/4):** `vite.config.ts` todavía importa
+  `@lovable.dev/vite-tanstack-config`. Es dependencia **de build**, no de servicio: prod ya
+  no pasa por Lovable, pero el paquete sigue ahí. Reemplazarlo por un config estándar de
+  Vite queda como limpieza pendiente; habilitaría salida **estática** (GitHub Pages, sin
+  cuenta de terceros), que hoy falla con este config
+  (`rollupOptions.input should not be an html file when building for SSR`).
+- **Reemplaza:** completa D-010 (que sacó a Lovable del rol de editor) llevándolo también
+  fuera del deploy.
+
 ## 2026-07-22 · D-009 · Los priors del franquiciador son SOFT; se triangulan con fuentes externas
 
 - **Decisión (método):** Ticket $220 y trade-area 100k/unidad (D-008) provienen del
