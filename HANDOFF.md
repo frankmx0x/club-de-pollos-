@@ -62,8 +62,9 @@ del app. **Los datos nunca se editan a mano en el app** (D-010).
 
 ## Pendientes — de Claude
 
-- **Limpieza**: reemplazar `@lovable.dev/vite-tanstack-config` por config estándar de Vite
-  (habilitaría salida estática + GitHub Pages; hoy el preset `static` falla).
+- ~~Limpieza del config de Lovable~~ **HECHO** (commit `6bb0bfe`): build 100% libre de
+  Lovable (config estándar + lockfile repuntado a npm público). Salida estática descartada
+  con evidencia: el preset `static` no funciona con TanStack Start + nitro beta.
 - **Fase colonias** del Radar (`docs/plans/2026-07-22-colonias-scoring.md`): scorear ~12-15
   colonias en vez de 4 zonas. Falta que Francisco apruebe la lista canónica.
 - Capa Google Places (ratings/abiertos/reseñas) — requiere key GCP en secret management.

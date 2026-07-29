@@ -157,12 +157,19 @@
 - **Secrets:** `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` viven en los secrets de
   GitHub — jamás en el repo ni en el entorno. **Los crea Francisco** (cuenta + token);
   hasta entonces el workflow existe pero no publica.
-- **Límite honesto (ley 1/4):** `vite.config.ts` todavía importa
-  `@lovable.dev/vite-tanstack-config`. Es dependencia **de build**, no de servicio: prod ya
-  no pasa por Lovable, pero el paquete sigue ahí. Reemplazarlo por un config estándar de
-  Vite queda como limpieza pendiente; habilitaría salida **estática** (GitHub Pages, sin
-  cuenta de terceros), que hoy falla con este config
-  (`rollupOptions.input should not be an html file when building for SSR`).
+- **Límite cerrado el mismo día (commit `6bb0bfe`):** se eliminó TODA dependencia de
+  Lovable del build. `vite.config.ts` es ahora config estándar de Vite con plugins
+  explícitos; hubo que restaurar a mano el preset de nitro (`cloudflare-module`, sin él
+  caía a `node-server` y no generaba `wrangler.json`) y el dedupe de React. **Además**,
+  `bun.lock` apuntaba 7 paquetes (leaflet y afines) al **registro privado de Lovable**
+  (`europe-west1-npm.pkg.dev/lovable-core-prod/sandbox-npm-cache`) en vez de npm público —
+  eso rompía `bun install` fuera de su sandbox y habría tumbado el CI; repuntados a
+  `registry.npmjs.org`. Verificado: `bun install --frozen-lockfile` desde cero (416
+  paquetes), tsc 0, build 0, wrangler.json presente, app renderiza sin errores JS.
+- **Salida estática descartada (con evidencia):** el preset `static` —que habilitaría
+  GitHub Pages sin cuenta de terceros— NO funciona con TanStack Start + este nitro beta
+  (`rollupOptions.input should not be an html file when building for SSR`). Se probó con y
+  sin el config de Lovable: el límite es del stack, no de Lovable.
 - **Reemplaza:** completa D-010 (que sacó a Lovable del rol de editor) llevándolo también
   fuera del deploy.
 
