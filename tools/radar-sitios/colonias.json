@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "proposito": "Lista canónica de colonias del corredor sur. Único input CURADO a mano del pipeline.",
+    "metodo": "DENUE fragmenta cada colonia en varias grafías (Contry aparece como Contry, Contry San Juanito, Contry Tesoro…). Cada entrada agrupa esos fragmentos por token, verificados contra los nombres reales del DENUE (may-2026).",
+    "cve_mun": "039=Monterrey · 049=Santiago · 004=Allende",
+    "orden": "Norte → sur (orden del corredor).",
+    "pendiente": "[CONFIRMAR CON FRANCISCO] agregar/quitar colonias de esta lista."
+  },
+  "colonias": [
+    { "id": "san-angel",      "nombre": "San Ángel",         "mun": "039", "tramo": "Tec/Garza Sada",           "orden": 1,  "tokens": ["san angel"] },
+    { "id": "tecnologico",    "nombre": "Tecnológico",       "mun": "039", "tramo": "Tec/Garza Sada",           "orden": 2,  "tokens": ["tecnolog"] },
+    { "id": "altavista",      "nombre": "Altavista",         "mun": "039", "tramo": "Tec/Garza Sada",           "orden": 3,  "tokens": ["altavista"] },
+    { "id": "roma",           "nombre": "Roma",              "mun": "039", "tramo": "Tec/Garza Sada",           "orden": 4,  "tokens": ["roma"] },
+    { "id": "sierra-ventana", "nombre": "Sierra Ventana",    "mun": "039", "tramo": "Tec/Garza Sada",           "orden": 5,  "tokens": ["sierra ventana"] },
+    { "id": "contry",         "nombre": "Contry",            "mun": "039", "tramo": "Contry",                   "orden": 6,  "tokens": ["contry"] },
+    { "id": "la-estanzuela",  "nombre": "La Estanzuela",     "mun": "039", "tramo": "Carr.Nacional/Estanzuela", "orden": 7,  "tokens": ["estanzuela"] },
+    { "id": "valle-alto",     "nombre": "Valle Alto",        "mun": "039", "tramo": "Carr.Nacional/Estanzuela", "orden": 8,  "tokens": ["valle alto"] },
+    { "id": "la-herradura",   "nombre": "La Herradura",      "mun": "039", "tramo": "Carr.Nacional/Estanzuela", "orden": 9,  "tokens": ["herradura"] },
+    { "id": "el-cercado",     "nombre": "El Cercado",        "mun": "049", "tramo": "Santiago",                 "orden": 10, "tokens": ["cercado"] },
+    { "id": "centro-santiago","nombre": "Centro de Santiago","mun": "049", "tramo": "Santiago",                 "orden": 11, "tokens": ["centro", "villa de santiago", "santiago"], "excluye": ["cercado"] },
+    { "id": "centro-allende", "nombre": "Centro de Allende", "mun": "004", "tramo": "Allende",                  "orden": 12, "tokens": ["centro", "zona centro"] },
+    { "id": "san-javier",     "nombre": "San Javier (Allende)", "mun": "004", "tramo": "Allende",               "orden": 13, "tokens": ["san javier"] }
+  ]
+}

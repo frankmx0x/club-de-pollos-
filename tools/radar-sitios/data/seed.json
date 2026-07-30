@@ -3,7 +3,7 @@
     "titulo": "Radar de Sitios — corredor sur (ITESM → Allende)",
     "fecha": "2026-07-21",
     "tz": "America/Monterrey",
-    "version": "v1d — + capa turística (OSETUR) y tráfico (SICT+crecimiento) en Santiago",
+    "version": "v2 — colonias scoreadas (13) + capa turística + anclas",
     "niveles": {
       "V-DENUE": "DENUE INEGI NL, corte may-2026 (censo de unidades económicas, georreferenciado).",
       "V-Censo": "Censo de Población y Vivienda 2020, INEGI (AGEB urbana NL). Proxies SES: escolaridad, % con auto, % con internet.",

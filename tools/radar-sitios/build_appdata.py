@@ -91,11 +91,20 @@ def main():
         {"n": "Allende centro", "lat": 25.2793, "lon": -100.0155},
     ]
 
+    # Colonias (fase colonias): unidad fina de decisión. Las zonas quedan como contexto.
+    try:
+        col = json.loads((DATA / "colonias_corredor.json").read_text(encoding="utf-8"))
+        colonias, col_meta = col["colonias"], col["_meta"]
+    except FileNotFoundError:
+        colonias, col_meta = [], None
+
     bundle = {
         "_meta": {"titulo": "Radar de Sitios — Corredor Sur (Club de Pollos)",
                   "snapshot": seed["_meta"]["fecha"], "version": seed["_meta"]["version"],
                   "niveles": seed["_meta"]["niveles"]},
         "fuentes": fuentes,
+        "colonias": colonias,
+        "colonias_meta": col_meta,
         "zonas": seed["tramos"],
         "club_de_pollos": seed["club_de_pollos_en_corredor"],
         "puntos": puntos,
