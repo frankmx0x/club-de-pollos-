@@ -1,9 +1,9 @@
 {
  "resultados": [
   {
-   "nivel": "FAIL",
-   "check": "1. app_data del APP DIFIERE del pipeline (¿edición a mano?)",
-   "detalle": "claves distintas: ['colonias']"
+   "nivel": "PASS",
+   "check": "1. app_data del APP idéntico al del pipeline",
+   "detalle": "186,234 bytes"
   },
   {
    "nivel": "PASS",
@@ -18,7 +18,7 @@
   {
    "nivel": "PASS",
    "check": "2c. competencia por colonia: app == recálculo",
-   "detalle": "39 colonias"
+   "detalle": "42 colonias"
   },
   {
    "nivel": "PASS",
@@ -33,7 +33,7 @@
   {
    "nivel": "PASS",
    "check": "3b. población por colonia: app == recálculo Censo",
-   "detalle": "39 colonias"
+   "detalle": "42 colonias"
   },
   {
    "nivel": "PASS",
@@ -48,12 +48,12 @@
   {
    "nivel": "PASS",
    "check": "6. higiene de datos",
-   "detalle": "39 colonias, 241 puntos, sin ceros disfrazados"
+   "detalle": "42 colonias, 241 puntos, sin ceros disfrazados"
   }
  ],
  "resumen": {
-  "pass": 9,
-  "fail": 1,
+  "pass": 10,
+  "fail": 0,
   "warn": 0
  }
 }

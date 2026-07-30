@@ -6,8 +6,8 @@
   "captura_turismo": 0.05,
   "ticket": 220,
   "proxy_demanda": "densidad de anclas (escuelas+súper+bancos+farmacias+gyms) en 2 km",
-  "cobertura_pct": 69.9,
-  "cobertura_nota": "8773 de 12554 establecimientos del corredor caen en una colonia canónica; el resto son colonias no listadas.",
+  "cobertura_pct": 70.7,
+  "cobertura_nota": "8880 de 12554 establecimientos del corredor caen en una colonia canónica; el resto son colonias no listadas.",
   "fuente": "DENUE may-2026 + Censo 2020 + OSETUR",
   "confianza": "V-DENUE + V-Censo aprox + V-OSETUR",
   "caveat": "Demografía por catchment de 2 km (AGEBs), no por polígono exacto de colonia. Captura turística 5% = supuesto."
@@ -323,6 +323,57 @@
    "score": 71
   },
   {
+   "id": "del-paseo",
+   "colonia": "Del Paseo Residencial",
+   "tramo": "Carr.Nacional/Estanzuela",
+   "orden": 41,
+   "municipio": "Monterrey",
+   "n_establecimientos": 27,
+   "centro": {
+    "lat": 25.62279,
+    "lon": -100.28861
+   },
+   "competencia": {
+    "pollo_2km": 38,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 32,
+     "farmacia": 29,
+     "banco": 23,
+     "escuela": 86,
+     "gimnasio": 19
+    },
+    "total": 189,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 55858,
+    "escolaridad": 11.75,
+    "pct_internet": 90.4,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 536236,
+    "turismo": 0,
+    "total": 536236
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 49,
+    "demanda": 55
+   },
+   "score": 71
+  },
+  {
    "id": "san-javier-stgo",
    "colonia": "San Javier (Santiago)",
    "tramo": "Santiago",
@@ -576,6 +627,57 @@
     "hueco": 100,
     "encaje": 54,
     "demanda": 21
+   },
+   "score": 66
+  },
+  {
+   "id": "paseo-vergel",
+   "colonia": "Paseo del Vergel",
+   "tramo": "Carr.Nacional/Estanzuela",
+   "orden": 42,
+   "municipio": "Monterrey",
+   "n_establecimientos": 52,
+   "centro": {
+    "lat": 25.58323,
+    "lon": -100.24397
+   },
+   "competencia": {
+    "pollo_2km": 25,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 29,
+     "farmacia": 24,
+     "banco": 12,
+     "escuela": 71,
+     "gimnasio": 34
+    },
+    "total": 170,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 41712,
+    "escolaridad": 12.19,
+    "pct_internet": 98.0,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 400435,
+    "turismo": 0,
+    "total": 400435
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 42,
+    "demanda": 49
    },
    "score": 66
   },
@@ -1162,6 +1264,56 @@
     "demanda": 55
    },
    "score": 54
+  },
+  {
+   "id": "los-cristales",
+   "colonia": "Los Cristales",
+   "tramo": "Carr.Nacional/Estanzuela",
+   "orden": 40,
+   "municipio": "Monterrey",
+   "n_establecimientos": 28,
+   "centro": {
+    "lat": 25.536,
+    "lon": -100.2155
+   },
+   "competencia": {
+    "pollo_2km": 4,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 7,
+     "farmacia": 4,
+     "escuela": 10,
+     "gimnasio": 5
+    },
+    "total": 26,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 5631,
+    "escolaridad": 12.9,
+    "pct_internet": 102.3,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 54057,
+    "turismo": 0,
+    "total": 54057
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 29,
+    "demanda": 8
+   },
+   "score": 53
   },
   {
    "id": "ancira",
