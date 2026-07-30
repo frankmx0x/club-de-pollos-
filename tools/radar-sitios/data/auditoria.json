@@ -3,7 +3,7 @@
   {
    "nivel": "PASS",
    "check": "1. app_data del APP idéntico al del pipeline",
-   "detalle": "186,234 bytes"
+   "detalle": "200,246 bytes"
   },
   {
    "nivel": "PASS",

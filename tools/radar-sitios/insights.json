@@ -1,0 +1,189 @@
+{
+  "_meta": {
+    "proposito": "Banco de insights del análisis — conclusiones accionables con su respaldo de datos. Curado a mano; cada cifra es trazable a docs/analysis/, docs/research/ o al pipeline.",
+    "regla": "Ningún insight sin evidencia. La confianza indica la del dato MÁS DÉBIL que sostiene la conclusión.",
+    "actualizado": "2026-07-30"
+  },
+  "insights": [
+    {
+      "id": "territorio-abierto",
+      "orden": 1,
+      "categoria": "Territorio",
+      "confianza": "V-DENUE",
+      "titulo": "Club de Pollos tiene CERO unidades en el corredor: el territorio está genuinamente abierto",
+      "resumen": "Búsqueda directa en el censo económico: 0 coincidencias en Monterrey sur + Santiago + Allende.",
+      "detalle": "Se buscó 'club de pollo' contra los 12,554 establecimientos del corredor en el DENUE (corte may-2026). Las unidades confirmadas de la cadena están en el norte/oriente del metro (Solidaridad, Pablo Livas–Guadalupe). Para la franquicia significa que la exclusividad territorial del corredor se negocia sobre terreno virgen. Caveat: una unidad abierta muy recientemente podría no estar en el corte.",
+      "evidencia": [
+        { "dato": "Establecimientos del corredor analizados", "valor": "12,554", "fuente": "DENUE INEGI NL, may-2026" },
+        { "dato": "Coincidencias 'Club de Pollos' en el corredor", "valor": "0", "fuente": "búsqueda directa en el censo" },
+        { "dato": "Unidades confirmadas fuera", "valor": "Solidaridad · Pablo Livas (Guadalupe)", "fuente": "reservandonos / Rappi" }
+      ],
+      "implicacion": "Asegurar la exclusividad del corredor en el contrato ANTES de que la marca lo llene."
+    },
+    {
+      "id": "hueco-frito-santiago",
+      "orden": 2,
+      "categoria": "Competencia",
+      "confianza": "V-DENUE",
+      "titulo": "Santiago: 42 lugares de pollo pero CERO pollo frito de cadena",
+      "resumen": "El municipio con más oferta de pollo del sur no tiene un solo frito de cadena — hueco competitivo directo.",
+      "detalle": "En Santiago hay 42 establecimientos de pollo (asado, rosticería, local) y ninguno de pollo frito de cadena (KFC/Church's/Popeyes = 0). El rival más cercano en concepto es El Pollo Loco (Presa de la Boca), que es asado. En contraste, el tramo norte concentra el frito: Altavista y Tecnológico tienen 4 fritos cada una en 2 km, incluyendo KFC Country.",
+      "evidencia": [
+        { "dato": "Pollo total en Santiago", "valor": "42", "fuente": "DENUE may-2026" },
+        { "dato": "Pollo frito de cadena en Santiago", "valor": "0", "fuente": "DENUE may-2026" },
+        { "dato": "Fritos en Altavista / Tecnológico (2 km)", "valor": "4 y 4", "fuente": "pipeline colonias" }
+      ],
+      "implicacion": "En el sur, la captura del gasto de pollo frito no se reparte con nadie."
+    },
+    {
+      "id": "gradiente-encaje",
+      "orden": 3,
+      "categoria": "Demografía",
+      "confianza": "V-Censo",
+      "titulo": "El encaje 'bajo/medio' mejora hacia el sur: escolaridad 12.3 → 10.3 → 9.2",
+      "resumen": "El corredor no es homogéneo: el norte es medio-alto, el sur encaja con 'más barato que KFC'.",
+      "detalle": "Proxies de ingreso del Censo 2020: escolaridad promedio Monterrey-corredor 12.3 años vs Santiago 10.3 vs Allende 9.2; internet en vivienda 99% / 80% / 66%. El posicionamiento value apunta al sur, pero el sur tiene menos población (ver insight de catchment). Además, ENIGH 2024: los deciles bajos gastan menos en comer fuera → per cápita QSR bajo/medio ≈ $115/mes vs $147 promedio.",
+      "evidencia": [
+        { "dato": "Escolaridad MTY-corredor / Santiago / Allende", "valor": "12.33 / 10.31 / 9.19 años", "fuente": "Censo 2020 INEGI (AGEB)" },
+        { "dato": "Internet en vivienda", "valor": "99% / 80.3% / 66.2%", "fuente": "Censo 2020 INEGI" },
+        { "dato": "Gasto en comer fuera, hogares", "valor": "~$1,299/mes (deciles bajos gastan 9.4% vs 36% el decil 10)", "fuente": "ENIGH 2024 INEGI [F1]" }
+      ],
+      "implicacion": "Elegir colonia es elegir entre encaje de concepto y tamaño de mercado."
+    },
+    {
+      "id": "catchment-100k",
+      "orden": 4,
+      "categoria": "Catchment",
+      "confianza": "V-Censo",
+      "titulo": "La vara de 100k personas/unidad solo la cumplen las colonias densas del norte",
+      "resumen": "Santiago (47k) y Allende (35k) no tienen 100k residentes; Tecnológico junta ~99k en 2 km.",
+      "detalle": "El franquiciador refiere ~100,000 personas por sucursal típica (prior soft, D-008/D-009). Con población real por radio (Censo por AGEB, cobertura del método 97-99.8%): Tecnológico ~98.8k@2km, Contry ~120k@2.5km, San Ángel ~106k@2.5km. El Cercado solo 13.2k@2km y Centro de Allende 18.3k@2km. El radio para reunir 100k: ~2 km en colonia densa, ~3.6 km en pueblo.",
+      "evidencia": [
+        { "dato": "Población@2km Tecnológico / Contry / El Cercado", "valor": "98,753 / 84,405 / 13,215", "fuente": "Censo 2020 por AGEB + centroides DENUE" },
+        { "dato": "Cobertura del método población-en-radio", "valor": "97.2–99.8%", "fuente": "validación vs POBTOT municipal" },
+        { "dato": "Trade-area de referencia del franquiciador", "valor": "~100,000 personas (prior soft)", "fuente": "Francisco / franquiciador, D-008" }
+      ],
+      "implicacion": "El sur no puede cumplir la meta con residentes: necesita tráfico y turismo."
+    },
+    {
+      "id": "sigma-calibrada",
+      "orden": 5,
+      "categoria": "Modelo",
+      "confianza": "F1",
+      "titulo": "La captura realista es 4-8% del gasto QSR local (no 10%)",
+      "resumen": "El pollo frito de cadena vale ~8% del gasto QSR; capturarlo entero es el techo, no el caso base.",
+      "detalle": "Market share publicado: el pollo ≈ 8% de las ventas QSR en México (2018), y ~1/3 de eso fue KFC. Eso acota la captura σ de UNA marca: conservador 4%, base 6%, optimista 8% (en zona sin competidores de frito te acercas al techo). Con 100k personas y ticket $220: $600k/mes pide ~4% de captura; $1M pide ~7%. Ticket $220 validado contra precios KFC 2025-26 (combos $199-299).",
+      "evidencia": [
+        { "dato": "Share del pollo en QSR MX", "valor": "≈8% (1/3 KFC)", "fuente": "prensa de industria, 2018 [F1]" },
+        { "dato": "Venta con 100k personas a σ 4/6/8%", "valor": "$588k / $882k / $1,176k", "fuente": "modelo catchment (docs/analysis)" },
+        { "dato": "Ticket $220 vs precios KFC", "valor": "combos $199-299, bucket 12 pzas ~$499", "fuente": "menús KFC MX 2025-26 [F1]" }
+      ],
+      "implicacion": "El piso de $600k es cómodo; el $1M exige captura casi monopólica o tráfico extra."
+    },
+    {
+      "id": "turismo-rehabilita-sur",
+      "orden": 6,
+      "categoria": "Turismo",
+      "confianza": "V-OSETUR",
+      "titulo": "Cola de Caballo (~368k visitantes/año) rehabilita al sur: es el parque #1 de Nuevo León",
+      "resumen": "Con 8% de captura del flujo turístico, El Cercado alcanza ~$651k/mes — clava el piso de $600k.",
+      "detalle": "Dato oficial de OSETUR (datos abiertos NL): Cola de Caballo recibió 306,737 visitantes en 10 meses (~30,673/mes; picos ~41k en Semana Santa y verano) — más que Grutas García (137k) o el Mirador Asta Bandera (110k). Modelo: residencial $111k + visitantes × captura × $220. A 5% = $448k; a 8% = $651k. Es conservador: no cuenta Presa de la Boca, el pueblo, ni el pass-through de la carretera. La captura real es LA incógnita: se mide con conteo de campo (plan listo).",
+      "evidencia": [
+        { "dato": "Visitantes Cola de Caballo", "valor": "306,737 en 10 meses (~368k/año)", "fuente": "OSETUR NL, datos abiertos" },
+        { "dato": "Ranking de parques NL", "valor": "#1 (vs Grutas García 137k, Asta Bandera 110k)", "fuente": "mismo dataset" },
+        { "dato": "El Cercado a captura 5% / 8%", "valor": "$448k / $651k por mes", "fuente": "modelo catchment" }
+      ],
+      "implicacion": "El sur es una jugada de flujo turístico real — pero exige el local SOBRE la ruta y validar la captura en campo."
+    },
+    {
+      "id": "tdpa-carretera",
+      "orden": 7,
+      "categoria": "Tráfico",
+      "confianza": "SICT+est",
+      "titulo": "La Carretera Nacional mueve ~27,000 vehículos/día frente a El Cercado",
+      "resumen": "TDPA 19,389 medido (SICT 2014) proyectado +40% por el crecimiento del parque vehicular de NL.",
+      "detalle": "Estación 'El Cercado' de SICT Datos Viales 2014: 19,389 veh/día en la Carretera Nacional (Cd. Victoria–Monterrey). El parque vehicular de NL creció ~+40% desde entonces (~1.8M→~2.8M vehículos; ICV +30% 2015-24; El Norte +52%/8 años) → estimación hoy ~27,144 (rango 25,205–30,053). El corredor probablemente supera el promedio estatal por el desarrollo residencial. Capturar 0.3-0.5% de ese flujo cierra la brecha del sur.",
+      "evidencia": [
+        { "dato": "TDPA El Cercado 2014", "valor": "19,389 veh/día", "fuente": "SICT Datos Viales 2014 (PDF oficial)" },
+        { "dato": "Crecimiento parque vehicular NL", "valor": "+30% a +55% (central +40%)", "fuente": "INEGI VMRC / ICV / prensa [F1]" },
+        { "dato": "Estimación hoy", "valor": "~27,144 (25,205–30,053)", "fuente": "proyección marcada como estimación" }
+      ],
+      "implicacion": "El sitio del sur debe estar SOBRE la carretera, no en calle interior."
+    },
+    {
+      "id": "contradiccion-concepto",
+      "orden": 8,
+      "categoria": "Decisión",
+      "confianza": "V-DENUE",
+      "titulo": "El concepto (bajo/medio) y la meta de venta ($600k+) apuntan a colonias distintas",
+      "resumen": "Las colonias con mejor encaje generan ~$110-160k de residentes; las que generan $600k+ son de ingreso alto y con más competencia.",
+      "detalle": "Con datos duros en ambos ejes: El Cercado y Centro de Allende ganan en encaje (escolaridad ~10) y hueco (0-2 fritos) pero topan en $111-126k de venta residencial. Contry, Altavista y Tecnológico generan $746-952k pero con escolaridad ~12-12.9 y 2-4 competidores de frito. No hay colonia que gane en todo: la decisión es A) revenue-first (norte, flexionar posicionamiento), B) concepto-first (sur + tráfico/turismo), o C) redefinir la meta.",
+      "evidencia": [
+        { "dato": "El Cercado / Centro Allende (venta residencial)", "valor": "$111k / $126k", "fuente": "pipeline colonias" },
+        { "dato": "Contry / Altavista / Tecnológico", "valor": "$746k / $952k / $930k", "fuente": "pipeline colonias" },
+        { "dato": "Escolaridad de esos dos grupos", "valor": "~9.9-10.8 vs ~11.7-12.9", "fuente": "Censo 2020" }
+      ],
+      "implicacion": "Es una decisión de socios con el caso enfrente — no hay óptimo matemático."
+    },
+    {
+      "id": "resolucion-colonia",
+      "orden": 9,
+      "categoria": "Método",
+      "confianza": "V-DENUE",
+      "titulo": "Bajar a resolución de colonia reveló candidatas invisibles a nivel zona",
+      "resumen": "Sierra Ventana, Las Brisas y Del Paseo Residencial: volumen + poco frito, escondidas dentro de tramos 'saturados'.",
+      "detalle": "El tramo Tec/Garza Sada parecía descartado (5 fritos agregados), pero el frito está concentrado en Altavista/Tecnológico. A nivel colonia aparecen: Sierra Ventana ($638k est., 1 frito, 293 anclas), Las Brisas ($531k, 0 fritos, escolaridad 11.4), Del Paseo Residencial ($536k, 0 fritos), Altamira ($659k, 1 frito). Son el 'punto intermedio' que el análisis por zona no podía ver: densidad suficiente + competencia baja + encaje razonable.",
+      "evidencia": [
+        { "dato": "Sierra Ventana", "valor": "$638k · 1 frito · 66,465 hab@2km", "fuente": "pipeline colonias (42 evaluadas)" },
+        { "dato": "Las Brisas", "valor": "$531k · 0 fritos · 63,168 hab@2km · escol 11.4", "fuente": "pipeline colonias" },
+        { "dato": "Del Paseo Residencial", "valor": "$536k · 0 fritos · 55,858 hab@2km", "fuente": "pipeline colonias" }
+      ],
+      "implicacion": "Los 3 finalistas ya no son solo Contry vs El Cercado: hay un carril intermedio real."
+    },
+    {
+      "id": "delivery-margen",
+      "orden": 10,
+      "categoria": "Canal",
+      "confianza": "V",
+      "titulo": "Cada peso vendido por app vale ~$0.65-0.70: la mezcla de canal es decisión de P&L",
+      "resumen": "Las plataformas retienen 30-35% del ticket (comisión + IVA sobre comisión + cargos).",
+      "detalle": "De un pedido de $200 en Rappi/Uber Eats/DiDi, al restaurante llegan $130-140. Estructura verificada: comisión nominal 15-30% según plataforma y plan + IVA 16% sobre la comisión + cargos opcionales de visibilidad. Duplicar la mezcla de delivery (20%→40%) cuesta ~6-7 puntos de margen bruto. El delivery extiende el alcance del sur (5-8 km) pero a margen reducido.",
+      "evidencia": [
+        { "dato": "Neto al restaurante de $200 pedidos", "valor": "$130-140", "fuente": "Tracción Media 2026, verificado 3-0" },
+        { "dato": "Comisiones nominales", "valor": "Uber ~15-30% · Rappi 20-30% · DiDi 18-30%", "fuente": "planes publicados, corroborado" },
+        { "dato": "Costo de duplicar mezcla delivery", "valor": "~-6 a -7 pts de margen bruto", "fuente": "aritmética del modelo" }
+      ],
+      "implicacion": "El monitoreo debe medir mezcla y margen POR CANAL desde el día uno."
+    },
+    {
+      "id": "pollo-commodity",
+      "orden": 11,
+      "categoria": "Insumo",
+      "confianza": "V",
+      "titulo": "El pollo es un commodity brutal: puede subir 9% en una quincena",
+      "resumen": "Volatilidad verificada + dependencia importadora (~20%) = riesgo de margen permanente.",
+      "detalle": "INEGI registró +8.96% quincenal (abr-may 2025, mayor salto registrado) por gripe aviar; en 2022 subió +14.8% anual vs 7.58% de inflación general. México produce ~80% de su consumo; la suspensión de Brasil (may-2025) cortó de golpe 36.7% de las importaciones. Un evento sanitario EXTERNO mueve el food cost. Sensibilidad: pollo +20% ≈ -2 a -3.5 pts de margen.",
+      "evidencia": [
+        { "dato": "Salto quincenal máximo", "valor": "+8.96% (1Q may-2025)", "fuente": "INPC INEGI, verificado 3-0" },
+        { "dato": "2022: pollo vs inflación", "valor": "+14.8% vs +7.58%", "fuente": "Bloomberg Línea / INEGI-SNIIM" },
+        { "dato": "Dependencia importadora", "valor": "~20% del consumo (Brasil era 36.7% de eso)", "fuente": "USDA FAS 2025 / SENASICA" }
+      ],
+      "implicacion": "Contrato de suministro / segundo proveedor + alerta de precio del insumo en el dashboard."
+    },
+    {
+      "id": "marco-socios",
+      "orden": 12,
+      "categoria": "Forecast",
+      "confianza": "F1",
+      "titulo": "Marco defendible para socios: $600k piso · $800k base · $1M upside",
+      "resumen": "El piso resiste aunque los priors del franquiciador sean optimistas; el $1M depende del input más débil.",
+      "detalle": "Los priors del franquiciador (ticket $220, 100k/unidad) son soft: el ticket quedó validado contra precios reales, pero 100k/unidad es denso (KFC opera a ~347k hab/unidad nacional; Pollo Feliz <130k). Triangulado: $600k solo pide ~4% de captura (cómodo); $800k ~5.4%; $1M exige que los 100k Y la captura base se cumplan a la vez. AUV meta (~US$360-600k/año) es 1/5 a 1/10 del benchmark EE.UU. — orden de magnitud sano para value MX.",
+      "evidencia": [
+        { "dato": "Ratios población/unidad", "valor": "KFC ~347k · Pollo Feliz <130k hab/unidad", "fuente": "conteos públicos / MX ~130M hab [F1]" },
+        { "dato": "Captura requerida por meta", "valor": "$600k→4% · $800k→5.4% · $1M→7%", "fuente": "modelo catchment" },
+        { "dato": "AUV benchmarks EE.UU. 2024", "valor": "Campero $3.17M · Cane's $6.56M · Chick-fil-A $7.49M", "fuente": "Technomic/NRN, verificado 3-0" }
+      ],
+      "implicacion": "Presentar $1M como techo, nunca como base. Calibrar con el AUV real del franquiciador."
+    }
+  ]
+}

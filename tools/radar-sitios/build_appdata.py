@@ -98,11 +98,20 @@ def main():
     except FileNotFoundError:
         colonias, col_meta = [], None
 
+    # Insights curados (banco de conclusiones con su respaldo — HERE/insights.json)
+    try:
+        ins = json.loads((HERE / "insights.json").read_text(encoding="utf-8"))
+        insights, ins_meta = sorted(ins["insights"], key=lambda x: x["orden"]), ins["_meta"]
+    except FileNotFoundError:
+        insights, ins_meta = [], None
+
     bundle = {
         "_meta": {"titulo": "Radar de Sitios — Corredor Sur (Club de Pollos)",
                   "snapshot": seed["_meta"]["fecha"], "version": seed["_meta"]["version"],
                   "niveles": seed["_meta"]["niveles"]},
         "fuentes": fuentes,
+        "insights": insights,
+        "insights_meta": ins_meta,
         "colonias": colonias,
         "colonias_meta": col_meta,
         "zonas": seed["tramos"],
