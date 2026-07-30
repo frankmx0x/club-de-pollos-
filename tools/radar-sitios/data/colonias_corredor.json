@@ -28,6 +28,9 @@
     "pollo_2km": 10,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 63,
+    "hamburguesas_2km": 2,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -78,6 +81,9 @@
     "pollo_2km": 6,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 53,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -128,6 +134,9 @@
     "pollo_2km": 45,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 322,
+    "hamburguesas_2km": 2,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -179,6 +188,9 @@
     "pollo_2km": 6,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 54,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -229,6 +241,9 @@
     "pollo_2km": 11,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 62,
+    "hamburguesas_2km": 2,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -279,6 +294,9 @@
     "pollo_2km": 18,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 129,
+    "hamburguesas_2km": 2,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -337,6 +355,9 @@
     "pollo_2km": 38,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 269,
+    "hamburguesas_2km": 3,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -388,6 +409,9 @@
     "pollo_2km": 18,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 148,
+    "hamburguesas_2km": 1,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -439,6 +463,9 @@
     "pollo_2km": 25,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 169,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 2,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -492,6 +519,9 @@
     "fritos": [
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 391,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 5,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -543,6 +573,9 @@
     "pollo_2km": 25,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 165,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 2,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -594,6 +627,9 @@
     "pollo_2km": 16,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 145,
+    "hamburguesas_2km": 1,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -645,6 +681,9 @@
     "pollo_2km": 25,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 173,
+    "hamburguesas_2km": 5,
+    "pizza_2km": 2,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -698,6 +737,9 @@
     "fritos": [
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 389,
+    "hamburguesas_2km": 5,
+    "pizza_2km": 2,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -751,6 +793,9 @@
     "fritos": [
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 341,
+    "hamburguesas_2km": 5,
+    "pizza_2km": 1,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -802,6 +847,9 @@
     "pollo_2km": 25,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 157,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 2,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -853,6 +901,9 @@
     "pollo_2km": 10,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 85,
+    "hamburguesas_2km": 1,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -906,6 +957,9 @@
     "fritos": [
      "BONANZA POLLO FRITO"
     ],
+    "restaurantes_2km": 306,
+    "hamburguesas_2km": 3,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -960,6 +1014,9 @@
      "CHURCHS ALLENDE",
      "CHURCHS CHIKEN ALLENDE"
     ],
+    "restaurantes_2km": 168,
+    "hamburguesas_2km": 2,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1014,6 +1071,9 @@
      "CHURCHS ALLENDE",
      "CHURCHS CHIKEN ALLENDE"
     ],
+    "restaurantes_2km": 163,
+    "hamburguesas_2km": 2,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1068,6 +1128,9 @@
      "CHURCHS ALLENDE",
      "CHURCHS CHIKEN ALLENDE"
     ],
+    "restaurantes_2km": 159,
+    "hamburguesas_2km": 2,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1122,6 +1185,9 @@
      "CHURCHS ALLENDE",
      "CHURCHS CHIKEN ALLENDE"
     ],
+    "restaurantes_2km": 161,
+    "hamburguesas_2km": 2,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1176,6 +1242,9 @@
      "CHURCHS ALLENDE",
      "CHURCHS CHIKEN ALLENDE"
     ],
+    "restaurantes_2km": 83,
+    "hamburguesas_2km": 1,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1229,6 +1298,9 @@
     "fritos": [
      "BONANZA POLLO FRITO"
     ],
+    "restaurantes_2km": 257,
+    "hamburguesas_2km": 3,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1280,6 +1352,9 @@
     "pollo_2km": 4,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 30,
+    "hamburguesas_2km": 0,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1333,6 +1408,9 @@
      "FRIED CHICKEN LOUSIANA",
      "KENTUCKY FRIED CHICKEN"
     ],
+    "restaurantes_2km": 354,
+    "hamburguesas_2km": 8,
+    "pizza_2km": 3,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1394,6 +1472,9 @@
      "CRISPY TENDERS",
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 468,
+    "hamburguesas_2km": 5,
+    "pizza_2km": 5,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1448,6 +1529,9 @@
      "FRIED CHICKEN LOUSIANA",
      "KENTUCKY FRIED CHICKEN"
     ],
+    "restaurantes_2km": 373,
+    "hamburguesas_2km": 7,
+    "pizza_2km": 3,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1509,6 +1593,9 @@
      "FRIED CHICKEN LOUSIANA",
      "KENTUCKY FRIED CHICKEN"
     ],
+    "restaurantes_2km": 325,
+    "hamburguesas_2km": 7,
+    "pizza_2km": 3,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1569,6 +1656,9 @@
     "fritos": [
      "BONANZA POLLO FRITO"
     ],
+    "restaurantes_2km": 210,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1623,6 +1713,9 @@
      "CRISPY TENDERS",
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 360,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 3,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1678,6 +1771,9 @@
      "KENTUCKY FRIED CHICKEN",
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 478,
+    "hamburguesas_2km": 10,
+    "pizza_2km": 5,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1731,6 +1827,9 @@
     "fritos": [
      "BONANZA POLLO FRITO"
     ],
+    "restaurantes_2km": 159,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1785,6 +1884,9 @@
      "CRISPY TENDERS",
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 342,
+    "hamburguesas_2km": 4,
+    "pizza_2km": 4,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1836,6 +1938,9 @@
     "pollo_2km": 6,
     "frito_2km": 0,
     "fritos": [],
+    "restaurantes_2km": 78,
+    "hamburguesas_2km": 1,
+    "pizza_2km": 0,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1892,6 +1997,9 @@
      "KENTUCKY FRIED CHICKEN",
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 607,
+    "hamburguesas_2km": 10,
+    "pizza_2km": 6,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -1948,6 +2056,9 @@
      "KENTUCKY FRIED CHICKEN",
      "SUC KFC 625 COUNTRY"
     ],
+    "restaurantes_2km": 609,
+    "hamburguesas_2km": 10,
+    "pizza_2km": 6,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -2003,6 +2114,9 @@
      "KENTUCKY FRIED CHICKEN",
      "SUC KFC 670 CHAPULTEPEC"
     ],
+    "restaurantes_2km": 363,
+    "hamburguesas_2km": 7,
+    "pizza_2km": 3,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -2058,6 +2172,9 @@
      "KENTUCKY FRIED CHICKEN",
      "SUC KFC 670 CHAPULTEPEC"
     ],
+    "restaurantes_2km": 397,
+    "hamburguesas_2km": 7,
+    "pizza_2km": 4,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -2114,6 +2231,9 @@
      "SUC KFC 625 COUNTRY",
      "SUC KFC 670 CHAPULTEPEC"
     ],
+    "restaurantes_2km": 450,
+    "hamburguesas_2km": 8,
+    "pizza_2km": 6,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -2170,6 +2290,9 @@
      "SUC KFC 625 COUNTRY",
      "SUC KFC 670 CHAPULTEPEC"
     ],
+    "restaurantes_2km": 472,
+    "hamburguesas_2km": 7,
+    "pizza_2km": 6,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
@@ -2226,6 +2349,9 @@
      "KENTUCKY FRIED CHICKEN",
      "SUC KFC 670 CHAPULTEPEC"
     ],
+    "restaurantes_2km": 407,
+    "hamburguesas_2km": 6,
+    "pizza_2km": 5,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },

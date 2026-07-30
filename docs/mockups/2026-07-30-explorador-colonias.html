@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup — Explorador de colonias · Radar de Sitios</title>
+<style>
+  :root{--bg:#f6f7f9;--card:#fff;--ink:#1b1e24;--mut:#697080;--line:#e6e8ee;
+    --acc:#e85d04;--star:#f59e0b;--verde:#16a34a;--rojo:#dc2626;}
+  @media (prefers-color-scheme: dark){:root{--bg:#101319;--card:#181c24;--ink:#e9ebef;--mut:#98a0b0;--line:#2a2f3b;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.45}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 12px 40px}
+  .kicker{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+  h1{font-size:22px;margin:.2rem 0 .2rem;letter-spacing:-.02em}
+  .sub{color:var(--mut);font-size:13px;margin-bottom:12px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .chips button{border:1px solid var(--line);background:var(--card);color:var(--mut);
+    border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer}
+  .chips button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .hint{font-size:11.5px;color:var(--mut);margin:8px 0 10px}
+  .tblwrap{background:var(--card);border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:auto}
+  table{border-collapse:collapse;width:100%;min-width:780px;font-size:12.5px}
+  th{position:sticky;top:0;background:var(--card);z-index:2;font-size:10px;text-transform:uppercase;
+    letter-spacing:.06em;color:var(--mut);padding:10px 8px;text-align:right;cursor:pointer;user-select:none;
+    border-bottom:1px solid var(--line);white-space:nowrap}
+  th.l{text-align:left} th.on{color:var(--acc)}
+  th .dir{font-size:9px}
+  td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--line);
+    font-variant-numeric:tabular-nums;white-space:nowrap}
+  td.l{text-align:left}
+  tr:last-child td{border-bottom:0}
+  tr.fav td{background:rgba(245,158,11,.10)}
+  .star{cursor:pointer;font-size:16px;color:var(--line);border:0;background:none;padding:0 2px}
+  .star.on{color:var(--star)}
+  .nom{font-weight:700} .tramo{font-size:10px;color:var(--mut)}
+  .tur{font-size:10px;color:#0891b2;font-weight:700}
+  .cero{color:var(--verde);font-weight:800}
+  .alto{color:var(--rojo);font-weight:700}
+  .venta{font-weight:700}
+  .favbar{position:sticky;bottom:0;margin-top:12px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:10px 14px;font-size:12.5px;box-shadow:0 -1px 8px rgba(0,0,0,.06)}
+  .favbar b{color:var(--star)}
+  .foot{margin-top:14px;font-size:11px;color:var(--mut);text-align:center;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">🐔 Club de Pollos · Radar de Sitios</div>
+  <h1>Explorador de colonias</h1>
+  <div class="sub">Las 42 colonias del corredor con sus datos alrededor (radio de 2 km). Ordena tocando las columnas, y marca con ⭐ tus finalistas — la decisión es de ustedes.</div>
+  <div class="chips" id="chips">
+    <button data-f="*" class="on">Todas</button>
+    <button data-f="Monterrey">Monterrey</button>
+    <button data-f="Santiago">Santiago</button>
+    <button data-f="Allende">Allende</button>
+    <button data-f="fav">⭐ Mis finalistas</button>
+  </div>
+  <div class="hint">👥 población · 🏫 escuelas · 🛒 súpers · 💊 farmacias · 🍽 restaurantes (todos) · 🍗 de pollo · 🍗🔥 pollo frito · 🍔 hamburguesas · 🍕 pizzas · venta estimada/mes (escenario normal)</div>
+  <div class="tblwrap"><table id="tbl">
+    <thead><tr>
+      <th class="l" data-k="n">Colonia <span class="dir"></span></th>
+      <th data-k="pob">👥 <span class="dir"></span></th>
+      <th data-k="esc">🏫 <span class="dir"></span></th>
+      <th data-k="sup">🛒 <span class="dir"></span></th>
+      <th data-k="far">💊 <span class="dir"></span></th>
+      <th data-k="rest">🍽 <span class="dir"></span></th>
+      <th data-k="pollo">🍗 <span class="dir"></span></th>
+      <th data-k="frito">🍗🔥 <span class="dir"></span></th>
+      <th data-k="hamb">🍔 <span class="dir"></span></th>
+      <th data-k="pizza">🍕 <span class="dir"></span></th>
+      <th data-k="venta">Venta est. <span class="dir"></span></th>
+      <th data-k="fav">⭐</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <div class="favbar" id="favbar">⭐ <b>0 finalistas</b> — toca la estrella de las colonias que quieras en tu lista corta.</div>
+  <div class="foot">Fuentes: INEGI DENUE may-2026 (negocios) · Censo 2020 (población) · OSETUR (turismo). Datos auditados 10/10.<br>Venta estimada = residentes + turismo en escenario normal — referencia, no veredicto. ⚠️ Mockup para revisión.</div>
+</div>
+<script>
+const DATA=[{"id":"los-duraznos","n":"Valle de los Duraznos","t":"Allende","m":"Allende","pob":16326,"esc":18,"sup":10,"far":4,"rest":63,"pollo":10,"frito":0,"hamb":2,"pizza":0,"venta":112649,"tur":false,"escol":8.8},{"id":"los-cavazos","n":"Los Cavazos","t":"Santiago","m":"Santiago","pob":4182,"esc":8,"sup":6,"far":1,"rest":53,"pollo":6,"frito":0,"hamb":4,"pizza":0,"venta":28855,"tur":false,"escol":9.58},{"id":"las-brisas","n":"Las Brisas","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":63168,"esc":95,"sup":40,"far":35,"rest":322,"pollo":45,"frito":0,"hamb":2,"pizza":0,"venta":530611,"tur":false,"escol":11.36},{"id":"condado-asturias","n":"Condado de Asturias","t":"Santiago","m":"Santiago","pob":4041,"esc":8,"sup":6,"far":1,"rest":54,"pollo":6,"frito":0,"hamb":4,"pizza":0,"venta":27882,"tur":false,"escol":9.6},{"id":"san-pedro-stgo","n":"San Pedro (Santiago)","t":"Santiago","m":"Santiago","pob":10493,"esc":19,"sup":4,"far":3,"rest":62,"pollo":11,"frito":0,"hamb":2,"pizza":0,"venta":88141,"tur":false,"escol":10.15},{"id":"el-cercado","n":"El Cercado","t":"Santiago","m":"Santiago","pob":13215,"esc":41,"sup":13,"far":12,"rest":129,"pollo":18,"frito":0,"hamb":2,"pizza":0,"venta":448420,"tur":true,"escol":10.77},{"id":"del-paseo","n":"Del Paseo Residencial","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":55858,"esc":86,"sup":32,"far":29,"rest":269,"pollo":38,"frito":0,"hamb":3,"pizza":0,"venta":536236,"tur":false,"escol":11.75},{"id":"san-javier-stgo","n":"San Javier (Santiago)","t":"Santiago","m":"Santiago","pob":11248,"esc":43,"sup":11,"far":13,"rest":148,"pollo":18,"frito":0,"hamb":1,"pizza":0,"venta":94483,"tur":false,"escol":11.02},{"id":"la-rioja","n":"La Rioja","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":39129,"esc":71,"sup":29,"far":25,"rest":169,"pollo":25,"frito":0,"hamb":4,"pizza":2,"venta":375638,"tur":false,"escol":12.0},{"id":"burocratas","n":"Burócratas Municipales","t":"Tec/Garza Sada","m":"Monterrey","pob":71630,"esc":103,"sup":44,"far":35,"rest":391,"pollo":55,"frito":1,"hamb":4,"pizza":5,"venta":601692,"tur":false,"escol":11.24},{"id":"valle-alto","n":"Valle Alto","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":42023,"esc":69,"sup":28,"far":23,"rest":165,"pollo":25,"frito":0,"hamb":4,"pizza":2,"venta":403420,"tur":false,"escol":12.21},{"id":"centro-santiago","n":"Centro de Santiago","t":"Santiago","m":"Santiago","pob":7812,"esc":38,"sup":10,"far":12,"rest":145,"pollo":16,"frito":0,"hamb":1,"pizza":0,"venta":65620,"tur":false,"escol":11.44},{"id":"paseo-vergel","n":"Paseo del Vergel","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":41712,"esc":71,"sup":29,"far":24,"rest":173,"pollo":25,"frito":0,"hamb":5,"pizza":2,"venta":400435,"tur":false,"escol":12.19},{"id":"sierra-ventana","n":"Sierra Ventana","t":"Tec/Garza Sada","m":"Monterrey","pob":66465,"esc":142,"sup":47,"far":39,"rest":389,"pollo":48,"frito":1,"hamb":5,"pizza":2,"venta":638064,"tur":false,"escol":11.99},{"id":"altamira","n":"Altamira","t":"Contry","m":"Monterrey","pob":68644,"esc":124,"sup":43,"far":39,"rest":341,"pollo":43,"frito":1,"hamb":5,"pizza":1,"venta":658982,"tur":false,"escol":11.91},{"id":"la-estanzuela","n":"La Estanzuela","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":46462,"esc":63,"sup":30,"far":22,"rest":157,"pollo":25,"frito":0,"hamb":4,"pizza":2,"venta":446035,"tur":false,"escol":12.49},{"id":"arturo-cavazos","n":"Arturo Cavazos","t":"Santiago","m":"Santiago","pob":6364,"esc":20,"sup":8,"far":2,"rest":85,"pollo":10,"frito":0,"hamb":1,"pizza":0,"venta":53457,"tur":false,"escol":11.41},{"id":"las-torres","n":"Las Torres","t":"Contry","m":"Monterrey","pob":67297,"esc":94,"sup":36,"far":29,"rest":306,"pollo":44,"frito":1,"hamb":3,"pizza":0,"venta":646051,"tur":false,"escol":11.62},{"id":"benito-juarez","n":"Benito Juárez (Allende)","t":"Allende","m":"Allende","pob":19704,"esc":37,"sup":25,"far":22,"rest":168,"pollo":26,"frito":2,"hamb":2,"pizza":0,"venta":135957,"tur":false,"escol":9.47},{"id":"zaragoza","n":"Zaragoza (Allende)","t":"Allende","m":"Allende","pob":17463,"esc":39,"sup":25,"far":22,"rest":163,"pollo":25,"frito":2,"hamb":2,"pizza":0,"venta":120494,"tur":false,"escol":9.66},{"id":"centro-allende","n":"Centro de Allende","t":"Allende","m":"Allende","pob":18331,"esc":42,"sup":24,"far":20,"rest":159,"pollo":24,"frito":2,"hamb":2,"pizza":0,"venta":126483,"tur":false,"escol":9.9},{"id":"san-javier","n":"San Javier (Allende)","t":"Allende","m":"Allende","pob":16862,"esc":45,"sup":25,"far":20,"rest":161,"pollo":28,"frito":2,"hamb":2,"pizza":0,"venta":116347,"tur":false,"escol":9.81},{"id":"buena-vista","n":"Buena Vista (Allende)","t":"Allende","m":"Allende","pob":8914,"esc":19,"sup":17,"far":11,"rest":83,"pollo":15,"frito":2,"hamb":1,"pizza":0,"venta":61506,"tur":false,"escol":9.61},{"id":"san-angel","n":"San Ángel","t":"Tec/Garza Sada","m":"Monterrey","pob":51996,"esc":84,"sup":35,"far":31,"rest":257,"pollo":38,"frito":1,"hamb":3,"pizza":0,"venta":499161,"tur":false,"escol":12.77},{"id":"los-cristales","n":"Los Cristales","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":5631,"esc":10,"sup":7,"far":4,"rest":30,"pollo":4,"frito":0,"hamb":0,"pizza":0,"venta":54057,"tur":false,"escol":12.9},{"id":"ancira","n":"Ancira","t":"Contry","m":"Monterrey","pob":51833,"esc":78,"sup":48,"far":27,"rest":354,"pollo":40,"frito":2,"hamb":8,"pizza":3,"venta":619234,"tur":true,"escol":11.56},{"id":"contry","n":"Contry","t":"Contry","m":"Monterrey","pob":77698,"esc":135,"sup":57,"far":43,"rest":468,"pollo":56,"frito":2,"hamb":5,"pizza":5,"venta":745900,"tur":false,"escol":12.72},{"id":"nuevo-repueblo","n":"Nuevo Repueblo","t":"Tec/Garza Sada","m":"Monterrey","pob":53934,"esc":67,"sup":53,"far":33,"rest":373,"pollo":44,"frito":2,"hamb":7,"pizza":3,"venta":639404,"tur":true,"escol":11.89},{"id":"independencia","n":"Independencia","t":"Tec/Garza Sada","m":"Monterrey","pob":49387,"esc":57,"sup":45,"far":26,"rest":325,"pollo":40,"frito":2,"hamb":7,"pizza":3,"venta":595753,"tur":true,"escol":11.72},{"id":"villa-las-fuentes","n":"Villa Las Fuentes","t":"Contry","m":"Monterrey","pob":54535,"esc":72,"sup":35,"far":25,"rest":210,"pollo":33,"frito":1,"hamb":4,"pizza":0,"venta":523536,"tur":false,"escol":13.22},{"id":"torremolinos","n":"Torremolinos","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":48651,"esc":105,"sup":41,"far":36,"rest":360,"pollo":35,"frito":2,"hamb":4,"pizza":3,"venta":467049,"tur":false,"escol":12.62},{"id":"roma","n":"Roma","t":"Tec/Garza Sada","m":"Monterrey","pob":83697,"esc":119,"sup":67,"far":41,"rest":478,"pollo":57,"frito":3,"hamb":10,"pizza":5,"venta":803491,"tur":false,"escol":11.83},{"id":"ciudad-satelite","n":"Ciudad Satélite","t":"Contry","m":"Monterrey","pob":44633,"esc":55,"sup":31,"far":22,"rest":159,"pollo":34,"frito":1,"hamb":4,"pizza":0,"venta":428476,"tur":false,"escol":13.62},{"id":"villa-del-rio","n":"Villa del Río","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":49072,"esc":100,"sup":41,"far":34,"rest":342,"pollo":33,"frito":2,"hamb":4,"pizza":4,"venta":471091,"tur":false,"escol":12.87},{"id":"la-herradura","n":"La Herradura","t":"Carr.Nacional/Estanzuela","m":"Monterrey","pob":8708,"esc":26,"sup":12,"far":9,"rest":78,"pollo":6,"frito":0,"hamb":1,"pizza":0,"venta":83596,"tur":false,"escol":14.6},{"id":"altavista","n":"Altavista","t":"Tec/Garza Sada","m":"Monterrey","pob":101302,"esc":151,"sup":71,"far":53,"rest":607,"pollo":82,"frito":4,"hamb":10,"pizza":6,"venta":972499,"tur":false,"escol":11.76},{"id":"tecnologico","n":"Tecnológico","t":"Tec/Garza Sada","m":"Monterrey","pob":96927,"esc":146,"sup":77,"far":53,"rest":609,"pollo":74,"frito":4,"hamb":10,"pizza":6,"venta":930499,"tur":false,"escol":12.06},{"id":"caracol","n":"Caracol","t":"Contry","m":"Monterrey","pob":45644,"esc":54,"sup":52,"far":31,"rest":363,"pollo":40,"frito":3,"hamb":7,"pizza":3,"venta":438182,"tur":false,"escol":12.72},{"id":"buenos-aires","n":"Buenos Aires","t":"Tec/Garza Sada","m":"Monterrey","pob":47680,"esc":54,"sup":50,"far":29,"rest":397,"pollo":44,"frito":3,"hamb":7,"pizza":4,"venta":457728,"tur":false,"escol":13.24},{"id":"ladrillera","n":"Ladrillera","t":"Contry","m":"Monterrey","pob":50599,"esc":101,"sup":55,"far":42,"rest":450,"pollo":43,"frito":4,"hamb":8,"pizza":6,"venta":485750,"tur":false,"escol":13.74},{"id":"la-primavera","n":"La Primavera","t":"Contry","m":"Monterrey","pob":53740,"esc":117,"sup":61,"far":42,"rest":472,"pollo":42,"frito":4,"hamb":7,"pizza":6,"venta":515904,"tur":false,"escol":14.02},{"id":"jardin-espanol","n":"Jardín Español","t":"Contry","m":"Monterrey","pob":46509,"esc":63,"sup":47,"far":30,"rest":407,"pollo":43,"frito":4,"hamb":6,"pizza":5,"venta":446486,"tur":false,"escol":13.29}];
+let sortK="pob", sortDir=-1, filtro="*";
+const favs=new Set(JSON.parse(localStorage.getItem("cdp_favs")||"[]"));
+const fmt=n=>"$"+Math.round(n/1000)+"k";
+function render(){
+  const tb=document.querySelector("#tbl tbody");
+  let rows=DATA.filter(r=>filtro==="*"?true:filtro==="fav"?favs.has(r.id):r.m===filtro);
+  rows.sort((a,b)=>{
+    if(sortK==="fav") return (favs.has(b.id)-favs.has(a.id))||b.pob-a.pob;
+    const va=a[sortK],vb=b[sortK];
+    return (typeof va==="string"? va.localeCompare(vb) : va-vb)*sortDir*(typeof va==="string"?-1:1)*-1;
+  });
+  // fix: numeric desc when sortDir=-1, string asc
+  rows.sort((a,b)=>{
+    if(sortK==="fav") return (favs.has(b.id)-favs.has(a.id))||b.pob-a.pob;
+    const va=a[sortK],vb=b[sortK];
+    if(typeof va==="string") return va.localeCompare(vb)*(sortDir===-1?1:-1);
+    return (vb-va)*(sortDir===-1?1:-1);
+  });
+  tb.innerHTML=rows.map(r=>`<tr class="${favs.has(r.id)?'fav':''}">
+    <td class="l"><span class="nom">${r.n}</span>${r.tur?' <span class="tur">≈turismo</span>':''}<br><span class="tramo">${r.t} · ${r.m}</span></td>
+    <td>${r.pob.toLocaleString("es-MX")}</td>
+    <td>${r.esc}</td><td>${r.sup}</td><td>${r.far}</td><td>${r.rest}</td>
+    <td>${r.pollo}</td>
+    <td class="${r.frito===0?'cero':r.frito>=3?'alto':''}">${r.frito}</td>
+    <td>${r.hamb}</td><td>${r.pizza}</td>
+    <td class="venta">${fmt(r.venta)}</td>
+    <td><button class="star ${favs.has(r.id)?'on':''}" data-id="${r.id}">★</button></td>
+  </tr>`).join("");
+  document.querySelectorAll("th").forEach(th=>{
+    th.classList.toggle("on",th.dataset.k===sortK);
+    th.querySelector(".dir") && (th.querySelector(".dir").textContent = th.dataset.k===sortK?(sortDir===-1?"▼":"▲"):"");
+  });
+  const favRows=DATA.filter(r=>favs.has(r.id));
+  document.getElementById("favbar").innerHTML = favRows.length
+    ? "⭐ <b>"+favRows.length+" finalista"+(favRows.length>1?"s":"")+":</b> "+favRows.map(r=>r.n).join(" · ")
+    : '⭐ <b>0 finalistas</b> — toca la estrella de las colonias que quieras en tu lista corta.';
+}
+document.querySelector("#tbl thead").addEventListener("click",e=>{
+  const th=e.target.closest("th"); if(!th) return;
+  const k=th.dataset.k;
+  if(k===sortK) sortDir*=-1; else {sortK=k; sortDir=-1;}
+  render();
+});
+document.querySelector("#tbl tbody")?.addEventListener("click",e=>{});
+document.getElementById("tbl").addEventListener("click",e=>{
+  const b=e.target.closest(".star"); if(!b) return;
+  const id=b.dataset.id;
+  favs.has(id)?favs.delete(id):favs.add(id);
+  localStorage.setItem("cdp_favs",JSON.stringify([...favs]));
+  render();
+});
+document.getElementById("chips").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  filtro=b.dataset.f;
+  document.querySelectorAll("#chips button").forEach(x=>x.classList.toggle("on",x===b));
+  render();
+});
+render();
+</script>
+</body>
+</html>

@@ -72,6 +72,7 @@ def main():
 
     puntos = {c["id"]: [] for c in cfg}     # coords de establecimientos de la colonia
     agsum, pollo, frito, anclas = {}, [], [], []
+    rest, hamb, pizza = [], [], []          # contexto: restaurantes totales y fast-food vecino
     total_corredor = 0
     asignados = 0
 
@@ -102,11 +103,16 @@ def main():
 
             act = (row.get("codigo_act") or "").strip()
             if act.startswith("722"):
+                rest.append((lat, lon))
                 blob = den.norm(row.get("nom_estab")) + " " + den.norm(row.get("nombre_act"))
                 if any(t in blob for t in den.POLLO_KW):
                     pollo.append((lat, lon))
                     if any(t in blob for t in den.POLLO_FRITO_KW):
                         frito.append((lat, lon, (row.get("nom_estab") or "").strip()))
+                elif any(t in blob for t in den.HAMB_KW):
+                    hamb.append((lat, lon))
+                elif any(t in blob for t in den.PIZZA_KW):
+                    pizza.append((lat, lon))
             else:
                 for cat, fn in den.ANCLAS.items():
                     if fn(act):
@@ -153,6 +159,9 @@ def main():
 
         n_pollo = sum(1 for a, b in pollo if near(a, b))
         fr = [n for a, b, n in frito if near(a, b)]
+        n_rest = sum(1 for a, b in rest if near(a, b))
+        n_hamb = sum(1 for a, b in hamb if near(a, b))
+        n_pizza = sum(1 for a, b in pizza if near(a, b))
         anc = {}
         for a, b, cat in anclas:
             if near(a, b): anc[cat] = anc.get(cat, 0) + 1
@@ -173,6 +182,8 @@ def main():
             "municipio": den.MUN[c["mun"]], "n_establecimientos": len(pts),
             "centro": {"lat": round(clat, 5), "lon": round(clon, 5)},
             "competencia": {"pollo_2km": n_pollo, "frito_2km": len(fr), "fritos": fr[:6],
+                            "restaurantes_2km": n_rest, "hamburguesas_2km": n_hamb,
+                            "pizza_2km": n_pizza,
                             "fuente": "DENUE may-2026", "confianza": "V-DENUE"},
             "anclas": {"conteo": anc, "total": sum(anc.values()),
                        "fuente": "DENUE may-2026", "confianza": "V-DENUE"},

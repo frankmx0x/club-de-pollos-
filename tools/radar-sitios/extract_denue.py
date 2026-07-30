@@ -48,6 +48,10 @@ MTY_BUFFER_KM = 2.0
 POLLO_KW = ("pollo", "kfc", "church", "popeye", "rostiz", "pollos", "fried chicken", "campero")
 POLLO_FRITO_KW = ("kfc", "church", "popeye", "frito", "fried", "broaster", "crispy", "club de pollo")
 
+# Comida rápida vecina (contexto competitivo, no pollo): por palabra clave.
+HAMB_KW = ("hamburgues", "burger", "carls", "carl's", "mcdonald", "wendy")
+PIZZA_KW = ("pizza", "domino", "little caesar", "papa john")
+
 # Anclas de demanda: otras unidades económicas del corredor (no competidores), por SCIAN.
 # Generan tráfico / demanda alrededor de un local candidato.
 ANCLAS = {
