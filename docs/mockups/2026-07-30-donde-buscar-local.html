@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup — ¿Dónde buscar local? · Radar de Sitios</title>
+<style>
+  :root{--bg:#f6f7f9;--card:#fff;--ink:#1b1e24;--mut:#697080;--line:#e6e8ee;
+    --acc:#e85d04;--verde:#16a34a;--verde-bg:#e8f7ee;--ama:#d97706;--ama-bg:#fdf3e3;
+    --rojo:#dc2626;--rojo-bg:#fdeaea;}
+  @media (prefers-color-scheme: dark){:root{--bg:#101319;--card:#181c24;--ink:#e9ebef;
+    --mut:#98a0b0;--line:#2a2f3b;--verde-bg:#10331e;--ama-bg:#3a2c10;--rojo-bg:#3a1414;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+  .wrap{max-width:520px;margin:0 auto;padding:18px 14px 40px}
+  .kicker{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+  h1{font-size:24px;margin:.2rem 0 .3rem;letter-spacing:-.02em}
+  .sub{color:var(--mut);font-size:13.5px;margin-bottom:18px}
+  /* selector de meta (B) */
+  .metas{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 12px}
+  .metas .lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+  .segmented{display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
+  .segmented button{flex:1;border:0;background:transparent;color:var(--mut);font-weight:700;
+    font-size:14px;padding:9px 0;border-radius:9px;cursor:pointer}
+  .segmented button.on{background:var(--acc);color:#fff}
+  /* tarjetas (A) */
+  .card{background:var(--card);border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);
+    padding:16px;margin-top:14px}
+  .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .zona{font-size:18px;font-weight:800;letter-spacing:-.01em}
+  .lugar{font-size:12px;color:var(--mut)}
+  .sem{flex-shrink:0;text-align:center;border-radius:12px;padding:7px 12px;font-weight:800;font-size:13px}
+  .sem small{display:block;font-weight:600;font-size:10px;opacity:.8}
+  .s-verde{background:var(--verde-bg);color:var(--verde)}
+  .s-ama{background:var(--ama-bg);color:var(--ama)}
+  .s-rojo{background:var(--rojo-bg);color:var(--rojo)}
+  .frase{font-size:14.5px;margin:10px 0 4px;font-weight:600}
+  .frase em{color:var(--acc);font-style:normal}
+  .rango{display:flex;align-items:baseline;gap:6px;margin:8px 0 2px}
+  .rango b{font-size:22px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .rango span{font-size:12px;color:var(--mut)}
+  .barra{height:8px;border-radius:6px;background:var(--line);position:relative;margin:6px 0 2px;overflow:hidden}
+  .barra i{position:absolute;inset:0;width:var(--w);border-radius:6px;
+    background:linear-gradient(90deg,#f4a261,var(--acc))}
+  .barra u{position:absolute;top:-3px;bottom:-3px;left:var(--meta);width:2px;background:var(--ink);opacity:.55}
+  .rangolbl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mut);margin-bottom:8px}
+  .pc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+  .pc h4{margin:0 0 4px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+  .pc .si h4{color:var(--verde)} .pc .no h4{color:var(--rojo)}
+  .pc ul{margin:0;padding-left:15px;font-size:12.5px;color:var(--ink)}
+  .pc li{margin-bottom:3px}
+  .confirmar{background:var(--ama-bg);border-radius:10px;padding:8px 11px;font-size:12px;color:var(--ama)}
+  .confirmar b{letter-spacing:.06em;font-size:10px;text-transform:uppercase}
+  .cta{margin-top:10px;font-size:12.5px;font-weight:700;color:var(--acc)}
+  .foot{margin-top:22px;font-size:11px;color:var(--mut);text-align:center;line-height:1.6}
+  .otras{margin-top:16px;font-size:12.5px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">🐔 Club de Pollos · Radar de Sitios</div>
+  <h1>¿Dónde buscar local?</h1>
+  <div class="sub">Las 4 zonas finalistas del análisis, en cristiano. Elige tu meta de venta y mira cuáles llegan.</div>
+
+  <div class="metas">
+    <div class="lbl">Mi meta de venta mensual</div>
+    <div class="segmented" id="metas">
+      <button data-meta="600000" class="on">$600 mil</button>
+      <button data-meta="800000">$800 mil</button>
+      <button data-meta="1000000">$1 millón</button>
+    </div>
+  </div>
+
+  <div id="cards"></div>
+
+  <div class="otras" id="otras"></div>
+
+  <div class="foot">
+    Venta estimada = residentes + turismo, en tres escenarios de captura (cauto → optimista).<br>
+    Datos: INEGI DENUE may-2026 · Censo 2020 · OSETUR NL · auditados (10/10).<br>
+    ⚠️ Mockup para revisión — mismos números reales del Radar.
+  </div>
+</div>
+
+<script>
+const Z=[
+ {n:"El Cercado",lugar:"Santiago · Pueblo Mágico",cons:276452,base:448420,opt:687870,
+  frase:"La apuesta <em>turística</em>: aquí no vendes por los vecinos, vendes por los 368 mil que visitan Cola de Caballo cada año.",
+  si:["Cero competencia de pollo frito","368 mil visitantes/año (parque #1 de NL)","Renta baja · encaje perfecto con la marca"],
+  no:["Pocos residentes (13 mil cerca)","Fuerte en fin de semana, flojo entre semana"],
+  conf:"Pararse un sábado a contar cuántos se detienen a comer. El local DEBE estar sobre la carretera.",
+  cta:"Buscar local sobre Carretera Nacional, tramo pueblo → cascada."},
+ {n:"Sierra Ventana",lugar:"Monterrey · Garza Sada",cons:425376,base:638064,opt:850752,
+  frase:"La <em>sorpresa</em> del análisis: mucha gente, casi nadie vendiendo pollo frito.",
+  si:["66 mil personas alrededor","Solo 1 competidor de frito","293 escuelas, súpers y anclas cerca"],
+  no:["Colonia popular densa: elegir bien la calle","La renta exacta está por confirmar"],
+  conf:"Renta real de locales en avenida y visita de campo (seguridad, flujo, esquinas).",
+  cta:"Buscar local en avenida principal con estacionamiento."},
+ {n:"Las Brisas",lugar:"Monterrey · Carr. Nacional",cons:353740,base:530611,opt:707481,
+  frase:"Volumen con <em>cero</em> competencia: 63 mil personas y ningún pollo frito de cadena.",
+  si:["Cero competencia de frito","63 mil personas alrededor","Sobre el corredor de Carretera Nacional"],
+  no:["Ingreso medio-alto: el 'más barato' pesa menos","Menos anclas que Sierra Ventana"],
+  conf:"Renta en plazas del corredor y perfil del cliente en visita.",
+  cta:"Buscar local en plaza con ancla (súper/cine) sobre la Nacional."},
+ {n:"Contry",lugar:"Monterrey · zona consolidada",cons:497267,base:745900,opt:994534,
+  frase:"El <em>valor seguro</em> en pesos: la zona que más vende… pero con KFC en el vecindario.",
+  si:["78 mil personas y el mayor gasto por persona","304 anclas: zona de mucho movimiento","La venta más alta de todas las finalistas"],
+  no:["2 competidores de frito (KFC cerca)","Ingreso alto: toca flexionar el 'más barato'","Renta más cara del corredor"],
+  conf:"¿Aguanta el concepto value en zona media-alta? Probar percepción de precio.",
+  cta:"Buscar local lejos del KFC, cerca de escuelas/oficinas."}
+];
+const fmt=n=>"$"+Math.round(n).toLocaleString("es-MX");
+const MAXOPT=1000000;
+function semaforo(z,meta){
+  if(z.base>=meta) return ["s-verde","LLEGA","escenario normal"];
+  if(z.opt>=meta)  return ["s-ama","PUEDE","solo si sale muy bien"];
+  return ["s-rojo","NO LLEGA","ni en el mejor caso"];
+}
+function render(meta){
+  document.getElementById("cards").innerHTML=Z.map(z=>{
+    const [cls,tag,sub]=semaforo(z,meta);
+    return `<div class="card">
+      <div class="top">
+        <div><div class="zona">${z.n}</div><div class="lugar">${z.lugar}</div></div>
+        <div class="sem ${cls}">${tag}<small>${sub}</small></div>
+      </div>
+      <div class="frase">${z.frase}</div>
+      <div class="rango"><b>${fmt(z.base)}</b><span>/mes esperado · rango ${fmt(z.cons)} – ${fmt(z.opt)}</span></div>
+      <div class="barra" style="--w:${Math.min(100,z.opt/MAXOPT*100)}%;--meta:${Math.min(98,meta/MAXOPT*100)}%"><i></i><u></u></div>
+      <div class="rangolbl"><span>cauto ${fmt(z.cons)}</span><span>│ tu meta</span><span>mejor caso ${fmt(z.opt)}</span></div>
+      <div class="pc">
+        <div class="si"><h4>A favor</h4><ul>${z.si.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div class="no"><h4>En contra</h4><ul>${z.no.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      </div>
+      <div class="confirmar"><b>Antes de firmar:</b> ${z.conf}</div>
+      <div class="cta">→ ${z.cta}</div>
+    </div>`;
+  }).join("");
+  document.getElementById("otras").innerHTML=
+   "También en el radar (sin llegar a finalistas): <b>Del Paseo Residencial</b> ("+fmt(536236)+", 0 fritos) · <b>Altamira</b> ("+fmt(658982)+", 1 frito) · <b>Valle Alto</b> ("+fmt(403420)+", 0 fritos).";
+}
+document.getElementById("metas").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  document.querySelectorAll("#metas button").forEach(x=>x.classList.toggle("on",x===b));
+  render(+b.dataset.meta);
+});
+render(600000);
+</script>
+</body>
+</html>
