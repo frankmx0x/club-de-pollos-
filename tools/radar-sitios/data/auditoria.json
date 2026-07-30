@@ -1,0 +1,59 @@
+{
+ "resultados": [
+  {
+   "nivel": "FAIL",
+   "check": "1. app_data del APP DIFIERE del pipeline (¿edición a mano?)",
+   "detalle": "claves distintas: ['colonias']"
+  },
+  {
+   "nivel": "PASS",
+   "check": "2a. competidores de pollo: app == DENUE crudo",
+   "detalle": "241"
+  },
+  {
+   "nivel": "PASS",
+   "check": "2b. anclas de demanda: app == DENUE crudo",
+   "detalle": "1183"
+  },
+  {
+   "nivel": "PASS",
+   "check": "2c. competencia por colonia: app == recálculo",
+   "detalle": "39 colonias"
+  },
+  {
+   "nivel": "PASS",
+   "check": "3a. POBTOT Santiago == Censo 2020",
+   "detalle": "46,784"
+  },
+  {
+   "nivel": "PASS",
+   "check": "3a. POBTOT Allende == Censo 2020",
+   "detalle": "35,289"
+  },
+  {
+   "nivel": "PASS",
+   "check": "3b. población por colonia: app == recálculo Censo",
+   "detalle": "39 colonias"
+  },
+  {
+   "nivel": "PASS",
+   "check": "4. visitantes Cola de Caballo == OSETUR",
+   "detalle": "30,673/mes (promedio de 10 meses)"
+  },
+  {
+   "nivel": "PASS",
+   "check": "5. aritmética de venta consistente",
+   "detalle": "residencial+turismo, pob×percápita×σ"
+  },
+  {
+   "nivel": "PASS",
+   "check": "6. higiene de datos",
+   "detalle": "39 colonias, 241 puntos, sin ceros disfrazados"
+  }
+ ],
+ "resumen": {
+  "pass": 9,
+  "fail": 1,
+  "warn": 0
+ }
+}

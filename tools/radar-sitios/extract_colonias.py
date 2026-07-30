@@ -164,6 +164,9 @@ def main():
 
         pc = percapita(esc)
         v_res = int(pob * pc * SIGMA)
+        # Redondear el flujo ANTES de calcular: así el número que muestra el app es
+        # recomputable a mano (visitantes × captura × ticket), sin residuos de decimales.
+        flujo = round(flujo)
         v_tur = int(flujo * CAPT_TUR * TICKET)
         filas.append({
             "id": c["id"], "colonia": c["nombre"], "tramo": c["tramo"], "orden": c["orden"],

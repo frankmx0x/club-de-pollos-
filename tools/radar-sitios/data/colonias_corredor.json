@@ -6,18 +6,269 @@
   "captura_turismo": 0.05,
   "ticket": 220,
   "proxy_demanda": "densidad de anclas (escuelas+súper+bancos+farmacias+gyms) en 2 km",
-  "cobertura_pct": 31.1,
-  "cobertura_nota": "3907 de 12554 establecimientos del corredor caen en una colonia canónica; el resto son colonias no listadas.",
+  "cobertura_pct": 69.9,
+  "cobertura_nota": "8773 de 12554 establecimientos del corredor caen en una colonia canónica; el resto son colonias no listadas.",
   "fuente": "DENUE may-2026 + Censo 2020 + OSETUR",
   "confianza": "V-DENUE + V-Censo aprox + V-OSETUR",
   "caveat": "Demografía por catchment de 2 km (AGEBs), no por polígono exacto de colonia. Captura turística 5% = supuesto."
  },
  "colonias": [
   {
+   "id": "los-duraznos",
+   "colonia": "Valle de los Duraznos",
+   "tramo": "Allende",
+   "orden": 39,
+   "municipio": "Allende",
+   "n_establecimientos": 86,
+   "centro": {
+    "lat": 25.30001,
+    "lon": -100.03255
+   },
+   "competencia": {
+    "pollo_2km": 10,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 10,
+     "farmacia": 4,
+     "escuela": 18,
+     "gimnasio": 2
+    },
+    "total": 34,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 16326,
+    "escolaridad": 8.8,
+    "pct_internet": 66.5,
+    "percapita_qsr": 115,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 112649,
+    "turismo": 0,
+    "total": 112649
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 100,
+    "demanda": 10
+   },
+   "score": 82
+  },
+  {
+   "id": "los-cavazos",
+   "colonia": "Los Cavazos",
+   "tramo": "Santiago",
+   "orden": 31,
+   "municipio": "Santiago",
+   "n_establecimientos": 83,
+   "centro": {
+    "lat": 25.45677,
+    "lon": -100.16768
+   },
+   "competencia": {
+    "pollo_2km": 6,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 6,
+     "farmacia": 1,
+     "escuela": 8,
+     "gimnasio": 1
+    },
+    "total": 16,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 4182,
+    "escolaridad": 9.58,
+    "pct_internet": 70.9,
+    "percapita_qsr": 115,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 28855,
+    "turismo": 0,
+    "total": 28855
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 87,
+    "demanda": 5
+   },
+   "score": 76
+  },
+  {
+   "id": "las-brisas",
+   "colonia": "Las Brisas",
+   "tramo": "Carr.Nacional/Estanzuela",
+   "orden": 20,
+   "municipio": "Monterrey",
+   "n_establecimientos": 393,
+   "centro": {
+    "lat": 25.62117,
+    "lon": -100.28095
+   },
+   "competencia": {
+    "pollo_2km": 45,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 40,
+     "farmacia": 35,
+     "banco": 23,
+     "escuela": 95,
+     "gimnasio": 22
+    },
+    "total": 215,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 63168,
+    "escolaridad": 11.36,
+    "pct_internet": 89.3,
+    "percapita_qsr": 140,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 530611,
+    "turismo": 0,
+    "total": 530611
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 56,
+    "demanda": 62
+   },
+   "score": 75
+  },
+  {
+   "id": "condado-asturias",
+   "colonia": "Condado de Asturias",
+   "tramo": "Santiago",
+   "orden": 32,
+   "municipio": "Santiago",
+   "n_establecimientos": 89,
+   "centro": {
+    "lat": 25.45876,
+    "lon": -100.16695
+   },
+   "competencia": {
+    "pollo_2km": 6,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 6,
+     "farmacia": 1,
+     "escuela": 8,
+     "gimnasio": 1
+    },
+    "total": 16,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 4041,
+    "escolaridad": 9.6,
+    "pct_internet": 71.7,
+    "percapita_qsr": 115,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 27882,
+    "turismo": 0,
+    "total": 27882
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 86,
+    "demanda": 5
+   },
+   "score": 75
+  },
+  {
+   "id": "san-pedro-stgo",
+   "colonia": "San Pedro (Santiago)",
+   "tramo": "Santiago",
+   "orden": 28,
+   "municipio": "Santiago",
+   "n_establecimientos": 258,
+   "centro": {
+    "lat": 25.37715,
+    "lon": -100.11307
+   },
+   "competencia": {
+    "pollo_2km": 11,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "farmacia": 3,
+     "supermercado": 4,
+     "escuela": 19,
+     "gimnasio": 2
+    },
+    "total": 28,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 10493,
+    "escolaridad": 10.15,
+    "pct_internet": 90.3,
+    "percapita_qsr": 140,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 88141,
+    "turismo": 0,
+    "total": 88141
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 77,
+    "demanda": 8
+   },
+   "score": 72
+  },
+  {
    "id": "el-cercado",
    "colonia": "El Cercado",
    "tramo": "Santiago",
-   "orden": 10,
+   "orden": 27,
    "municipio": "Santiago",
    "n_establecimientos": 455,
    "centro": {
@@ -55,35 +306,35 @@
     "atracciones": [
      "Cola de Caballo"
     ],
-    "visitantes_mes": 30673,
-    "venta_turismo": 337410,
+    "visitantes_mes": 30674,
+    "venta_turismo": 337414,
     "confianza": "V-OSETUR"
    },
    "venta": {
     "residencial": 111006,
-    "turismo": 337410,
-    "total": 448416
+    "turismo": 337414,
+    "total": 448420
    },
    "subscores": {
     "hueco": 100,
-    "encaje": 80,
+    "encaje": 66,
     "demanda": 24
    },
-   "score": 77
+   "score": 71
   },
   {
-   "id": "centro-santiago",
-   "colonia": "Centro de Santiago",
+   "id": "san-javier-stgo",
+   "colonia": "San Javier (Santiago)",
    "tramo": "Santiago",
-   "orden": 11,
+   "orden": 29,
    "municipio": "Santiago",
-   "n_establecimientos": 112,
+   "n_establecimientos": 228,
    "centro": {
-    "lat": 25.41411,
-    "lon": -100.14356
+    "lat": 25.4128,
+    "lon": -100.14192
    },
    "competencia": {
-    "pollo_2km": 16,
+    "pollo_2km": 18,
     "frito_2km": 0,
     "fritos": [],
     "fuente": "DENUE may-2026",
@@ -91,42 +342,146 @@
    },
    "anclas": {
     "conteo": {
-     "supermercado": 10,
-     "farmacia": 12,
+     "supermercado": 11,
+     "farmacia": 13,
      "banco": 7,
-     "escuela": 38,
-     "gimnasio": 5
+     "escuela": 43,
+     "gimnasio": 6
     },
-    "total": 72,
+    "total": 80,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
    "demografia": {
-    "poblacion_2km": 7812,
-    "escolaridad": 11.44,
-    "pct_internet": 95.7,
+    "poblacion_2km": 11248,
+    "escolaridad": 11.02,
+    "pct_internet": 88.7,
     "percapita_qsr": 140,
     "fuente": "Censo 2020 INEGI",
     "confianza": "V-Censo aprox"
    },
    "turismo": null,
    "venta": {
-    "residencial": 65620,
+    "residencial": 94483,
     "turismo": 0,
-    "total": 65620
+    "total": 94483
    },
    "subscores": {
     "hueco": 100,
-    "encaje": 66,
-    "demanda": 21
+    "encaje": 62,
+    "demanda": 23
    },
-   "score": 71
+   "score": 69
+  },
+  {
+   "id": "la-rioja",
+   "colonia": "La Rioja",
+   "tramo": "Carr.Nacional/Estanzuela",
+   "orden": 21,
+   "municipio": "Monterrey",
+   "n_establecimientos": 253,
+   "centro": {
+    "lat": 25.57931,
+    "lon": -100.24893
+   },
+   "competencia": {
+    "pollo_2km": 25,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 29,
+     "farmacia": 25,
+     "banco": 12,
+     "escuela": 71,
+     "gimnasio": 29
+    },
+    "total": 166,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 39129,
+    "escolaridad": 12.0,
+    "pct_internet": 96.6,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 375638,
+    "turismo": 0,
+    "total": 375638
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 45,
+    "demanda": 48
+   },
+   "score": 68
+  },
+  {
+   "id": "burocratas",
+   "colonia": "Burócratas Municipales",
+   "tramo": "Tec/Garza Sada",
+   "orden": 9,
+   "municipio": "Monterrey",
+   "n_establecimientos": 196,
+   "centro": {
+    "lat": 25.63335,
+    "lon": -100.29524
+   },
+   "competencia": {
+    "pollo_2km": 55,
+    "frito_2km": 1,
+    "fritos": [
+     "SUC KFC 625 COUNTRY"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 44,
+     "farmacia": 35,
+     "banco": 21,
+     "escuela": 103,
+     "gimnasio": 25
+    },
+    "total": 228,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 71630,
+    "escolaridad": 11.24,
+    "pct_internet": 92.4,
+    "percapita_qsr": 140,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 601692,
+    "turismo": 0,
+    "total": 601692
+   },
+   "subscores": {
+    "hueco": 75,
+    "encaje": 58,
+    "demanda": 66
+   },
+   "score": 66
   },
   {
    "id": "valle-alto",
    "colonia": "Valle Alto",
    "tramo": "Carr.Nacional/Estanzuela",
-   "orden": 8,
+   "orden": 25,
    "municipio": "Monterrey",
    "n_establecimientos": 148,
    "centro": {
@@ -168,10 +523,61 @@
    },
    "subscores": {
     "hueco": 100,
-    "encaje": 50,
-    "demanda": 48
+    "encaje": 41,
+    "demanda": 47
    },
-   "score": 70
+   "score": 66
+  },
+  {
+   "id": "centro-santiago",
+   "colonia": "Centro de Santiago",
+   "tramo": "Santiago",
+   "orden": 33,
+   "municipio": "Santiago",
+   "n_establecimientos": 112,
+   "centro": {
+    "lat": 25.41411,
+    "lon": -100.14356
+   },
+   "competencia": {
+    "pollo_2km": 16,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 10,
+     "farmacia": 12,
+     "banco": 7,
+     "escuela": 38,
+     "gimnasio": 5
+    },
+    "total": 72,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 7812,
+    "escolaridad": 11.44,
+    "pct_internet": 95.7,
+    "percapita_qsr": 140,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 65620,
+    "turismo": 0,
+    "total": 65620
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 54,
+    "demanda": 21
+   },
+   "score": 66
   },
   {
    "id": "sierra-ventana",
@@ -221,16 +627,69 @@
    },
    "subscores": {
     "hueco": 75,
-    "encaje": 54,
-    "demanda": 86
+    "encaje": 45,
+    "demanda": 85
    },
-   "score": 69
+   "score": 65
+  },
+  {
+   "id": "altamira",
+   "colonia": "Altamira",
+   "tramo": "Contry",
+   "orden": 19,
+   "municipio": "Monterrey",
+   "n_establecimientos": 100,
+   "centro": {
+    "lat": 25.62898,
+    "lon": -100.28914
+   },
+   "competencia": {
+    "pollo_2km": 43,
+    "frito_2km": 1,
+    "fritos": [
+     "SUC KFC 625 COUNTRY"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 43,
+     "farmacia": 39,
+     "banco": 27,
+     "escuela": 124,
+     "gimnasio": 27
+    },
+    "total": 260,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 68644,
+    "escolaridad": 11.91,
+    "pct_internet": 93.8,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 658982,
+    "turismo": 0,
+    "total": 658982
+   },
+   "subscores": {
+    "hueco": 75,
+    "encaje": 46,
+    "demanda": 75
+   },
+   "score": 64
   },
   {
    "id": "la-estanzuela",
    "colonia": "La Estanzuela",
    "tramo": "Carr.Nacional/Estanzuela",
-   "orden": 7,
+   "orden": 24,
    "municipio": "Monterrey",
    "n_establecimientos": 502,
    "centro": {
@@ -272,24 +731,128 @@
    },
    "subscores": {
     "hueco": 100,
-    "encaje": 44,
-    "demanda": 46
+    "encaje": 36,
+    "demanda": 45
    },
-   "score": 67
+   "score": 64
   },
   {
-   "id": "san-javier",
-   "colonia": "San Javier (Allende)",
-   "tramo": "Allende",
-   "orden": 13,
-   "municipio": "Allende",
-   "n_establecimientos": 40,
+   "id": "arturo-cavazos",
+   "colonia": "Arturo Cavazos",
+   "tramo": "Santiago",
+   "orden": 30,
+   "municipio": "Santiago",
+   "n_establecimientos": 102,
    "centro": {
-    "lat": 25.27497,
-    "lon": -100.01913
+    "lat": 25.4254,
+    "lon": -100.14856
    },
    "competencia": {
-    "pollo_2km": 28,
+    "pollo_2km": 10,
+    "frito_2km": 0,
+    "fritos": [],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 8,
+     "farmacia": 2,
+     "banco": 1,
+     "escuela": 20,
+     "gimnasio": 4
+    },
+    "total": 35,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 6364,
+    "escolaridad": 11.41,
+    "pct_internet": 94.2,
+    "percapita_qsr": 140,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 53457,
+    "turismo": 0,
+    "total": 53457
+   },
+   "subscores": {
+    "hueco": 100,
+    "encaje": 55,
+    "demanda": 10
+   },
+   "score": 64
+  },
+  {
+   "id": "las-torres",
+   "colonia": "Las Torres",
+   "tramo": "Contry",
+   "orden": 14,
+   "municipio": "Monterrey",
+   "n_establecimientos": 130,
+   "centro": {
+    "lat": 25.61865,
+    "lon": -100.2825
+   },
+   "competencia": {
+    "pollo_2km": 44,
+    "frito_2km": 1,
+    "fritos": [
+     "BONANZA POLLO FRITO"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 36,
+     "farmacia": 29,
+     "banco": 23,
+     "escuela": 94,
+     "gimnasio": 21
+    },
+    "total": 203,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 67297,
+    "escolaridad": 11.62,
+    "pct_internet": 91.4,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 646051,
+    "turismo": 0,
+    "total": 646051
+   },
+   "subscores": {
+    "hueco": 75,
+    "encaje": 51,
+    "demanda": 59
+   },
+   "score": 62
+  },
+  {
+   "id": "benito-juarez",
+   "colonia": "Benito Juárez (Allende)",
+   "tramo": "Allende",
+   "orden": 38,
+   "municipio": "Allende",
+   "n_establecimientos": 95,
+   "centro": {
+    "lat": 25.28412,
+    "lon": -100.02662
+   },
+   "competencia": {
+    "pollo_2km": 26,
     "frito_2km": 2,
     "fritos": [
      "CHURCHS ALLENDE",
@@ -301,41 +864,95 @@
    "anclas": {
     "conteo": {
      "supermercado": 25,
-     "farmacia": 20,
+     "farmacia": 22,
      "banco": 11,
-     "escuela": 45,
-     "gimnasio": 10
+     "escuela": 37,
+     "gimnasio": 9
     },
-    "total": 111,
+    "total": 104,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
    "demografia": {
-    "poblacion_2km": 16862,
-    "escolaridad": 9.81,
-    "pct_internet": 73.7,
+    "poblacion_2km": 19704,
+    "escolaridad": 9.47,
+    "pct_internet": 72.6,
     "percapita_qsr": 115,
     "fuente": "Censo 2020 INEGI",
     "confianza": "V-Censo aprox"
    },
    "turismo": null,
    "venta": {
-    "residencial": 116347,
+    "residencial": 135957,
     "turismo": 0,
-    "total": 116347
+    "total": 135957
    },
    "subscores": {
     "hueco": 50,
-    "encaje": 100,
-    "demanda": 33
+    "encaje": 88,
+    "demanda": 30
    },
-   "score": 67
+   "score": 61
+  },
+  {
+   "id": "zaragoza",
+   "colonia": "Zaragoza (Allende)",
+   "tramo": "Allende",
+   "orden": 36,
+   "municipio": "Allende",
+   "n_establecimientos": 133,
+   "centro": {
+    "lat": 25.28327,
+    "lon": -100.0252
+   },
+   "competencia": {
+    "pollo_2km": 25,
+    "frito_2km": 2,
+    "fritos": [
+     "CHURCHS ALLENDE",
+     "CHURCHS CHIKEN ALLENDE"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 25,
+     "farmacia": 22,
+     "banco": 11,
+     "escuela": 39,
+     "gimnasio": 10
+    },
+    "total": 107,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 17463,
+    "escolaridad": 9.66,
+    "pct_internet": 73.5,
+    "percapita_qsr": 115,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 120494,
+    "turismo": 0,
+    "total": 120494
+   },
+   "subscores": {
+    "hueco": 50,
+    "encaje": 85,
+    "demanda": 31
+   },
+   "score": 60
   },
   {
    "id": "centro-allende",
    "colonia": "Centro de Allende",
    "tramo": "Allende",
-   "orden": 12,
+   "orden": 34,
    "municipio": "Allende",
    "n_establecimientos": 713,
    "centro": {
@@ -380,10 +997,118 @@
    },
    "subscores": {
     "hueco": 50,
-    "encaje": 98,
+    "encaje": 81,
     "demanda": 31
    },
-   "score": 66
+   "score": 59
+  },
+  {
+   "id": "san-javier",
+   "colonia": "San Javier (Allende)",
+   "tramo": "Allende",
+   "orden": 35,
+   "municipio": "Allende",
+   "n_establecimientos": 40,
+   "centro": {
+    "lat": 25.27497,
+    "lon": -100.01913
+   },
+   "competencia": {
+    "pollo_2km": 28,
+    "frito_2km": 2,
+    "fritos": [
+     "CHURCHS ALLENDE",
+     "CHURCHS CHIKEN ALLENDE"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 25,
+     "farmacia": 20,
+     "banco": 11,
+     "escuela": 45,
+     "gimnasio": 10
+    },
+    "total": 111,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 16862,
+    "escolaridad": 9.81,
+    "pct_internet": 73.7,
+    "percapita_qsr": 115,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 116347,
+    "turismo": 0,
+    "total": 116347
+   },
+   "subscores": {
+    "hueco": 50,
+    "encaje": 83,
+    "demanda": 32
+   },
+   "score": 59
+  },
+  {
+   "id": "buena-vista",
+   "colonia": "Buena Vista (Allende)",
+   "tramo": "Allende",
+   "orden": 37,
+   "municipio": "Allende",
+   "n_establecimientos": 123,
+   "centro": {
+    "lat": 25.26931,
+    "lon": -100.00568
+   },
+   "competencia": {
+    "pollo_2km": 15,
+    "frito_2km": 2,
+    "fritos": [
+     "CHURCHS ALLENDE",
+     "CHURCHS CHIKEN ALLENDE"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 17,
+     "farmacia": 11,
+     "banco": 11,
+     "escuela": 19,
+     "gimnasio": 4
+    },
+    "total": 62,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 8914,
+    "escolaridad": 9.61,
+    "pct_internet": 70.8,
+    "percapita_qsr": 115,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 61506,
+    "turismo": 0,
+    "total": 61506
+   },
+   "subscores": {
+    "hueco": 50,
+    "encaje": 86,
+    "demanda": 18
+   },
+   "score": 58
   },
   {
    "id": "san-angel",
@@ -433,16 +1158,77 @@
    },
    "subscores": {
     "hueco": 75,
-    "encaje": 38,
-    "demanda": 56
+    "encaje": 32,
+    "demanda": 55
    },
-   "score": 56
+   "score": 54
+  },
+  {
+   "id": "ancira",
+   "colonia": "Ancira",
+   "tramo": "Contry",
+   "orden": 18,
+   "municipio": "Monterrey",
+   "n_establecimientos": 79,
+   "centro": {
+    "lat": 25.65312,
+    "lon": -100.30461
+   },
+   "competencia": {
+    "pollo_2km": 40,
+    "frito_2km": 2,
+    "fritos": [
+     "FRIED CHICKEN LOUSIANA",
+     "KENTUCKY FRIED CHICKEN"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 48,
+     "farmacia": 27,
+     "banco": 18,
+     "escuela": 78,
+     "gimnasio": 12
+    },
+    "total": 183,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 51833,
+    "escolaridad": 11.56,
+    "pct_internet": 94.0,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": {
+    "atracciones": [
+     "Mirador Asta Bandera"
+    ],
+    "visitantes_mes": 11058,
+    "venta_turismo": 121638,
+    "confianza": "V-OSETUR"
+   },
+   "venta": {
+    "residencial": 497596,
+    "turismo": 121638,
+    "total": 619234
+   },
+   "subscores": {
+    "hueco": 50,
+    "encaje": 52,
+    "demanda": 53
+   },
+   "score": 52
   },
   {
    "id": "contry",
    "colonia": "Contry",
    "tramo": "Contry",
-   "orden": 6,
+   "orden": 11,
    "municipio": "Monterrey",
    "n_establecimientos": 803,
    "centro": {
@@ -487,10 +1273,239 @@
    },
    "subscores": {
     "hueco": 50,
-    "encaje": 39,
-    "demanda": 89
+    "encaje": 32,
+    "demanda": 88
    },
-   "score": 54
+   "score": 51
+  },
+  {
+   "id": "nuevo-repueblo",
+   "colonia": "Nuevo Repueblo",
+   "tramo": "Tec/Garza Sada",
+   "orden": 6,
+   "municipio": "Monterrey",
+   "n_establecimientos": 534,
+   "centro": {
+    "lat": 25.65995,
+    "lon": -100.30151
+   },
+   "competencia": {
+    "pollo_2km": 44,
+    "frito_2km": 2,
+    "fritos": [
+     "FRIED CHICKEN LOUSIANA",
+     "KENTUCKY FRIED CHICKEN"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 53,
+     "farmacia": 33,
+     "banco": 20,
+     "escuela": 67,
+     "gimnasio": 12
+    },
+    "total": 185,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 53934,
+    "escolaridad": 11.89,
+    "pct_internet": 95.2,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": {
+    "atracciones": [
+     "Mirador Asta Bandera"
+    ],
+    "visitantes_mes": 11058,
+    "venta_turismo": 121638,
+    "confianza": "V-OSETUR"
+   },
+   "venta": {
+    "residencial": 517766,
+    "turismo": 121638,
+    "total": 639404
+   },
+   "subscores": {
+    "hueco": 50,
+    "encaje": 47,
+    "demanda": 53
+   },
+   "score": 49
+  },
+  {
+   "id": "independencia",
+   "colonia": "Independencia",
+   "tramo": "Tec/Garza Sada",
+   "orden": 8,
+   "municipio": "Monterrey",
+   "n_establecimientos": 163,
+   "centro": {
+    "lat": 25.65648,
+    "lon": -100.3066
+   },
+   "competencia": {
+    "pollo_2km": 40,
+    "frito_2km": 2,
+    "fritos": [
+     "FRIED CHICKEN LOUSIANA",
+     "KENTUCKY FRIED CHICKEN"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 45,
+     "farmacia": 26,
+     "banco": 17,
+     "escuela": 57,
+     "gimnasio": 9
+    },
+    "total": 154,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 49387,
+    "escolaridad": 11.72,
+    "pct_internet": 95.0,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": {
+    "atracciones": [
+     "Mirador Asta Bandera"
+    ],
+    "visitantes_mes": 11058,
+    "venta_turismo": 121638,
+    "confianza": "V-OSETUR"
+   },
+   "venta": {
+    "residencial": 474115,
+    "turismo": 121638,
+    "total": 595753
+   },
+   "subscores": {
+    "hueco": 50,
+    "encaje": 50,
+    "demanda": 45
+   },
+   "score": 49
+  },
+  {
+   "id": "villa-las-fuentes",
+   "colonia": "Villa Las Fuentes",
+   "tramo": "Contry",
+   "orden": 17,
+   "municipio": "Monterrey",
+   "n_establecimientos": 113,
+   "centro": {
+    "lat": 25.60942,
+    "lon": -100.2688
+   },
+   "competencia": {
+    "pollo_2km": 33,
+    "frito_2km": 1,
+    "fritos": [
+     "BONANZA POLLO FRITO"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 35,
+     "farmacia": 25,
+     "banco": 11,
+     "escuela": 72,
+     "gimnasio": 20
+    },
+    "total": 163,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 54535,
+    "escolaridad": 13.22,
+    "pct_internet": 104.2,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 523536,
+    "turismo": 0,
+    "total": 523536
+   },
+   "subscores": {
+    "hueco": 75,
+    "encaje": 24,
+    "demanda": 47
+   },
+   "score": 49
+  },
+  {
+   "id": "torremolinos",
+   "colonia": "Torremolinos",
+   "tramo": "Carr.Nacional/Estanzuela",
+   "orden": 23,
+   "municipio": "Monterrey",
+   "n_establecimientos": 80,
+   "centro": {
+    "lat": 25.63761,
+    "lon": -100.27294
+   },
+   "competencia": {
+    "pollo_2km": 35,
+    "frito_2km": 2,
+    "fritos": [
+     "CRISPY TENDERS",
+     "SUC KFC 625 COUNTRY"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 41,
+     "farmacia": 36,
+     "banco": 25,
+     "escuela": 105,
+     "gimnasio": 33
+    },
+    "total": 240,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 48651,
+    "escolaridad": 12.62,
+    "pct_internet": 106.1,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 467049,
+    "turismo": 0,
+    "total": 467049
+   },
+   "subscores": {
+    "hueco": 50,
+    "encaje": 34,
+    "demanda": 69
+   },
+   "score": 48
   },
   {
    "id": "roma",
@@ -542,29 +1557,80 @@
    },
    "subscores": {
     "hueco": 25,
-    "encaje": 58,
-    "demanda": 82
+    "encaje": 48,
+    "demanda": 80
    },
-   "score": 49
+   "score": 45
   },
   {
-   "id": "altavista",
-   "colonia": "Altavista",
-   "tramo": "Tec/Garza Sada",
-   "orden": 3,
+   "id": "ciudad-satelite",
+   "colonia": "Ciudad Satélite",
+   "tramo": "Contry",
+   "orden": 15,
    "municipio": "Monterrey",
-   "n_establecimientos": 76,
+   "n_establecimientos": 209,
    "centro": {
-    "lat": 25.64274,
-    "lon": -100.2897
+    "lat": 25.60134,
+    "lon": -100.26829
    },
    "competencia": {
-    "pollo_2km": 79,
-    "frito_2km": 4,
+    "pollo_2km": 34,
+    "frito_2km": 1,
+    "fritos": [
+     "BONANZA POLLO FRITO"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 31,
+     "farmacia": 22,
+     "banco": 6,
+     "escuela": 55,
+     "gimnasio": 20
+    },
+    "total": 134,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 44633,
+    "escolaridad": 13.62,
+    "pct_internet": 107.2,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 428476,
+    "turismo": 0,
+    "total": 428476
+   },
+   "subscores": {
+    "hueco": 75,
+    "encaje": 17,
+    "demanda": 39
+   },
+   "score": 45
+  },
+  {
+   "id": "villa-del-rio",
+   "colonia": "Villa del Río",
+   "tramo": "Carr.Nacional/Estanzuela",
+   "orden": 22,
+   "municipio": "Monterrey",
+   "n_establecimientos": 105,
+   "centro": {
+    "lat": 25.63929,
+    "lon": -100.27191
+   },
+   "competencia": {
+    "pollo_2km": 33,
+    "frito_2km": 2,
     "fritos": [
      "CRISPY TENDERS",
-     "FRIED CHICKEN LOUSIANA",
-     "KENTUCKY FRIED CHICKEN",
      "SUC KFC 625 COUNTRY"
     ],
     "fuente": "DENUE may-2026",
@@ -572,42 +1638,42 @@
    },
    "anclas": {
     "conteo": {
-     "supermercado": 68,
-     "farmacia": 50,
-     "banco": 34,
-     "escuela": 150,
-     "gimnasio": 38
+     "supermercado": 41,
+     "farmacia": 34,
+     "banco": 25,
+     "escuela": 100,
+     "gimnasio": 31
     },
-    "total": 340,
+    "total": 231,
     "fuente": "DENUE may-2026",
     "confianza": "V-DENUE"
    },
    "demografia": {
-    "poblacion_2km": 99217,
-    "escolaridad": 11.73,
-    "pct_internet": 99.6,
+    "poblacion_2km": 49072,
+    "escolaridad": 12.87,
+    "pct_internet": 109.4,
     "percapita_qsr": 160,
     "fuente": "Censo 2020 INEGI",
     "confianza": "V-Censo aprox"
    },
    "turismo": null,
    "venta": {
-    "residencial": 952483,
+    "residencial": 471091,
     "turismo": 0,
-    "total": 952483
+    "total": 471091
    },
    "subscores": {
-    "hueco": 0,
-    "encaje": 60,
-    "demanda": 100
+    "hueco": 50,
+    "encaje": 30,
+    "demanda": 67
    },
-   "score": 44
+   "score": 45
   },
   {
    "id": "la-herradura",
    "colonia": "La Herradura",
    "tramo": "Carr.Nacional/Estanzuela",
-   "orden": 9,
+   "orden": 26,
    "municipio": "Monterrey",
    "n_establecimientos": 26,
    "centro": {
@@ -653,6 +1719,62 @@
     "demanda": 18
    },
    "score": 44
+  },
+  {
+   "id": "altavista",
+   "colonia": "Altavista",
+   "tramo": "Tec/Garza Sada",
+   "orden": 3,
+   "municipio": "Monterrey",
+   "n_establecimientos": 279,
+   "centro": {
+    "lat": 25.64424,
+    "lon": -100.28904
+   },
+   "competencia": {
+    "pollo_2km": 82,
+    "frito_2km": 4,
+    "fritos": [
+     "CRISPY TENDERS",
+     "FRIED CHICKEN LOUSIANA",
+     "KENTUCKY FRIED CHICKEN",
+     "SUC KFC 625 COUNTRY"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 71,
+     "farmacia": 53,
+     "banco": 34,
+     "escuela": 151,
+     "gimnasio": 37
+    },
+    "total": 346,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 101302,
+    "escolaridad": 11.76,
+    "pct_internet": 99.4,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 972499,
+    "turismo": 0,
+    "total": 972499
+   },
+   "subscores": {
+    "hueco": 0,
+    "encaje": 49,
+    "demanda": 100
+   },
+   "score": 40
   },
   {
    "id": "tecnologico",
@@ -705,10 +1827,288 @@
    },
    "subscores": {
     "hueco": 0,
-    "encaje": 53,
-    "demanda": 99
+    "encaje": 44,
+    "demanda": 98
    },
-   "score": 41
+   "score": 37
+  },
+  {
+   "id": "caracol",
+   "colonia": "Caracol",
+   "tramo": "Contry",
+   "orden": 10,
+   "municipio": "Monterrey",
+   "n_establecimientos": 182,
+   "centro": {
+    "lat": 25.66515,
+    "lon": -100.2949
+   },
+   "competencia": {
+    "pollo_2km": 40,
+    "frito_2km": 3,
+    "fritos": [
+     "FRIED CHICKEN LOUSIANA",
+     "KENTUCKY FRIED CHICKEN",
+     "SUC KFC 670 CHAPULTEPEC"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 52,
+     "farmacia": 31,
+     "banco": 23,
+     "escuela": 54,
+     "gimnasio": 11
+    },
+    "total": 171,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 45644,
+    "escolaridad": 12.72,
+    "pct_internet": 99.3,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 438182,
+    "turismo": 0,
+    "total": 438182
+   },
+   "subscores": {
+    "hueco": 25,
+    "encaje": 32,
+    "demanda": 49
+   },
+   "score": 33
+  },
+  {
+   "id": "buenos-aires",
+   "colonia": "Buenos Aires",
+   "tramo": "Tec/Garza Sada",
+   "orden": 7,
+   "municipio": "Monterrey",
+   "n_establecimientos": 434,
+   "centro": {
+    "lat": 25.66492,
+    "lon": -100.28555
+   },
+   "competencia": {
+    "pollo_2km": 44,
+    "frito_2km": 3,
+    "fritos": [
+     "FRIED CHICKEN LOUSIANA",
+     "KENTUCKY FRIED CHICKEN",
+     "SUC KFC 670 CHAPULTEPEC"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 50,
+     "farmacia": 29,
+     "banco": 27,
+     "escuela": 54,
+     "gimnasio": 16
+    },
+    "total": 176,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 47680,
+    "escolaridad": 13.24,
+    "pct_internet": 109.8,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 457728,
+    "turismo": 0,
+    "total": 457728
+   },
+   "subscores": {
+    "hueco": 25,
+    "encaje": 23,
+    "demanda": 51
+   },
+   "score": 30
+  },
+  {
+   "id": "ladrillera",
+   "colonia": "Ladrillera",
+   "tramo": "Contry",
+   "orden": 12,
+   "municipio": "Monterrey",
+   "n_establecimientos": 126,
+   "centro": {
+    "lat": 25.65351,
+    "lon": -100.27646
+   },
+   "competencia": {
+    "pollo_2km": 43,
+    "frito_2km": 4,
+    "fritos": [
+     "CRISPY TENDERS",
+     "FRIED CHICKEN LOUSIANA",
+     "SUC KFC 625 COUNTRY",
+     "SUC KFC 670 CHAPULTEPEC"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 55,
+     "farmacia": 42,
+     "banco": 33,
+     "escuela": 101,
+     "gimnasio": 30
+    },
+    "total": 261,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 50599,
+    "escolaridad": 13.74,
+    "pct_internet": 115.8,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 485750,
+    "turismo": 0,
+    "total": 485750
+   },
+   "subscores": {
+    "hueco": 0,
+    "encaje": 15,
+    "demanda": 75
+   },
+   "score": 21
+  },
+  {
+   "id": "la-primavera",
+   "colonia": "La Primavera",
+   "tramo": "Contry",
+   "orden": 16,
+   "municipio": "Monterrey",
+   "n_establecimientos": 229,
+   "centro": {
+    "lat": 25.64937,
+    "lon": -100.27691
+   },
+   "competencia": {
+    "pollo_2km": 42,
+    "frito_2km": 4,
+    "fritos": [
+     "CRISPY TENDERS",
+     "FRIED CHICKEN LOUSIANA",
+     "SUC KFC 625 COUNTRY",
+     "SUC KFC 670 CHAPULTEPEC"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 61,
+     "farmacia": 42,
+     "banco": 35,
+     "escuela": 117,
+     "gimnasio": 32
+    },
+    "total": 287,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 53740,
+    "escolaridad": 14.02,
+    "pct_internet": 115.7,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 515904,
+    "turismo": 0,
+    "total": 515904
+   },
+   "subscores": {
+    "hueco": 0,
+    "encaje": 10,
+    "demanda": 83
+   },
+   "score": 21
+  },
+  {
+   "id": "jardin-espanol",
+   "colonia": "Jardín Español",
+   "tramo": "Contry",
+   "orden": 13,
+   "municipio": "Monterrey",
+   "n_establecimientos": 140,
+   "centro": {
+    "lat": 25.66338,
+    "lon": -100.28228
+   },
+   "competencia": {
+    "pollo_2km": 43,
+    "frito_2km": 4,
+    "fritos": [
+     "CRISPY TENDERS",
+     "FRIED CHICKEN LOUSIANA",
+     "KENTUCKY FRIED CHICKEN",
+     "SUC KFC 670 CHAPULTEPEC"
+    ],
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "anclas": {
+    "conteo": {
+     "supermercado": 47,
+     "farmacia": 30,
+     "banco": 27,
+     "escuela": 63,
+     "gimnasio": 17
+    },
+    "total": 184,
+    "fuente": "DENUE may-2026",
+    "confianza": "V-DENUE"
+   },
+   "demografia": {
+    "poblacion_2km": 46509,
+    "escolaridad": 13.29,
+    "pct_internet": 110.7,
+    "percapita_qsr": 160,
+    "fuente": "Censo 2020 INEGI",
+    "confianza": "V-Censo aprox"
+   },
+   "turismo": null,
+   "venta": {
+    "residencial": 446486,
+    "turismo": 0,
+    "total": 446486
+   },
+   "subscores": {
+    "hueco": 0,
+    "encaje": 23,
+    "demanda": 53
+   },
+   "score": 20
   }
  ]
 }
