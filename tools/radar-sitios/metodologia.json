@@ -4,34 +4,65 @@
     "actualizado": "2026-07-30"
   },
   "metricas": [
-    { "id": "poblacion", "nombre": "👥 Población",
+    {
+      "id": "poblacion",
+      "nombre": "Población",
       "formula": "Suma de habitantes (POBTOT) de las manzanas censales (AGEB) cuyo centro cae a menos de 2 km del centro de la colonia. Cada AGEB se cuenta UNA vez.",
-      "fuente": "Censo de Población y Vivienda 2020, INEGI", "confianza": "V-Censo",
-      "nota": "El centro de cada AGEB se ubica con las coordenadas de sus negocios (validado: captura 97-99.8% de la población oficial)." },
-    { "id": "escuelas", "nombre": "🏫🛒💊 Escuelas / súpers / farmacias / bancos / gyms",
+      "fuente": "Censo de Población y Vivienda 2020, INEGI",
+      "confianza": "V-Censo",
+      "nota": "El centro de cada AGEB se ubica con las coordenadas de sus negocios (validado: captura 97-99.8% de la población oficial)."
+    },
+    {
+      "id": "escuelas",
+      "nombre": "Escuelas / súpers / farmacias / bancos / gyms",
       "formula": "Conteo directo de establecimientos registrados de cada giro a menos de 2 km (por código de actividad SCIAN).",
-      "fuente": "DENUE INEGI, corte mayo 2026", "confianza": "V-DENUE" },
-    { "id": "restaurantes", "nombre": "🍽 Restaurantes",
+      "fuente": "DENUE INEGI, corte mayo 2026",
+      "confianza": "V-DENUE"
+    },
+    {
+      "id": "restaurantes",
+      "nombre": "Restaurantes",
       "formula": "Todos los establecimientos de preparación de alimentos (SCIAN 722*) a menos de 2 km.",
-      "fuente": "DENUE INEGI, mayo 2026", "confianza": "V-DENUE" },
-    { "id": "pollo", "nombre": "🍗 De pollo / 🍗🔥 pollo frito / 🍔 hamburguesas / 🍕 pizzas",
+      "fuente": "DENUE INEGI, mayo 2026",
+      "confianza": "V-DENUE"
+    },
+    {
+      "id": "pollo",
+      "nombre": "De pollo / pollo frito / hamburguesas / pizzas",
       "formula": "Restaurantes cuyo nombre o giro contiene las palabras clave de cada categoría (ej. frito: KFC, Church's, Popeyes, 'frito', 'broaster', 'crispy'). A menos de 2 km.",
-      "fuente": "DENUE INEGI, mayo 2026", "confianza": "V-DENUE",
-      "nota": "Clasificación por nombre: un local sin la palabra en su nombre puede escaparse." },
-    { "id": "venta", "nombre": "Venta estimada / mes",
+      "fuente": "DENUE INEGI, mayo 2026",
+      "confianza": "V-DENUE",
+      "nota": "Clasificación por nombre: un local sin la palabra en su nombre puede escaparse."
+    },
+    {
+      "id": "venta",
+      "nombre": "Venta estimada / mes",
       "formula": "Residentes × gasto QSR por persona ($115-160/mes según nivel de la zona) × captura 6% (escenario normal) + turismo (visitantes/mes × 5% × ticket $220) donde aplica.",
       "fuente": "Modelo propio calibrado: mercado QSR MX (IMARC), ENIGH 2024, share del pollo ≈8% del QSR, ticket validado vs KFC",
       "confianza": "Estimación con supuestos explícitos",
-      "nota": "ES UNA REFERENCIA, no un pronóstico. La captura (4-8%) es el supuesto clave; se calibra con el conteo de campo y el AUV real del franquiciador." },
-    { "id": "turismo", "nombre": "≋ Turismo",
+      "nota": "ES UNA REFERENCIA, no un pronóstico. La captura (4-8%) es el supuesto clave; se calibra con el conteo de campo y el AUV real del franquiciador."
+    },
+    {
+      "id": "turismo",
+      "nombre": "Turismo",
       "formula": "Visitantes mensuales promedio de atracciones oficiales a menos de 5 km de la colonia.",
-      "fuente": "OSETUR / Observatorio de Turismo NL (datos abiertos)", "confianza": "V-OSETUR" },
-    { "id": "trafico", "nombre": "🚗 Tráfico (donde aplica)",
+      "fuente": "OSETUR / Observatorio de Turismo NL (datos abiertos)",
+      "confianza": "V-OSETUR"
+    },
+    {
+      "id": "trafico",
+      "nombre": "Tráfico (donde aplica)",
       "formula": "Aforo medido por SICT en 2014 × crecimiento del parque vehicular de NL (+40% central, rango +30 a +55%).",
-      "fuente": "SICT Datos Viales 2014 + INEGI VMRC / ICV", "confianza": "Dato 2014 × estimación" },
-    { "id": "puntos-optimos", "nombre": "📍 Puntos que sirven a varias colonias",
+      "fuente": "SICT Datos Viales 2014 + INEGI VMRC / ICV",
+      "confianza": "Dato 2014 × estimación"
+    },
+    {
+      "id": "puntos-optimos",
+      "nombre": "Puntos que sirven a varias colonias",
       "formula": "Población ÚNICA a 2 km evaluada en cada ubicación candidata del corredor (cada persona contada una sola vez — los círculos de colonias vecinas se traslapan, por eso NO se suman colonias).",
-      "fuente": "Censo 2020 + DENUE, cálculo propio", "confianza": "V-Censo aprox",
-      "nota": "Evita el doble conteo: 'Tec + Roma' comparten gran parte de su gente." }
+      "fuente": "Censo 2020 + DENUE, cálculo propio",
+      "confianza": "V-Censo aprox",
+      "nota": "Evita el doble conteo: 'Tec + Roma' comparten gran parte de su gente."
+    }
   ]
 }
