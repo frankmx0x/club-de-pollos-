@@ -98,6 +98,16 @@ def main():
     except FileNotFoundError:
         colonias, col_meta = [], None
 
+    # Metodología (cómo se llegó a cada número) y puntos óptimos multi-colonia
+    try:
+        metodologia = json.loads((HERE / "metodologia.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        metodologia = None
+    try:
+        puntos_opt = json.loads((DATA / "puntos_optimos.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        puntos_opt = None
+
     # Insights curados (banco de conclusiones con su respaldo — HERE/insights.json)
     try:
         ins = json.loads((HERE / "insights.json").read_text(encoding="utf-8"))
@@ -110,6 +120,8 @@ def main():
                   "snapshot": seed["_meta"]["fecha"], "version": seed["_meta"]["version"],
                   "niveles": seed["_meta"]["niveles"]},
         "fuentes": fuentes,
+        "metodologia": metodologia,
+        "puntos_optimos": puntos_opt,
         "insights": insights,
         "insights_meta": ins_meta,
         "colonias": colonias,
