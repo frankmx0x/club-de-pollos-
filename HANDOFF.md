@@ -1,6 +1,6 @@
 # HANDOFF — estado vivo
 
-> Reescrito en cada cierre de sesión. Última actualización: 2026-07-31 (America/Monterrey).
+> Reescrito en cada cierre de sesión. Última actualización: 2026-08-01 (America/Monterrey).
 > Sesión: **Etapa 5** — explorador de colonias (42), puntos óptimos multi-colonia,
 > auditoría de datos, metodología por métrica, rediseño sin emojis, deploy a prod.
 
@@ -37,10 +37,17 @@ del app. **Los datos nunca se editan a mano en el app** (D-010).
   (los socios marcan, el app no dictamina), capa de puntos óptimos en el mapa (círculo
   2 km + popup "sirve a"), card de metodología, insights expandibles. Commits `90d8fb1`,
   `de8099c`. Gate `tsc + build` en verde; auditoría de bundle byte a byte.
-- **Deploy propio a Cloudflare Workers ACTIVADO**: Francisco cargó los 2 secrets; el
-  workflow fallaba porque la action instalaba wrangler 3.90 (no lee `wrangler.json`);
-  anclado a 4.116.0 en `1f4d91a`. URL de prod: ver `DEPLOY.md` del app / última corrida
-  de Actions.
+- **PROD EN LÍNEA** (1-ago-2026), independiente de Lovable:
+  **https://frankmx0x-club-pollos-radar.francisco-rodriguez-11b.workers.dev**
+  Verificado: HTTP 200, `app_data.json` con 42 colonias y 13 insights, y el bundle
+  publicado contiene las 7 cadenas del UI nuevo y ninguna de las 4 del viejo.
+  Costó tres bugs: wrangler 3.90 no leía `wrangler.json` (`1f4d91a`), wrangler corría
+  desde `.output/server` y encontraba dos configs (`d814cc8`), y los secrets no
+  llegaban. Se agregó una precondición que verifica las credenciales y falla con
+  instrucciones en vez del error críptico de wrangler (`7adc35f`).
+- **Rediseño completo del UI** (D-012): la app abre respondiendo "¿dónde abre la
+  primera unidad?" en vez de exponer tarjetas de datos. Cuatro vistas: Decisión,
+  Mapa, Colonias, Evidencia.
 
 ## Los dos finalistas de sitio (decisión pendiente de Francisco)
 
@@ -61,22 +68,24 @@ hueco competitivo. Los socios marcan finalistas con estrellas en el explorador d
 1. **Decidir sitio** con los socios usando el explorador (estrellas → shortlist).
 2. **Conteo de campo** para la tasa de captura (única incógnita del modelo) — plan en
    `docs/plans/2026-07-22-testeo-trafico-sur.md`.
-3. **Desconectar Lovable del repo del app** una vez confirmado el deploy propio en verde
-   (Lovable aún puede pushear a `main`).
+3. **Desconectar Lovable del repo del app** — el deploy propio ya está en verde, así que
+   esto ya no tiene freno. Lovable conserva permiso de escritura sobre `main` y su preview
+   ya no construye nuestro código. Proyecto en Lovable → Settings → integración de GitHub
+   → Disconnect.
 4. **Términos de la franquicia** (AUV real, regalías, exclusividad, POS) → forecast a socios.
 5. Viejos: roles/equity Xavier/Juan (→ DECISIONS); `GIT_AUTHOR_*` vacías; fusionar rama
    de setup a `main` en el repo de datos.
 
 ## Pendientes — de Claude
 
-- Verificar corrida de deploy post-fix `1f4d91a` en verde y registrar la URL de prod aquí.
 - Capa Google Places (ratings/abiertos) — requiere key GCP en secret management.
 - Renta real por zona (hoy sigue en `[S]`, único dato no duro del Radar).
 
 ## Siguiente paso
 
-Confirmar deploy en verde → compartir URL de prod a los socios → sesión de estrellas
-(shortlist de colonias) → visita de campo con el plan de conteo.
+Compartir la URL de prod con Xavier y Juan → sesión de estrellas (cada quien marca sus
+finalistas en la vista Colonias) → visita de campo con el plan de conteo para cerrar la
+tasa de captura, que sigue siendo la única incógnita grande del modelo.
 
 ## Prueba de continuidad
 
