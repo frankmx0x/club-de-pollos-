@@ -1,8 +1,8 @@
 # HANDOFF — estado vivo
 
-> Reescrito en cada cierre de sesión. Última actualización: 2026-07-23 (America/Monterrey).
-> Sesión: **Etapas 0-4** — sistema de trabajo, research, Radar de Sitios (datos + app),
-> salida de Lovable y deploy propio.
+> Reescrito en cada cierre de sesión. Última actualización: 2026-07-31 (America/Monterrey).
+> Sesión: **Etapa 5** — explorador de colonias (42), puntos óptimos multi-colonia,
+> auditoría de datos, metodología por métrica, rediseño sin emojis, deploy a prod.
 
 ## Repos (dos, con frontera clara)
 
@@ -17,69 +17,73 @@ del app. **Los datos nunca se editan a mano en el app** (D-010).
 ## Hecho (con evidencia)
 
 - **Sistema de trabajo instanciado** (GUIA, CONCEPTO, DECISIONS, HANDOFF + `reglas/`).
-- **Research de mercado** (`docs/research/2026-07-21-mercado-cdp.md`) y **del corredor sur**
-  (`…-corredor-sur.md`). Hallazgo raíz: somos **franquiciatarios** de una cadena existente
-  (D-005), territorio corredor ITESM→Allende, plan 1/año → 10 en 5-6 años.
-- **Pipeline de datos** (`tools/radar-sitios/`, todo gratis, sin key):
-  `extract_denue.py` (241 competidores + 1,183 anclas), `extract_censo.py` (demografía/SES
-  por AGEB), `extract_poblacion_radio.py` (población en radio, cobertura 97-99.8%),
-  `rank_colonias.py` (ranking con capa turística), `build_appdata.py`, `sync_app.sh`.
-- **Análisis de catchment** (`docs/analysis/2026-07-22-catchment-poblacion-radio.md`):
-  ticket $220 y 100k/unidad calibrados y triangulados (D-008, D-009); σ recalibrada a
-  4/6/8%; población-en-radio y turismo con dato duro.
-- **App Radar v2**: mapa Leaflet + panel + sliders + capas + fuentes. Se edita **directo en
-  el repo** con gate `tsc + build` (D-010). Últimos commits: datos reales restaurados
-  (`dcedd47`), fix de overflow + pulido (`b1c1a04`), cards por concepto (`d03ba20`),
-  CI de deploy (`1c4aa17`).
-- **Deploy propio** a Cloudflare Workers vía GitHub Actions (D-011).
+- **Research de mercado y del corredor** (`docs/research/`). Somos **franquiciatarios**
+  (D-005), territorio ITESM→Allende, plan 1/año → 10 en 5-6 años.
+- **Pipeline de datos** (`tools/radar-sitios/`, todo gratis, sin key): DENUE (241
+  competidores + 1,183 anclas), Censo 2020 AGEB, OSETUR, SICT. Nuevo esta sesión:
+  - `colonias.json` — lista canónica de **42 colonias** (único input curado a mano).
+  - `extract_colonias.py` — catchment 2 km por colonia: competencia (pollo/frito/
+    restaurantes/hamburguesas/pizza), anclas, demografía, turismo, venta estimada.
+  - `extract_puntos_optimos.py` — **población ÚNICA a 2 km** por candidato (sin doble
+    conteo; los círculos vecinos se traslapan). Top: Tec+Altavista+Roma 101,570 (4 fritos);
+    **Altamira+Sierra Ventana+Burócratas+Contry 83,629 (1 frito)** ← el sweet spot.
+  - `audit_datos.py` — **auditoría adversarial** (10 checks, camino de código independiente)
+    que re-deriva los números del app desde las fuentes crudas. Motivo: Lovable inventó
+    datos (D-010). Estado: **10 PASS**.
+  - `insights.json` (12 insights con evidencia) + `metodologia.json` (fórmula/fuente/
+    confianza de CADA número del app).
+- **App Radar v3** (rediseño con reglas de Francisco: sin emojis, márgenes, simetría,
+  copy mínimo): explorador de 42 colonias ordenable con **estrellas de finalistas**
+  (los socios marcan, el app no dictamina), capa de puntos óptimos en el mapa (círculo
+  2 km + popup "sirve a"), card de metodología, insights expandibles. Commits `90d8fb1`,
+  `de8099c`. Gate `tsc + build` en verde; auditoría de bundle byte a byte.
+- **Deploy propio a Cloudflare Workers ACTIVADO**: Francisco cargó los 2 secrets; el
+  workflow fallaba porque la action instalaba wrangler 3.90 (no lee `wrangler.json`);
+  anclado a 4.116.0 en `1f4d91a`. URL de prod: ver `DEPLOY.md` del app / última corrida
+  de Actions.
 
 ## Los dos finalistas de sitio (decisión pendiente de Francisco)
 
 | | **Contry** | **El Cercado (Santiago)** |
 |---|--:|--:|
 | Venta residencial est. | **$810k** | $111k |
-| + turismo (Cola de Caballo, 30,673 vis/mes) | — | **$337k → $448k total** (a 8% captura: $651k) |
+| + turismo (Cola de Caballo, 30,673 vis/mes) | — | **$337k → $448k total** (a 8%: $651k) |
 | Competencia frito 2 km | 2 | **0** |
 | Escolaridad (encaje bajo/medio) | 12.9 (alto) | 10.8 (medio) |
 | TDPA | — | ~27,144 veh/día (SICT 2014 +40%) |
 
-- **A · Contry**: volumen residencial predecible; exige flexionar el posicionamiento.
-- **B · El Cercado**: fiel a bajo/medio, 0 competidores, turismo verificado; pende de la
-  **tasa de captura** (única incógnita) y de un local **sobre la ruta a la cascada**.
+Además, del análisis de puntos óptimos: un local en **Altamira/Sierra Ventana** sirve a
+83,629 personas únicas con 1 solo competidor de frito — combina volumen de Contry con
+hueco competitivo. Los socios marcan finalistas con estrellas en el explorador del app.
 
 ## Pendientes — de Francisco
 
-1. **Decidir A o B** (o C: redefinir meta a $200-300k con unidad chica al sur).
-2. **Conteo de campo** para la tasa de captura — plan e instrumento listos en
-   `docs/plans/2026-07-22-testeo-trafico-sur.md` (2 sáb + 1 dom + 1 entre semana, franjas
-   de comida, % placa foránea).
-3. **Activar el deploy**: cuenta Cloudflare + `CLOUDFLARE_API_TOKEN` y
-   `CLOUDFLARE_ACCOUNT_ID` como secrets de GitHub (pasos en `DEPLOY.md` del app).
-4. **Términos de la franquicia** (ventas/unidad reales, regalías, exclusividad del corredor,
-   POS obligatorio) → desbloquean el forecast a socios.
-5. Pendientes viejos: roles/equity de Xavier y Juan (→ DECISIONS); `GIT_AUTHOR_*` vacías;
-   fusionar la rama de setup a `main` en el repo de datos.
+1. **Decidir sitio** con los socios usando el explorador (estrellas → shortlist).
+2. **Conteo de campo** para la tasa de captura (única incógnita del modelo) — plan en
+   `docs/plans/2026-07-22-testeo-trafico-sur.md`.
+3. **Desconectar Lovable del repo del app** una vez confirmado el deploy propio en verde
+   (Lovable aún puede pushear a `main`).
+4. **Términos de la franquicia** (AUV real, regalías, exclusividad, POS) → forecast a socios.
+5. Viejos: roles/equity Xavier/Juan (→ DECISIONS); `GIT_AUTHOR_*` vacías; fusionar rama
+   de setup a `main` en el repo de datos.
 
 ## Pendientes — de Claude
 
-- ~~Limpieza del config de Lovable~~ **HECHO** (commit `6bb0bfe`): build 100% libre de
-  Lovable (config estándar + lockfile repuntado a npm público). Salida estática descartada
-  con evidencia: el preset `static` no funciona con TanStack Start + nitro beta.
-- **Fase colonias** del Radar (`docs/plans/2026-07-22-colonias-scoring.md`): scorear ~12-15
-  colonias en vez de 4 zonas. Falta que Francisco apruebe la lista canónica.
-- Capa Google Places (ratings/abiertos/reseñas) — requiere key GCP en secret management.
+- Verificar corrida de deploy post-fix `1f4d91a` en verde y registrar la URL de prod aquí.
+- Capa Google Places (ratings/abiertos) — requiere key GCP en secret management.
 - Renta real por zona (hoy sigue en `[S]`, único dato no duro del Radar).
 
 ## Siguiente paso
 
-Francisco decide sitio (A/B/C) y/o activa el deploy con los 2 secrets. Ambas cosas son
-independientes: el Radar ya es usable para la decisión y para la visita de campo.
+Confirmar deploy en verde → compartir URL de prod a los socios → sesión de estrellas
+(shortlist de colonias) → visita de campo con el plan de conteo.
 
 ## Prueba de continuidad
 
 Una sesión nueva sin este chat continúa con: `GUIA.md` → este HANDOFF → `DECISIONS.md`
-(D-005 modelo de negocio · D-006 stack de datos · D-008/D-009 supuestos · D-010 salida de
-Lovable · D-011 deploy) → `docs/analysis/` y `docs/research/` → `tools/radar-sitios/`
-(correr los `extract_*.py`, luego `build_appdata.py` y `sync_app.sh`). El app se clona de
-`frankmx0x/club-pollos-radar` y se verifica con `bunx tsc --noEmit && bun run build`.
-Todo está pusheado; ningún dato vive solo en el chat.
+(D-001…D-011) → `docs/analysis/` y `docs/research/` → `tools/radar-sitios/` (correr
+`extract_denue.py`, `extract_colonias.py`, `extract_puntos_optimos.py`, `audit_datos.py`,
+`build_appdata.py`, `sync_app.sh`; DENUE/Censo se re-descargan al scratchpad — el
+contenedor es efímero). El app se clona de `frankmx0x/club-pollos-radar` y se verifica
+con `bunx tsc --noEmit && bun run build`. Todo está pusheado; ningún dato vive solo en
+el chat.
