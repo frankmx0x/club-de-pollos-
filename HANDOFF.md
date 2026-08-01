@@ -1,7 +1,7 @@
 # HANDOFF — estado vivo
 
 > Reescrito en cada cierre de sesión. Última actualización: 2026-08-01 (America/Monterrey).
-> Sesión: **Etapa 5** — explorador de colonias (42), puntos óptimos multi-colonia,
+> Sesión: **Etapa 6** — explorador de colonias (42), puntos óptimos multi-colonia,
 > auditoría de datos, metodología por métrica, rediseño sin emojis, deploy a prod.
 
 ## Repos (dos, con frontera clara)
@@ -48,9 +48,23 @@ del app. **Los datos nunca se editan a mano en el app** (D-010).
 - **Rediseño completo del UI** (D-012): la app abre respondiendo "¿dónde abre la
   primera unidad?" en vez de exponer tarjetas de datos. Cuatro vistas: Decisión,
   Mapa, Colonias, Evidencia.
-- **Lovable desconectado del repo** (1-ago, confirmado por Francisco). Ya no tiene
-  permiso de escritura sobre `main`. La salida de Lovable quedó completa: editor,
-  build, hosting y ahora también el acceso al repositorio.
+- **Lovable desconectado del repo** (1-ago, confirmado por Francisco). La salida quedó
+  completa: editor, build, hosting y acceso al repositorio.
+- **Clasificación corregida y conteos auditables (D-013)** — lo detonó una pregunta de
+  Francisco sobre cómo categorizamos los restaurantes. El clasificador usaba la descripción
+  del SCIAN, que en el 96% de los casos dice "pizzas, hamburguesas, hot dogs y pollos
+  rostizados" en una sola cadena. Efecto: 161 de 241 "competidores de pollo" no tenían pollo
+  en el nombre. Ahora la categoría sale solo del nombre, por inicio de palabra.
+  - Competidores de pollo **241 → 125**; pollo frito **8 → 9** (se recuperó CAPTAIN FRIEND
+    CHICKEN, typo del DENUE); alitas y boneless como **categoría propia y visible**: 25.
+  - **El hallazgo estrella se debilitó con datos correctos:** colonias con masa y cero pollo
+    frito pasaron de 2 a **1** (Las Brisas, con 5 locales de alitas a 2 km). El insight
+    `hueco-masa` fue reescrito e incluye la explicación del error.
+  - **Drill-down:** cada conteo del app se abre con clic y muestra la lista con el giro del
+    INEGI. Padrón de 1,802 restaurantes (164 KB, carga bajo demanda). Conteo y lista salen
+    del MISMO cálculo — un primer intento los generó por separado y 171 de 252 descuadraban.
+    `audit_datos.py` gana un check que falla si vuelven a discrepar. **Verificado en
+    producción: 0 descuadres de 168.**
 
 ## Los dos finalistas de sitio (decisión pendiente de Francisco)
 
@@ -62,9 +76,11 @@ del app. **Los datos nunca se editan a mano en el app** (D-010).
 | Escolaridad (encaje bajo/medio) | 12.9 (alto) | 10.8 (medio) |
 | TDPA | — | ~27,144 veh/día (SICT 2014 +40%) |
 
-Además, del análisis de puntos óptimos: un local en **Altamira/Sierra Ventana** sirve a
-83,629 personas únicas con 1 solo competidor de frito — combina volumen de Contry con
-hueco competitivo. Los socios marcan finalistas con estrellas en el explorador del app.
+Del análisis de puntos óptimos, ya con la clasificación corregida (D-013), el mejor
+equilibrio del corredor es **P3: 70,849 personas únicas con un solo local de pollo frito**,
+sirviendo a Las Brisas + Las Torres + Del Paseo Residencial. P1 (Tec/Altavista/Roma) junta
+101,570 pero carga 5 competidores; P2 (Altamira/Sierra Ventana) 83,629 con 2. Los socios
+marcan finalistas con estrellas en la vista Colonias.
 
 ## Pendientes — de Francisco
 
@@ -94,7 +110,7 @@ tasa de captura, que sigue siendo la única incógnita grande del modelo.
 ## Prueba de continuidad
 
 Una sesión nueva sin este chat continúa con: `GUIA.md` → este HANDOFF → `DECISIONS.md`
-(D-001…D-011) → `docs/analysis/` y `docs/research/` → `tools/radar-sitios/` (correr
+(D-001…D-013) → `docs/analysis/` y `docs/research/` → `tools/radar-sitios/` (correr
 `extract_denue.py`, `extract_colonias.py`, `extract_puntos_optimos.py`, `audit_datos.py`,
 `build_appdata.py`, `sync_app.sh`; DENUE/Censo se re-descargan al scratchpad — el
 contenedor es efímero). El app se clona de `frankmx0x/club-pollos-radar` y se verifica
