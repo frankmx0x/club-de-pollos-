@@ -12,7 +12,7 @@
    "lat": 25.648254887123283,
    "lon": -100.29209154730599,
    "pob_2km": 101570,
-   "frito_2km": 4,
+   "frito_2km": 5,
    "anclas_2km": 338,
    "sirve_a": [
     "Tecnológico",
@@ -28,7 +28,7 @@
    "lat": 25.634514626808507,
    "lon": -100.28867072765955,
    "pob_2km": 83629,
-   "frito_2km": 1,
+   "frito_2km": 2,
    "anclas_2km": 319,
    "sirve_a": [
     "Altamira",
@@ -106,7 +106,7 @@
    "lat": 25.647038206666664,
    "lon": -100.30860810666667,
    "pob_2km": 54551,
-   "frito_2km": 1,
+   "frito_2km": 2,
    "anclas_2km": 154,
    "sirve_a": [
     "Ancira",

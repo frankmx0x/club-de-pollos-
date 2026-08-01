@@ -222,3 +222,41 @@
 - **Reemplaza:** supersede la organización de UI de D-007 y del pulido posterior; **no** toca
   D-010 (los datos se siguen editando solo en el pipeline y se sincronizan al app) ni D-011
   (deploy propio).
+
+## 2026-08-01 · D-013 · La categoría de un restaurante se deduce del NOMBRE, no del SCIAN; y todo conteo es auditable con un clic
+
+- **Detonante:** Francisco preguntó cómo clasificamos los restaurantes — *"¿utilizamos el nombre
+  del local? porque el nombre no nos dice nada"*. Al revisar el código apareció un defecto peor
+  que el que sospechaba.
+- **El defecto:** el clasificador concatenaba `nom_estab` (nombre) con `nombre_act` (descripción
+  de actividad del SCIAN) y buscaba palabras clave en esa cadena. Pero **231 de 241** registros
+  compartían la misma descripción del INEGI: *"Restaurantes con servicio de preparación de
+  pizzas, hamburguesas, hot dogs y pollos rostizados para llevar"* — que contiene las tres
+  palabras a la vez. Consecuencias medidas:
+  - `pollo_2km` inflado: **161 de 241** "competidores de pollo" no tenían nada de pollo en su
+    nombre (PIZZA INN, JOSE BURGER, TACOS MARROS).
+  - `hamburguesas_2km` y `pizza_2km` vaciados por el orden de los `elif` (Altavista marcaba 10
+    hamburguesas; el real es 28).
+  - `frito_2km` NO estaba contaminado (ninguna palabra de frito aparece en la cadena SCIAN),
+    pero sí tenía un falso negativo: **CAPTAIN FRIEND CHICKEN**, typo del DENUE por "fried".
+- **Decisión (método):** la categoría se deduce **solo del nombre del establecimiento**, con
+  coincidencia por **inicio de palabra** (sin esto, "BREWING" contiene "wing" y una cervecería
+  contaba como local de alitas). El SCIAN sigue definiendo el universo (722* = restaurantes),
+  nunca la categoría.
+- **Decisión (categorías):** se separan `pollo_frito`, `alitas`, `pollo_asado`, `pollo_otro`,
+  `hamburguesas`, `pizza`, `otro`. **Alitas y boneless quedan como categoría propia y visible**
+  —decisión de Francisco— en vez de forzar un binario dentro/fuera de "pollo frito": venden
+  pollo empanizado pero el formato es de bar, no de QSR familiar. Los socios juzgan con el dato
+  enfrente (ley 10).
+- **Decisión (auditabilidad):** cada conteo que muestra el app se puede **abrir con un clic** y
+  ver la lista de establecimientos que lo forman, con el giro registrado en el INEGI a la vista.
+  Nuevo archivo `establecimientos.json` (1,802 restaurantes, 164 KB, carga bajo demanda).
+  **El conteo y la lista se derivan del MISMO cálculo** en `build_appdata.py`: un primer intento
+  los generó por separado y 171 de 252 comprobaciones descuadraban. `audit_datos.py` gana un
+  check que falla si vuelven a discrepar.
+- **Qué cambió en los números:** competidores de pollo 241 → **125**. Pollo frito en el corredor
+  8 → **9**. Alitas y boneless: **25**. Y el hallazgo estrella se debilitó: las colonias con masa
+  (>50k) y **cero** pollo frito pasaron de **2 a 1** (solo Las Brisas, que además tiene 5 locales
+  de alitas a 2 km). Del Paseo Residencial ya no está: tiene Captain Fried Chicken.
+- **Reemplaza:** corrige la clasificación de D-006 y el insight `hueco-masa` publicado el
+  31-jul, que quedó **falsificado por estos datos** y fue reescrito. No toca D-010 ni D-012.

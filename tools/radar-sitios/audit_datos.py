@@ -231,3 +231,35 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+def check_padron_cuadra(app, here):
+    """Cada conteo por categoría debe salir EXACTAMENTE de la lista que el app abre
+    al hacer clic. Si esto falla, el drill-down miente y el número pierde autoridad."""
+    import json as _json
+    pad_p = here / "data" / "establecimientos_corredor.json"
+    if not pad_p.exists():
+        return [("padron", "SKIP", "falta establecimientos_corredor.json")]
+    pad = _json.loads(pad_p.read_text(encoding="utf-8"))["establecimientos"]
+    CP = ("pollo_frito", "alitas", "pollo_asado", "pollo_otro")
+    mal = 0
+    for c in app.get("colonias", []):
+        idx = c.get("rest_idx")
+        if idx is None:
+            mal += 1
+            continue
+        cats = {}
+        for i in idx:
+            cats[pad[i]["cat"]] = cats.get(pad[i]["cat"], 0) + 1
+        k = c["competencia"]
+        pares = [
+            (k.get("frito_2km", 0), cats.get("pollo_frito", 0)),
+            (k.get("alitas_2km", 0), cats.get("alitas", 0)),
+            (k.get("hamburguesas_2km", 0), cats.get("hamburguesas", 0)),
+            (k.get("pizza_2km", 0), cats.get("pizza", 0)),
+            (k.get("restaurantes_2km", 0), len(idx)),
+            (k.get("pollo_2km", 0), sum(cats.get(x, 0) for x in CP)),
+        ]
+        mal += sum(1 for a, b in pares if a != b)
+    estado = "PASS" if mal == 0 else "FALLA"
+    return [("padron cuadra con el drill-down", estado,
+             f"{mal} descuadres entre conteo mostrado y lista abrible")]

@@ -53,8 +53,9 @@ def main():
             s = agsum.setdefault(k, [0.0, 0.0, 0]); s[0] += lat; s[1] += lon; s[2] += 1
             act = (row.get("codigo_act") or "").strip()
             if act.startswith("722"):
-                blob = den.norm(row.get("nom_estab")) + " " + den.norm(row.get("nombre_act"))
-                if any(t in blob for t in den.POLLO_KW) and any(t in blob for t in den.POLLO_FRITO_KW):
+                # Categoría por nombre (D-013): el SCIAN 722514 mete pizzerías
+                # y taquerías en "pollo" porque su descripción las nombra a todas.
+                if den.categoria(row.get("nom_estab") or "") == "pollo_frito":
                     fritos.append((lat, lon))
             else:
                 for cat, fn in den.ANCLAS.items():

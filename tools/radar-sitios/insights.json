@@ -10,9 +10,9 @@
       "orden": 1,
       "categoria": "Competencia",
       "confianza": "V-DENUE",
-      "titulo": "Solo 2 colonias juntan masa y cero competencia de pollo frito",
-      "resumen": "De las 16 colonias con más de 50 mil personas a 2 km, únicamente Las Brisas y Del Paseo Residencial no tienen un competidor de frito enfrente.",
-      "detalle": "Se cruzó la población a 2 km de cada una de las 42 colonias (Censo 2020) contra los locales de pollo frito ubicados en el DENUE. La gente y la competencia se concentran en el mismo lugar: las tres colonias más pobladas del corredor ya tienen entre 3 y 4 competidores directos. Bajando el umbral a un solo competidor aparecen 6 colonias más, todas con masa comparable. En todo el corredor hay apenas 8 locales de pollo frito, así que el mapa competitivo se define por dónde están esos 8, no por saturación general.",
+      "titulo": "Solo UNA colonia junta masa y cero pollo frito — y tiene 5 locales de alitas al lado",
+      "resumen": "De las 16 colonias con más de 50 mil personas a 2 km, únicamente Las Brisas no tiene un local de pollo frito. Otras 4 tienen uno solo.",
+      "detalle": "Se cruzó la población a 2 km de cada una de las 42 colonias (Censo 2020) contra los locales de pollo frito del DENUE, clasificados por NOMBRE del establecimiento. La versión anterior de este hallazgo decía 2 colonias y estaba mal: el clasificador usaba también la descripción de actividad del SCIAN, y el 96% de los restaurantes del corredor comparten una que dice 'pizzas, hamburguesas, hot dogs y pollos rostizados' — metía pizzerías en el conteo de pollo y, por un typo del DENUE ('CAPTAIN FRIEND CHICKEN'), perdía un local de frito real en Del Paseo Residencial. Corregido (D-013). En todo el corredor hay 9 locales de pollo frito y 25 de alitas y boneless: el mapa competitivo lo definen esos 34 puntos, no una saturación general.",
       "evidencia": [
         {
           "dato": "Colonias con 50,000+ personas a 2 km",
@@ -21,7 +21,7 @@
         },
         {
           "dato": "De esas, con cero locales de pollo frito",
-          "valor": "2",
+          "valor": "1",
           "fuente": "DENUE INEGI may-2026"
         },
         {
@@ -30,18 +30,23 @@
           "fuente": "Censo 2020 INEGI"
         },
         {
-          "dato": "Del Paseo Residencial — personas a 2 km",
-          "valor": "55,858",
-          "fuente": "Censo 2020 INEGI"
-        },
-        {
-          "dato": "Locales de pollo frito en todo el corredor",
-          "valor": "8",
+          "dato": "Las Brisas — locales de alitas y boneless a 2 km",
+          "valor": "5",
           "fuente": "DENUE INEGI may-2026"
         },
         {
-          "dato": "Altavista / Tecnológico / Roma — competidores de frito",
-          "valor": "4 / 4 / 3",
+          "dato": "Colonias con masa y un solo local de frito",
+          "valor": "4",
+          "fuente": "DENUE INEGI may-2026"
+        },
+        {
+          "dato": "Locales de pollo frito en todo el corredor",
+          "valor": "9",
+          "fuente": "DENUE INEGI may-2026"
+        },
+        {
+          "dato": "Locales de alitas y boneless en todo el corredor",
+          "valor": "25",
           "fuente": "DENUE INEGI may-2026"
         },
         {
@@ -50,7 +55,7 @@
           "fuente": "Censo 2020 + DENUE, cálculo propio"
         }
       ],
-      "implicacion": "El trade-off es explícito y no se puede esquivar: el volumen máximo viene con 3-4 competidores encima, y la ausencia de competencia con masa solo existe en dos lugares. El punto entre Las Brisas, Las Torres y Del Paseo Residencial es el que más se acerca a tener las dos cosas."
+      "implicacion": "El hueco es más chico de lo que creíamos y hay que decidir con eso enfrente. El punto entre Las Brisas, Las Torres y Del Paseo Residencial sigue siendo el mejor equilibrio del corredor: 70,849 personas únicas con un solo local de pollo frito. Pero las alitas compiten por el mismo antojo y ahí sí hay densidad, así que la pregunta de campo cambia: no es '¿hay competencia?' sino '¿la que hay es del formato que nos quita cliente?'"
     },
     {
       "id": "territorio-abierto",

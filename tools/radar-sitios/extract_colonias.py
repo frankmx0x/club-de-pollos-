@@ -72,6 +72,7 @@ def main():
 
     puntos = {c["id"]: [] for c in cfg}     # coords de establecimientos de la colonia
     agsum, pollo, frito, anclas = {}, [], [], []
+    alitas = []                             # categoría propia: alitas y boneless (D-013)
     rest, hamb, pizza = [], [], []          # contexto: restaurantes totales y fast-food vecino
     total_corredor = 0
     asignados = 0
@@ -103,15 +104,20 @@ def main():
 
             act = (row.get("codigo_act") or "").strip()
             if act.startswith("722"):
-                rest.append((lat, lon))
-                blob = den.norm(row.get("nom_estab")) + " " + den.norm(row.get("nombre_act"))
-                if any(t in blob for t in den.POLLO_KW):
+                nom = (row.get("nom_estab") or "").strip()
+                # Categoría por NOMBRE (den.categoria); el SCIAN solo define el
+                # universo 722*. Ver D-013 y el comentario en extract_denue.py.
+                cat = den.categoria(nom)
+                rest.append((lat, lon, nom, cat))
+                if cat in den.CATS_POLLO:
                     pollo.append((lat, lon))
-                    if any(t in blob for t in den.POLLO_FRITO_KW):
-                        frito.append((lat, lon, (row.get("nom_estab") or "").strip()))
-                elif any(t in blob for t in den.HAMB_KW):
+                    if cat == "pollo_frito":
+                        frito.append((lat, lon, nom))
+                    elif cat == "alitas":
+                        alitas.append((lat, lon, nom))
+                elif cat == "hamburguesas":
                     hamb.append((lat, lon))
-                elif any(t in blob for t in den.PIZZA_KW):
+                elif cat == "pizza":
                     pizza.append((lat, lon))
             else:
                 for cat, fn in den.ANCLAS.items():
@@ -159,7 +165,11 @@ def main():
 
         n_pollo = sum(1 for a, b in pollo if near(a, b))
         fr = [n for a, b, n in frito if near(a, b)]
-        n_rest = sum(1 for a, b in rest if near(a, b))
+        al = [n for a, b, n in alitas if near(a, b)]
+        # Índices del padrón (data/establecimientos_corredor.json) a 2 km:
+        # alimentan el drill-down del app — cada conteo se puede abrir y auditar.
+        idx = [i for i, (a, b, _n, _c) in enumerate(rest) if near(a, b)]
+        n_rest = sum(1 for a, b, _n, _c in rest if near(a, b))
         n_hamb = sum(1 for a, b in hamb if near(a, b))
         n_pizza = sum(1 for a, b in pizza if near(a, b))
         anc = {}
@@ -182,9 +192,11 @@ def main():
             "municipio": den.MUN[c["mun"]], "n_establecimientos": len(pts),
             "centro": {"lat": round(clat, 5), "lon": round(clon, 5)},
             "competencia": {"pollo_2km": n_pollo, "frito_2km": len(fr), "fritos": fr[:6],
+                            "alitas_2km": len(al), "alitas": al[:8],
                             "restaurantes_2km": n_rest, "hamburguesas_2km": n_hamb,
                             "pizza_2km": n_pizza,
                             "fuente": "DENUE may-2026", "confianza": "V-DENUE"},
+            "rest_idx": idx,
             "anclas": {"conteo": anc, "total": sum(anc.values()),
                        "fuente": "DENUE may-2026", "confianza": "V-DENUE"},
             "demografia": {"poblacion_2km": int(pob), "escolaridad": esc,

@@ -21,6 +21,7 @@ nivel [V-DENUE] = dato duro con fuente. Distinto de los datos [S] de la semilla.
 import csv
 import json
 import pathlib
+import re
 import sys
 
 HERE = pathlib.Path(__file__).parent
@@ -44,13 +45,61 @@ CORRIDOR_LINE = [
 CORRIDOR_LABELS = ["Tec/Garza Sada", "Contry", "Carr.Nacional/Estanzuela", "Santiago", "Allende"]
 MTY_BUFFER_KM = 2.0
 
-# Clasificación de competencia por palabra clave (nom_estab / nombre_act, sin acentos, lower)
-POLLO_KW = ("pollo", "kfc", "church", "popeye", "rostiz", "pollos", "fried chicken", "campero")
-POLLO_FRITO_KW = ("kfc", "church", "popeye", "frito", "fried", "broaster", "crispy", "club de pollo")
+# ─────────────────────── Clasificación de restaurantes ───────────────────────
+#
+# SOLO por nom_estab (el nombre del local). NO se usa nombre_act (la descripción
+# del SCIAN) y hay una razón dura: 231 de los 241 establecimientos que el filtro
+# viejo devolvía comparten esta misma descripción del INEGI —
+#
+#   "Restaurantes con servicio de preparación de pizzas, hamburguesas,
+#    hot dogs y pollos rostizados para llevar"
+#
+# — que contiene "pollos", "hamburguesas" Y "pizzas" a la vez. Usarla metía toda
+# taquería y pizzería del SCIAN 722514 dentro de "competencia de pollo" (161 de
+# 241 no tenían nada de pollo en su nombre) y, por el orden de los elif, vaciaba
+# los conteos de hamburguesas y pizza. Ver DECISIONS D-013.
+#
+# El SCIAN sigue definiendo el universo (722* = restaurantes); ya no la categoría.
 
-# Comida rápida vecina (contexto competitivo, no pollo): por palabra clave.
-HAMB_KW = ("hamburgues", "burger", "carls", "carl's", "mcdonald", "wendy")
+FRITO_KW = (
+    "kfc", "kentucky", "church", "popeye", "campero",       # cadenas de frito
+    "frito", "fried", "broaster", "broster", "crispy",      # descriptores
+    "friend chicken",                                        # typo del DENUE por "fried"
+    "club de pollo",                                         # nuestra propia cadena
+)
+ALITAS_KW = ("alita", "boneles", "boneless", "wings", "wing")
+ASADO_KW = ("asado", "asada", "rostiz", "a la lena", "al carbon", "lena")
+POLLO_KW = ("pollo", "chicken")
+HAMB_KW = ("hamburgues", "burger", "carls", "carl's", "mcdonald", "wendy", "whopper")
 PIZZA_KW = ("pizza", "domino", "little caesar", "papa john")
+
+# Orden de prioridad: un nombre puede tocar varias listas y se queda con la primera.
+# ("PIZZERIA DILIGENCIA PIZZA TACOS WINGS" cae en alitas, no en pizza — el
+# drill-down del app deja ver estos casos y juzgarlos.)
+CATEGORIAS = (
+    ("pollo_frito", FRITO_KW),
+    ("alitas", ALITAS_KW),
+    ("pollo_asado", ASADO_KW),
+    ("pollo_otro", POLLO_KW),
+    ("hamburguesas", HAMB_KW),
+    ("pizza", PIZZA_KW),
+)
+
+# Las que compiten por el mismo antojo de pollo (para el conteo agregado).
+CATS_POLLO = ("pollo_frito", "alitas", "pollo_asado", "pollo_otro")
+
+
+def categoria(nombre: str) -> str:
+    """Categoría de un restaurante a partir de su nombre. 'otro' si no cae en ninguna.
+
+    La coincidencia es por INICIO DE PALABRA, no subcadena: sin esto "BREWING"
+    contiene "wing" y una cervecería se contaba como local de alitas.
+    """
+    n = norm(nombre)
+    for cat, kws in CATEGORIAS:
+        if any(re.search(r"\b" + re.escape(k), n) for k in kws):
+            return cat
+    return "otro"
 
 # Anclas de demanda: otras unidades económicas del corredor (no competidores), por SCIAN.
 # Generan tráfico / demanda alrededor de un local candidato.
@@ -129,7 +178,7 @@ def main() -> int:
 
     # DENUE viene en latin-1 / cp1252
     enc = "latin-1"
-    pollo, sat_total, sat_pollo = [], {}, {}
+    pollo, todos, sat_total, sat_pollo = [], [], {}, {}
     tramo_counts = {}
     anclas, ancla_counts = [], {}
 
@@ -146,28 +195,32 @@ def main() -> int:
             mun = MUN[cve_mun]
             tramo = nearest_tramo(lat, lon)
 
-            if act.startswith("722"):  # restaurantes: competencia potencial
+            if act.startswith("722"):  # restaurantes: el universo competitivo
                 sat_total[mun] = sat_total.get(mun, 0) + 1
-                name = row.get("nom_estab") or ""
-                blob = norm(name) + " " + norm(row.get("nombre_act"))
-                if any(k in blob for k in POLLO_KW):
+                name = (row.get("nom_estab") or "").strip()
+                cat = categoria(name)
+                reg = {
+                    "nombre": name,
+                    "cat": cat,
+                    "scian": act,
+                    "actividad": (row.get("nombre_act") or "").strip(),
+                    "tramo": tramo,
+                    "colonia": (row.get("nomb_asent") or "").strip(),
+                    "municipio": mun,
+                    "ageb": (row.get("ageb") or "").strip(),
+                    "cp": (row.get("cod_postal") or "").strip(),
+                    "personal": (row.get("per_ocu") or "").strip(),
+                    "lat": lat, "lon": lon,
+                    "fuente": "DENUE INEGI 19 (may-2026)",
+                    "confianza": "V-DENUE",
+                }
+                # Padrón completo: alimenta el drill-down del app (cada número
+                # que se muestra se puede abrir y ver de qué locales sale).
+                todos.append(reg)
+                if cat in CATS_POLLO:
                     sat_pollo[mun] = sat_pollo.get(mun, 0) + 1
                     tramo_counts[tramo] = tramo_counts.get(tramo, 0) + 1
-                    pollo.append({
-                        "nombre": name.strip(),
-                        "scian": act,
-                        "actividad": (row.get("nombre_act") or "").strip(),
-                        "pollo_frito": any(k in blob for k in POLLO_FRITO_KW),
-                        "tramo": tramo,
-                        "colonia": (row.get("nomb_asent") or "").strip(),
-                        "municipio": mun,
-                        "ageb": (row.get("ageb") or "").strip(),
-                        "cp": (row.get("cod_postal") or "").strip(),
-                        "personal": (row.get("per_ocu") or "").strip(),
-                        "lat": lat, "lon": lon,
-                        "fuente": "DENUE INEGI 19 (may-2026)",
-                        "confianza": "V-DENUE",
-                    })
+                    pollo.append({**reg, "pollo_frito": cat == "pollo_frito"})
                 continue
 
             for cat, fn in ANCLAS.items():  # anclas de demanda (no restaurantes)
@@ -187,6 +240,15 @@ def main() -> int:
         json.dumps({"_meta": {"fuente": "DENUE INEGI Nuevo León, corte may-2026",
                               "corte": "2026-05-12", "confianza": "V-DENUE",
                               "n": len(pollo)}, "establecimientos": pollo},
+                   ensure_ascii=False, indent=1), encoding="utf-8")
+    # Padrón completo de restaurantes 722* del corredor: la base del drill-down.
+    todos.sort(key=lambda x: (x["municipio"], x["cat"], x["nombre"]))
+    (DATA / "establecimientos_corredor.json").write_text(
+        json.dumps({"_meta": {"fuente": "DENUE INEGI Nuevo León, corte may-2026",
+                              "corte": "2026-05-12", "confianza": "V-DENUE",
+                              "universo": "SCIAN 722* (restaurantes) dentro del corredor",
+                              "categoria_por": "nom_estab; NO se usa nombre_act (ver D-013)",
+                              "n": len(todos)}, "establecimientos": todos},
                    ensure_ascii=False, indent=1), encoding="utf-8")
     (DATA / "saturacion_corredor.json").write_text(
         json.dumps({"restaurantes_722_por_municipio": sat_total,

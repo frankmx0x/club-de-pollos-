@@ -98,6 +98,40 @@ def main():
     except FileNotFoundError:
         colonias, col_meta = [], None
 
+    # ── Índices del padrón y conteos por categoría: UN SOLO cálculo ──────────
+    # El conteo que se muestra y la lista que se abre al hacer clic salen de aquí
+    # mismo, así no pueden discrepar. Antes los índices se generaban en otro script,
+    # con otro orden y otro filtro de coordenadas: 171 de 252 comprobaciones fallaban.
+    pad_path = DATA / "establecimientos_corredor.json"
+    if colonias and pad_path.exists():
+        import math
+        padron = json.loads(pad_path.read_text(encoding="utf-8"))["establecimientos"]
+
+        def _km(a_lat, a_lon, b_lat, b_lon):
+            dlat, dlon = math.radians(b_lat - a_lat), math.radians(b_lon - a_lon)
+            h = (math.sin(dlat / 2) ** 2 + math.cos(math.radians(a_lat))
+                 * math.cos(math.radians(b_lat)) * math.sin(dlon / 2) ** 2)
+            return 2 * 6371.0088 * math.asin(math.sqrt(h))
+
+        CATS_POLLO = ("pollo_frito", "alitas", "pollo_asado", "pollo_otro")
+        for c in colonias:
+            cen = c["centro"]
+            idx = [i for i, e in enumerate(padron)
+                   if _km(cen["lat"], cen["lon"], e["lat"], e["lon"]) <= 2.0]
+            cats = {}
+            for i in idx:
+                cats[padron[i]["cat"]] = cats.get(padron[i]["cat"], 0) + 1
+            comp = c["competencia"]
+            comp["restaurantes_2km"] = len(idx)
+            comp["frito_2km"] = cats.get("pollo_frito", 0)
+            comp["alitas_2km"] = cats.get("alitas", 0)
+            comp["hamburguesas_2km"] = cats.get("hamburguesas", 0)
+            comp["pizza_2km"] = cats.get("pizza", 0)
+            comp["pollo_2km"] = sum(cats.get(k, 0) for k in CATS_POLLO)
+            comp["fritos"] = [padron[i]["nombre"] for i in idx if padron[i]["cat"] == "pollo_frito"][:6]
+            comp["alitas"] = [padron[i]["nombre"] for i in idx if padron[i]["cat"] == "alitas"][:8]
+            c["rest_idx"] = idx
+
     # Metodología (cómo se llegó a cada número) y puntos óptimos multi-colonia
     try:
         metodologia = json.loads((HERE / "metodologia.json").read_text(encoding="utf-8"))

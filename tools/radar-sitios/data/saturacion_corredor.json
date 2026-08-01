@@ -5,16 +5,16 @@
   "Allende": 195
  },
  "pollo_por_municipio": {
-  "Monterrey": 166,
-  "Santiago": 43,
-  "Allende": 32
+  "Monterrey": 87,
+  "Santiago": 24,
+  "Allende": 14
  },
  "pollo_por_tramo": {
-  "Tec/Garza Sada": 78,
-  "Santiago": 42,
-  "Carr.Nacional/Estanzuela": 49,
-  "Contry": 40,
-  "Allende": 32
+  "Tec/Garza Sada": 41,
+  "Santiago": 24,
+  "Carr.Nacional/Estanzuela": 28,
+  "Contry": 18,
+  "Allende": 14
  },
  "fuente": "DENUE INEGI 19 (may-2026)"
 }
