@@ -6,8 +6,55 @@
   },
   "insights": [
     {
-      "id": "territorio-abierto",
+      "id": "hueco-masa",
       "orden": 1,
+      "categoria": "Competencia",
+      "confianza": "V-DENUE",
+      "titulo": "Solo 2 colonias juntan masa y cero competencia de pollo frito",
+      "resumen": "De las 16 colonias con más de 50 mil personas a 2 km, únicamente Las Brisas y Del Paseo Residencial no tienen un competidor de frito enfrente.",
+      "detalle": "Se cruzó la población a 2 km de cada una de las 42 colonias (Censo 2020) contra los locales de pollo frito ubicados en el DENUE. La gente y la competencia se concentran en el mismo lugar: las tres colonias más pobladas del corredor ya tienen entre 3 y 4 competidores directos. Bajando el umbral a un solo competidor aparecen 6 colonias más, todas con masa comparable. En todo el corredor hay apenas 8 locales de pollo frito, así que el mapa competitivo se define por dónde están esos 8, no por saturación general.",
+      "evidencia": [
+        {
+          "dato": "Colonias con 50,000+ personas a 2 km",
+          "valor": "16 de 42",
+          "fuente": "Censo 2020 INEGI"
+        },
+        {
+          "dato": "De esas, con cero locales de pollo frito",
+          "valor": "2",
+          "fuente": "DENUE INEGI may-2026"
+        },
+        {
+          "dato": "Las Brisas — personas a 2 km",
+          "valor": "63,168",
+          "fuente": "Censo 2020 INEGI"
+        },
+        {
+          "dato": "Del Paseo Residencial — personas a 2 km",
+          "valor": "55,858",
+          "fuente": "Censo 2020 INEGI"
+        },
+        {
+          "dato": "Locales de pollo frito en todo el corredor",
+          "valor": "8",
+          "fuente": "DENUE INEGI may-2026"
+        },
+        {
+          "dato": "Altavista / Tecnológico / Roma — competidores de frito",
+          "valor": "4 / 4 / 3",
+          "fuente": "DENUE INEGI may-2026"
+        },
+        {
+          "dato": "Punto que sirve a Las Brisas, Las Torres y Del Paseo",
+          "valor": "70,849 personas únicas, 1 competidor",
+          "fuente": "Censo 2020 + DENUE, cálculo propio"
+        }
+      ],
+      "implicacion": "El trade-off es explícito y no se puede esquivar: el volumen máximo viene con 3-4 competidores encima, y la ausencia de competencia con masa solo existe en dos lugares. El punto entre Las Brisas, Las Torres y Del Paseo Residencial es el que más se acerca a tener las dos cosas."
+    },
+    {
+      "id": "territorio-abierto",
+      "orden": 2,
       "categoria": "Territorio",
       "confianza": "V-DENUE",
       "titulo": "Club de Pollos tiene CERO unidades en el corredor: el territorio está genuinamente abierto",
@@ -34,7 +81,7 @@
     },
     {
       "id": "hueco-frito-santiago",
-      "orden": 2,
+      "orden": 3,
       "categoria": "Competencia",
       "confianza": "V-DENUE",
       "titulo": "Santiago: 42 lugares de pollo pero CERO pollo frito de cadena",
@@ -61,7 +108,7 @@
     },
     {
       "id": "gradiente-encaje",
-      "orden": 3,
+      "orden": 4,
       "categoria": "Demografía",
       "confianza": "V-Censo",
       "titulo": "El encaje 'bajo/medio' mejora hacia el sur: escolaridad 12.3 → 10.3 → 9.2",
@@ -88,7 +135,7 @@
     },
     {
       "id": "catchment-100k",
-      "orden": 4,
+      "orden": 5,
       "categoria": "Catchment",
       "confianza": "V-Censo",
       "titulo": "La vara de 100k personas/unidad solo la cumplen las colonias densas del norte",
@@ -115,7 +162,7 @@
     },
     {
       "id": "sigma-calibrada",
-      "orden": 5,
+      "orden": 6,
       "categoria": "Modelo",
       "confianza": "F1",
       "titulo": "La captura realista es 4-8% del gasto QSR local (no 10%)",
@@ -142,7 +189,7 @@
     },
     {
       "id": "turismo-rehabilita-sur",
-      "orden": 6,
+      "orden": 7,
       "categoria": "Turismo",
       "confianza": "V-OSETUR",
       "titulo": "Cola de Caballo (~368k visitantes/año) rehabilita al sur: es el parque #1 de Nuevo León",
@@ -169,7 +216,7 @@
     },
     {
       "id": "tdpa-carretera",
-      "orden": 7,
+      "orden": 8,
       "categoria": "Tráfico",
       "confianza": "SICT+est",
       "titulo": "La Carretera Nacional mueve ~27,000 vehículos/día frente a El Cercado",
@@ -196,7 +243,7 @@
     },
     {
       "id": "contradiccion-concepto",
-      "orden": 8,
+      "orden": 9,
       "categoria": "Decisión",
       "confianza": "V-DENUE",
       "titulo": "El concepto (bajo/medio) y la meta de venta ($600k+) apuntan a colonias distintas",
@@ -223,7 +270,7 @@
     },
     {
       "id": "resolucion-colonia",
-      "orden": 9,
+      "orden": 10,
       "categoria": "Método",
       "confianza": "V-DENUE",
       "titulo": "Bajar a resolución de colonia reveló candidatas invisibles a nivel zona",
@@ -250,7 +297,7 @@
     },
     {
       "id": "delivery-margen",
-      "orden": 10,
+      "orden": 11,
       "categoria": "Canal",
       "confianza": "V",
       "titulo": "La comisión del delivery (30-35%) la paga el RESTAURANTE, no el cliente",
@@ -282,7 +329,7 @@
     },
     {
       "id": "pollo-commodity",
-      "orden": 11,
+      "orden": 12,
       "categoria": "Insumo",
       "confianza": "V",
       "titulo": "El pollo es un commodity brutal: puede subir 9% en una quincena",
@@ -309,7 +356,7 @@
     },
     {
       "id": "marco-socios",
-      "orden": 12,
+      "orden": 13,
       "categoria": "Forecast",
       "confianza": "F1",
       "titulo": "Marco defendible para socios: $600k piso · $800k base · $1M upside",

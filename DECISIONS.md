@@ -189,3 +189,36 @@
   verificar + de pago; la calibración externa se hace con fuentes públicas + INEGI.
 - **Reemplaza:** matiza la confianza de D-008 (no la anula); D-008 sigue como los inputs, D-009
   fija su nivel de confianza y el método.
+
+## 2026-07-31 · D-012 · El Radar se organiza alrededor de una pregunta, no de un catálogo de datos
+
+- **Detonante:** Francisco, al usar el tablero: *"la usabilidad del sitio tiene mucha área de
+  oportunidad. no logro entender el uso, ni encuentro la manera de obtener valor… la parte de
+  data la tenemos bien, también los insights han sido positivos, pero no hemos logrado
+  traducirlos visualmente."* Autorizó rehacer el UI desde cero.
+- **Diagnóstico:** el tablero apilaba ~10 tarjetas de datos y dejaba al usuario armar la
+  conclusión. El trabajo analítico estaba hecho; el producto no lo entregaba.
+- **Decisión (producto):** la app abre respondiendo **"¿dónde abre la primera unidad?"** y todo
+  lo demás es evidencia bajo demanda. Cuatro vistas: **Decisión** (narrativa con el hallazgo,
+  los puntos concretos, la apuesta de turismo y qué falta para decidir), **Mapa**, **Colonias**
+  (datos crudos, sin veredicto, con estrellas de finalistas) y **Evidencia** (hallazgos, método,
+  fuentes). Se conserva la ley 10: la app **presenta el trade-off, no elige**; los finalistas los
+  marcan los socios.
+- **Hallazgo que motivó la jerarquía (estaba en los datos, enterrado en la tabla):** de las
+  **16** colonias con más de 50 mil personas a 2 km, solo **2** no tienen competencia de pollo
+  frito — Las Brisas (63,168) y Del Paseo Residencial (55,858); y en **todo** el corredor hay
+  apenas **8** locales de pollo frito. El punto que sirve a Las Brisas + Las Torres + Del Paseo
+  junta **70,849 personas únicas con 1 competidor**. Registrado como insight `hueco-masa`
+  (11 números verificados contra el bundle por camino independiente).
+- **Decisiones técnicas que arrastra:**
+  - El CSS de Leaflet se **empaqueta desde node_modules**. Venía de `unpkg.com`: si ese CDN no
+    respondía, el mapa se renderizaba en blanco. Ninguna hoja de estilo externa queda en el app.
+  - Fuera la carga de Google Fonts y la tipografía Inter; se usa la del sistema (menos
+    dependencias externas, cero requests de terceros).
+  - Se elimina el **scoring con pesos ajustables** y el modelo de 4 zonas: no se usaban para
+    decidir y competían con la unidad real de decisión (colonia y punto).
+  - La paleta del cuadrante se validó con el validador del sistema de gráficos: **6/6** en claro
+    y oscuro (banda de luminosidad, croma, separación CVD, contraste).
+- **Reemplaza:** supersede la organización de UI de D-007 y del pulido posterior; **no** toca
+  D-010 (los datos se siguen editando solo en el pipeline y se sincronizan al app) ni D-011
+  (deploy propio).
