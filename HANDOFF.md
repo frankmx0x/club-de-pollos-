@@ -48,6 +48,9 @@ del app. **Los datos nunca se editan a mano en el app** (D-010).
 - **Rediseño completo del UI** (D-012): la app abre respondiendo "¿dónde abre la
   primera unidad?" en vez de exponer tarjetas de datos. Cuatro vistas: Decisión,
   Mapa, Colonias, Evidencia.
+- **Lovable desconectado del repo** (1-ago, confirmado por Francisco). Ya no tiene
+  permiso de escritura sobre `main`. La salida de Lovable quedó completa: editor,
+  build, hosting y ahora también el acceso al repositorio.
 
 ## Los dos finalistas de sitio (decisión pendiente de Francisco)
 
@@ -66,13 +69,14 @@ hueco competitivo. Los socios marcan finalistas con estrellas en el explorador d
 ## Pendientes — de Francisco
 
 1. **Decidir sitio** con los socios usando el explorador (estrellas → shortlist).
-2. **Conteo de campo** para la tasa de captura (única incógnita del modelo) — plan en
-   `docs/plans/2026-07-22-testeo-trafico-sur.md`.
-3. **Desconectar Lovable del repo del app** — el deploy propio ya está en verde, así que
-   esto ya no tiene freno. Lovable conserva permiso de escritura sobre `main` y su preview
-   ya no construye nuestro código. Proyecto en Lovable → Settings → integración de GitHub
-   → Disconnect.
-4. **Términos de la franquicia** (AUV real, regalías, exclusividad, POS) → forecast a socios.
+2. **Conteo de campo** para la tasa de captura, única incógnita del modelo — plan **revisado
+   el 1-ago** en `docs/plans/2026-07-22-testeo-trafico-sur.md`: el desk quedó cerrado (TDPA y
+   visitantes ya obtenidos) y se corrigió el método — la captura se mide en un **análogo que ya
+   opera** (KFC Contry, Church's Allende), no en el terreno vacío, y el flujo en el sitio
+   candidato. Grabar video en vez de contar en vivo.
+3. **Términos de la franquicia** — AUV real por unidad, regalías, exclusividad del corredor y
+   si el POS es obligatorio (define quién es dueño de los datos de venta). Una llamada; sin
+   esto no hay forecast que presentar a los socios.
 5. Viejos: roles/equity Xavier/Juan (→ DECISIONS); `GIT_AUTHOR_*` vacías; fusionar rama
    de setup a `main` en el repo de datos.
 

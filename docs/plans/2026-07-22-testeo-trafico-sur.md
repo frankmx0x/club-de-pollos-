@@ -1,104 +1,155 @@
-# Plan de testeo — validar el multiplicador de tráfico/turismo del sur
+# Plan de testeo — medir la tasa de captura del sur
 
-**Fecha:** 2026-07-22 (America/Monterrey) · **Para:** Francisco.
-**Objetivo:** medir si el flujo de visitantes/tráfico a Santiago/El Cercado/Allende aporta el
-**~5× sobre la base residencial** que el sur necesita para llegar a $600k-$800k/mes (ver
-`docs/analysis/2026-07-22-catchment-poblacion-radio.md`). Convierte una hipótesis en dato.
+**Creado:** 2026-07-22 · **Revisado:** 2026-08-01 (America/Monterrey) · **Para:** Francisco.
 
-## Lo que YA sabemos (con fuente)
+> **Qué cambió en la revisión del 1-ago:** la capa de escritorio quedó **cerrada** (ya tenemos
+> TDPA y visitantes), y se corrigió un **error de método** de la versión original: la tasa de
+> captura no se puede medir en un terreno vacío. Ahora el conteo se hace en **dos sitios
+> distintos**. También se separan dos tasas que la versión anterior confundía.
 
-- **Santiago es destino de DÍA, no de pernocta:** ocupación hotelera ~25% anual (vienen de
-  Monterrey, a 30 km) [scielo, estudio territorial del turismo en Santiago]. → Los visitantes
-  COMEN y se van: bueno para un QSR.
-- **Perfil del visitante (SECTUR 2014):** 99% nacional; interés principal = recreación
-  (comer en restaurantes, comprar); gasto promedio **~US$60/persona/visita**. La comida es
-  actividad central del paseo.
-- **Escala estatal (referencia, NO Santiago-específico):** Semana Santa 2025, NL estimó
-  **136,000 turistas hospedados** y derrama **$1,282 MDP** [NL Gob / Nitu]. Ojo: "hospedados"
-  excluye a los day-trippers de Santiago → subestima su flujo real.
-- **Indicador propio [V-DENUE]:** El Cercado tiene 1 restaurante por 102 residentes vs
-  Monterrey 1 por 158 → ~1.5× más oferta F&B por residente (señal de demanda no-residente,
-  moderada y confundida con ingreso bajo).
+**Objetivo:** convertir la última incógnita del modelo —**qué fracción de los que pasan se
+detiene y compra**— de supuesto en dato medido. Es lo único que falta para decidir sitio.
 
-**Conclusión:** el flujo es real pero **no hay conteo público de visitantes de Santiago**; hay
-que medirlo. Abajo, cómo.
+---
 
-## Qué nos hace falta — 3 capas
+## 1 · Lo que YA está cerrado (no volver a perseguir)
 
-### A. Desk (Claude puede perseguir, gratis)
-1. **SICT — Datos Viales 2025** → TDPA (Tránsito Diario Promedio Anual) de Carretera Nacional
-   en el tramo del sitio candidato: vehículos/día que pasan frente al local.
-   Fuente: micrs.sct.gob.mx (Dirección Gral. de Servicios Técnicos, Datos Viales 2025).
-2. **NL — Observatorio de Turismo Sostenible + DATATUR** → visitantes y estacionalidad de
-   Santiago por mes. Fuentes: nl.gob.mx/observatorioturistico; DATATUR "Turismo en Cifras".
-3. **Cola de Caballo / Presa de la Boca** → el parque COBRA entrada, así que tiene conteo real
-   de afluencia. Dato no público pero existe: se pide al parque/municipio de Santiago.
-4. **Perfil de gasto** (SECTUR ~US$60/persona, % en comida) → cuánto vale un visitante.
+| Dato | Valor | Fuente | Confianza |
+|---|--:|---|---|
+| TDPA Carretera Nacional, El Cercado | 19,389 veh/día (2014) → **~27,144 hoy** | SICT Datos Viales + crecimiento del parque vehicular NL (+40%, rango +30 a +55%) | SICT + estimación |
+| Visitantes Cola de Caballo | **30,673 /mes** (368k/año) | OSETUR / Observatorio de Turismo NL | V-OSETUR |
+| Competencia de pollo frito a 2 km en El Cercado | **0** | DENUE INEGI may-2026 | V-DENUE |
+| Residentes a 2 km de El Cercado | 13,215 | Censo 2020 INEGI | V-Censo |
+| Perfil del visitante | day-trip, ~US$60/persona/visita, comida como actividad central | SECTUR 2014 | F1 |
+| Santiago = destino de día, no de pernocta | ocupación hotelera ~25% anual | estudio territorial (scielo) | F1 |
 
-### B. Campo (Francisco/equipo ejecuta — EL instrumento)
-Conteo en el/los sitios candidatos, sobre la avenida/ruta:
-- **Cuándo:** 2 sábados + 1 domingo (temporada normal) + 1 día entre semana (línea base). Si
-  se puede, 1 fin de semana largo. Franjas de comida: **13:00-15:00 y 18:00-20:00**.
-- **Qué contar** (ventanas de 15 min, extrapolar a día/semana):
-  - Vehículos que pasan frente al punto.
-  - Peatones.
-  - **% con placa foránea / de otra ciudad** (proxy visitante vs local).
-  - Autos/personas que se detienen en food cercano.
-- **Observar competencia vecina:** fila/aforo en pico, ticket aproximado, horas fuertes.
-- **Registrar contexto:** clima, evento especial (festival, Cielo Mágico) para no sesgar.
-- Plantilla de captura (rellena en campo):
+**Lo único que falta es la tasa de captura.** No existe en ningún archivo público: hay que
+medirla o comprarla (ver §6).
 
-| Fecha | Día | Franja | Autos/15min | Peatones/15min | %placa foránea | Se detienen a comer | Notas |
-|---|---|---|---|---|---|---|---|
+---
 
-### C. Herramienta (opcional, acelera y valida sin ir)
-- **Google Places "popular times"** de las anclas (Cola de Caballo, Soriana Los Cavazos, plaza
-  de Santiago): curva de afluencia por hora/día. Gratis manual en la app de Maps; o vía
-  Places API (requiere key GCP → a secret management).
+## 2 · El error de método que corrige esta revisión
 
-## Cómo se convierte en VEREDICTO
+La versión original mandaba a contar tráfico **en el sitio candidato** y de ahí sacar la
+captura. No se puede: en un terreno vacío puedes contar cuántos autos pasan, pero no cuántos
+*se habrían detenido en tu local*, porque el local no existe. Tienes denominador sin numerador.
+
+**Solución: medir en dos lugares distintos y combinar.**
 
 ```
-venta_visitante/mes ≈ (visitantes o autos-que-paran por día) × %-que-come × captura × ticket
-venta_total = venta_residencial (ya calculada) + venta_visitante
+SITIO CANDIDATO (sur)         →  mide el FLUJO
+   autos, peatones, % placa foránea, horarios pico
+
+ANÁLOGO YA OPERANDO           →  mide la CAPTURA
+   de los que pasan, ¿cuántos entran?  → porcentaje empírico
+
+venta_tráfico = FLUJO(candidato) × CAPTURA(análogo) × ticket × 30
 ```
-Y el back-solve ya lo tenemos: El Cercado necesita **~5.4×** su base residencial ($111k) para
-$600k. La pregunta que el conteo responde: **¿el tráfico medido da para ese 5×?** Si sí, el sur
-es viable; si no, el norte (Contry) es el camino seguro.
 
-## Resultados del DESK PASS (2026-07-22)
+**Análogos válidos** (QSR sobre vialidad, no dentro de plaza): KFC Contry, KFC Chapultepec,
+Church's Allende, o cualquier comida rápida sobre la Nacional con estacionamiento propio y
+entrada visible desde la calle. Entre más parecido al formato que vamos a operar, mejor.
 
-Lo que se obtuvo y lo que NO (honesto):
-- **Macro (con fuente):** Semana Santa 2026, NL esperaba **>700,000 personas** en parques del
-  estado, con **Cola de Caballo entre los de mayor afluencia** [NL Gob]; SS2025 = 136k
-  hospedados / $1,282 MDP (estatal). Perfil: day-trip, ~US$60/persona, comida central.
-- **Fuentes de la cifra dura CONFIRMADAS, pero portal-gated:**
-  - **TDPA de la carretera:** SICT `appdatosviales.sctcloud.com.mx` (portal interactivo:
-    mapa → estación de Carretera Nacional/Fed. 85 → TDPA + histórico 2009-2025, descarga
-    PDF/CSV/Excel). **No extraíble por fetch** (portal JS / 403). Pull manual de ~5 min.
-  - **Afluencia Cola de Caballo:** el parque cobra entrada → tiene conteo; se pide al
-    parque/municipio de Santiago (no público).
-  - Prensa y `vialidades.com.mx` devolvieron **403** al fetch.
+---
 
-**Por qué estas dos cifras DECIDEN — la palanca del tráfico (ilustrativo, [estimación]):**
-`venta_visitante/mes ≈ TDPA × tasa_captura × ticket × 30`. Los corredores federales
-suburbanos suelen traer **decenas de miles de vehículos/día** (a confirmar en SICT):
+## 3 · Dos tasas de captura distintas (no confundirlas)
 
-| TDPA (veh/día) | Captura 0.2% | Captura 0.5% | Captura 1.0% |
-|---|--:|--:|--:|
-| 15,000 | $198k/mes | $495k/mes | $990k/mes |
-| 25,000 | $330k/mes | $825k/mes | $1.65M/mes |
-| 40,000 | $528k/mes | $1.32M/mes | $2.64M/mes |
+| | **σ residencial** | **Captura de tráfico** |
+|---|---|---|
+| Qué mide | porción del gasto en comida rápida de quien **vive** a 2 km | fracción de vehículos que **pasan** y se detienen |
+| Rango que usamos | 4% / 6% / 8% | 0.2% / 0.5% / 1.0% |
+| Sostiene | la venta de Contry, Altamira, todo el norte del corredor | **la tesis completa de El Cercado** |
+| Cómo se calibra mejor | AUV real del franquiciador + benchmarks de industria | **este conteo de campo** |
 
-→ Con un flujo de decenas de miles/día, **capturar apenas 0.3-0.5% cierra el 5×** que el sur
-necesita. La apuesta se reduce a DOS números medibles: **(1) el TDPA real** (SICT / conteo) y
-**(2) la tasa de captura** (conteo de campo: cuántos de los que pasan se detienen y compran).
-Caveat: el TDPA es promedio anual; el turismo se concentra en fin de semana → la venta es
-grumosa (findes fuertes, entre semana floja) → por eso se combina con base residencial.
+El conteo responde la segunda. Medir semanas para responder la primera sería trabajo
+desperdiciado: para esa, una llamada al franquiciador vale más.
 
-## Reparto (ley 6: Claude prepara, Francisco ejecuta)
+---
 
-- **Claude (desk):** perseguir TDPA (SICT), visitantes (Observatorio NL/DATATUR), y afinar el
-  modelo con esos números. [siguiente paso inmediato si Francisco lo aprueba]
-- **Francisco/equipo (campo):** el conteo con la plantilla, en el/los sitios finalistas del sur.
-- **Opcional:** capa Google Places (popular times) — necesita key GCP.
+## 4 · El protocolo
+
+### Cuándo
+- **2 sábados + 1 domingo** (el flujo turístico real)
+- **1 día entre semana** como línea base — **no es opcional**: sin él no puedes separar cuánto
+  del flujo es turismo y cuánto es vida cotidiana, y esa diferencia *es* la tesis del sur.
+- Franjas: **13:00-15:00 y 18:00-20:00**.
+- Anotar clima y si hay evento especial (festival, Cielo Mágico) para no sesgar la muestra.
+
+### Con qué — graba, no cuentes en vivo
+Un teléfono en tripié apuntando a la entrada del análogo, **30 minutos continuos**, y cuentas
+después en casa con pausa y a doble velocidad. Contar dos flujos simultáneos en vivo se degrada
+rápido y no puedes verificar tu propio conteo; el video sí. Filmar desde vía pública no tiene
+problema; no metas la cámara a propiedad privada.
+
+En el sitio candidato basta contar tráfico, que es un solo flujo — ahí sí sirve el conteo en
+vivo con contador de tally.
+
+### Qué registrar
+
+**En el sitio candidato (flujo):**
+
+| Fecha | Día | Franja | Autos/15min | Peatones/15min | % placa foránea | Clima / evento |
+|---|---|---|---|---|---|---|
+
+**En el análogo (captura) — la tabla que decide:**
+
+| Fecha | Día | Franja | Autos que PASAN /15min | Autos que ENTRAN /15min | Captura % | Personas saliendo con bolsa /15min |
+|---|---|---|---|---|---|---|
+
+### Dos observaciones extra que valen mucho y cuestan nada
+1. **Bolsas a la salida** en hora pico → transacciones/hora del análogo. Con el ticket, te da
+   su venta por hora: un benchmark de competidor real, no estimado.
+2. **Compra tú mismo** en el análogo, en pico. Confirmas el ticket real, mides el tiempo de
+   servicio, y conoces por dentro a la competencia.
+
+---
+
+## 5 · Qué hace el número con la decisión
+
+Con **TDPA ~27,144 veh/día** y **ticket $220**:
+
+| Captura | Autos que paran/día | Venta de tráfico / mes |
+|--:|--:|--:|
+| 0.2% | 54 | **~$358k** |
+| 0.5% | 136 | **~$896k** |
+| 1.0% | 271 | **~$1.79M** |
+
+Ese rango es la diferencia entre *"El Cercado no llega"* y *"El Cercado es el mejor sitio del
+corredor"*. Ningún análisis adicional de escritorio mueve esa aguja.
+
+**Supuestos explícitos de la tabla** (para poder discutirlos):
+- Un auto que se detiene = **una** transacción de $220. Si viajan en familia y ordenan junto,
+  es conservador; si van solos, es optimista.
+- El TDPA es **promedio anual**: el fin de semana el flujo es bastante mayor y entre semana
+  menor. La venta del sur será **grumosa** — findes fuertes, entre semana floja. Por eso el
+  día entre semana del conteo importa tanto.
+- El TDPA de SICT cuenta ambos sentidos de la carretera.
+
+---
+
+## 6 · La alternativa que puede valer más que el conteo
+
+El franquiciador **ya opera 82 unidades** y sabe lo que vende una. Si entrega ventas por unidad
+de tiendas comparables (formato y entorno parecidos), tienes un dato **observado** en vez de
+estimado, en una llamada.
+
+Pero según **D-009**, sus cifras son *priors blandos* (experiencia, no estudio formal). Por eso:
+
+> **El conteo no reemplaza esa llamada — la verifica.** Es la única forma de detectar si el
+> número que te dan viene inflado, antes de firmar. Contra una inversión de esta escala, tres
+> fines de semana contando coches son un seguro barato.
+
+Preguntas para la misma llamada: AUV real por unidad, regalías, exclusividad del corredor, y si
+el punto de venta es obligatorio (esto último importa: define quién es dueño de tus datos de
+venta).
+
+---
+
+## 7 · Reparto (ley 6: Claude prepara el instrumento, Francisco ejecuta)
+
+- **Claude:** desk cerrado (§1). Al volver del campo: recalcular el modelo con la captura
+  medida, actualizar el Radar y marcar el nivel de confianza que corresponda.
+- **Francisco y equipo:** el conteo de §4, en el sitio candidato y en el análogo.
+- **Francisco:** la llamada al franquiciador (§6).
+- **Opcional:** capa Google Places (*popular times* de las anclas) para validar curvas de
+  afluencia sin ir — requiere key GCP en el manejo de secretos.
