@@ -299,3 +299,31 @@
   error que el de Altavista, que tiene cientos. Hoy la app las presenta con la misma autoridad.
 - **Reemplaza:** corrige la definición de anclas de D-006. No toca D-013 (que corrigió la
   clasificación de restaurantes) ni D-012.
+
+## 2026-08-04 · D-015 · El centro de cada colonia es el centroide de sus AGEBs, no el promedio de sus tiendas
+
+- **Detonante:** quedó marcado como pendiente en D-014 y Francisco eligió esta salida.
+- **El problema:** el centro de cada colonia se calculaba promediando las coordenadas de los
+  establecimientos cuyo nombre de asentamiento coincidía con los tokens de la colonia. Con
+  pocas coincidencias, ese promedio es frágil — y **todo el catchment de 2 km cuelga de él**:
+  población, competencia, anclas y venta estimada. Del Paseo Residencial se apoyaba en 27
+  establecimientos, La Herradura en 26, Los Cristales en 28.
+- **Decisión:** el centro es el **centroide de AGEB ponderado**. Cada AGEB aporta su propio
+  centroide —calculado con TODOS los establecimientos del AGEB, cientos de puntos— ponderado
+  por cuántos locales de esa colonia caen en él. La posición de cada término deja de ser una
+  tienda suelta y pasa a ser un centro estadístico; la ponderación conserva la huella real de
+  la colonia. Si algún AGEB no se puede resolver, cae al promedio anterior (no pasó en ninguna).
+- **Efecto medido:** mediana de desplazamiento **70 m**, máximo **832 m**. Los que más se
+  movieron son exactamente los que eran frágiles: San Javier Allende 832 m (40 locales,
+  4 AGEBs), La Herradura 416 m (26, 3), Paseo del Vergel 314 m (52, 3). Del Paseo Residencial
+  se movió solo 127 m y Los Cristales 17 m — sus números anteriores eran razonables.
+- **Efecto en los hallazgos:** el titular **no cambia** — Las Brisas sigue siendo la única
+  colonia con masa y cero pollo frito. Las colonias con más de 50 mil personas pasan de 16 a
+  **17** (La Primavera cruza el umbral con el centro corregido). Consistencia conteo/lista:
+  **0 descuadres de 546**.
+- **Incertidumbre que queda, ahora visible:** tres colonias se apoyan en **un solo AGEB**
+  —Las Torres, Ancira y Ladrillera— y su centro sigue siendo menos firme que el de una colonia
+  repartida en varios. La app las marca con la etiqueta *"centro menos firme"* en vez de
+  presentarlas con la misma autoridad que a las demás. Cada colonia publica ahora
+  `centro.metodo` y `centro.agebs`.
+- **Reemplaza:** cierra el pendiente abierto en D-014. No toca D-013 ni la clasificación.

@@ -99,7 +99,7 @@ def main():
                 if any(x in asent for x in c.get("excluye", [])):
                     continue
                 if any(t in asent for t in c["tokens"]):
-                    puntos[c["id"]].append((lat, lon)); asignados += 1
+                    puntos[c["id"]].append((lat, lon, k)); asignados += 1
                     break
 
             act = (row.get("codigo_act") or "").strip()
@@ -151,8 +151,23 @@ def main():
         if not pts:
             print(f"  [aviso] {c['nombre']}: sin establecimientos — se omite", file=sys.stderr)
             continue
-        clat = sum(p[0] for p in pts) / len(pts)
-        clon = sum(p[1] for p in pts) / len(pts)
+        # Centro por CENTROIDE DE AGEB, no por promedio de tiendas sueltas (D-015).
+        # Cada AGEB aporta su centroide —calculado con TODOS los establecimientos del
+        # AGEB, cientos de puntos— ponderado por cuántos de los locales de ESTA colonia
+        # caen en él. Así la posición es estable aunque la colonia tenga pocos locales
+        # propios: Del Paseo Residencial tenía 27 y su centro dependía de esos 27.
+        peso = {}
+        for _la, _lo, kag in pts:
+            peso[kag] = peso.get(kag, 0) + 1
+        usables = {k: n for k, n in peso.items() if k in ageb_cent}
+        if usables:
+            tot_w = sum(usables.values())
+            clat = sum(ageb_cent[k][0] * n for k, n in usables.items()) / tot_w
+            clon = sum(ageb_cent[k][1] * n for k, n in usables.items()) / tot_w
+        else:  # sin AGEB resoluble: se cae al promedio de los propios locales
+            clat = sum(p[0] for p in pts) / len(pts)
+            clon = sum(p[1] for p in pts) / len(pts)
+        n_agebs = len(usables)
         near = lambda a, b, R=R_KM: den._haversine_km(clat, clon, a, b) <= R
 
         pob = escn = escd = intn = intd = 0.0
@@ -190,7 +205,9 @@ def main():
         filas.append({
             "id": c["id"], "colonia": c["nombre"], "tramo": c["tramo"], "orden": c["orden"],
             "municipio": den.MUN[c["mun"]], "n_establecimientos": len(pts),
-            "centro": {"lat": round(clat, 5), "lon": round(clon, 5)},
+            "centro": {"lat": round(clat, 5), "lon": round(clon, 5),
+                       "metodo": "centroide de AGEB ponderado" if usables else "promedio de establecimientos",
+                       "agebs": n_agebs},
             "competencia": {"pollo_2km": n_pollo, "frito_2km": len(fr), "fritos": fr[:6],
                             "alitas_2km": len(al), "alitas": al[:8],
                             "restaurantes_2km": n_rest, "hamburguesas_2km": n_hamb,
