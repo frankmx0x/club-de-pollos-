@@ -96,8 +96,32 @@ marcan finalistas con estrellas en la vista Colonias.
 5. Viejos: roles/equity Xavier/Juan (→ DECISIONS); `GIT_AUTHOR_*` vacías; fusionar rama
    de setup a `main` en el repo de datos.
 
+- **Anclas reclasificadas por código SCIAN exacto (D-014)** — Francisco pidió revisar si
+  otros datos duros tenían la misma falla que D-013. Tres de cinco la tenían: el prefijo
+  `4621` metía **228 minisúperes** junto a 25 supermercados reales; `46411` metía **47
+  tiendas naturistas** entre las farmacias; `611` metía escuelas de arte, deporte y
+  profesores particulares junto a las primarias, sin separar preescolar de secundaria.
+  Bancos y gimnasios estaban limpios. Ahora hay diccionario explícito código → categoría.
+  - Las anclas viven en el **mismo padrón** que los restaurantes (2,985 registros): sus
+    conteos y sus listas abribles salen del mismo cálculo. **Verificado en producción:
+    0 descuadres de 546.**
+  - Se auditó también la asignación de colonias por texto: **ningún asentamiento cae en
+    dos colonias**; los tokens están limpios. Cobertura 70.7%, ya documentada.
+  - **Hallazgo de negocio:** El Cercado no tiene **ni un supermercado** a 2 km (13
+    minisúperes) y tampoco alitas ni pollo frito. No hay competencia porque no hay tejido
+    comercial: toda su tesis descansa en el flujo de la carretera.
+  - Bug propio detectado por la comprobación contra producción: al unificar el padrón,
+    `restaurantes_2km` quedó contando también las anclas (Altavista marcaba 953 en vez de
+    607). Corregido en `b18cbe1`.
+
 ## Pendientes — de Claude
 
+- **Centro de colonia con pocos establecimientos** (marcado en D-014, sin resolver): el
+  centro se promedia con los establecimientos propios de la colonia, y hay colonias con muy
+  pocos — Del Paseo Residencial 27, La Herradura 26, Los Cristales 28. Su catchment de 2 km
+  cuelga de ese centro y tiene más margen de error que el de Altavista, que tiene cientos.
+  Hoy la app las presenta con la misma autoridad. Salidas posibles: usar el centroide del
+  AGEB, ampliar los tokens, o marcar la incertidumbre en la app. **Decide Francisco.**
 - Capa Google Places (ratings/abiertos) — requiere key GCP en secret management.
 - Renta real por zona (hoy sigue en `[S]`, único dato no duro del Radar).
 
@@ -110,7 +134,7 @@ tasa de captura, que sigue siendo la única incógnita grande del modelo.
 ## Prueba de continuidad
 
 Una sesión nueva sin este chat continúa con: `GUIA.md` → este HANDOFF → `DECISIONS.md`
-(D-001…D-013) → `docs/analysis/` y `docs/research/` → `tools/radar-sitios/` (correr
+(D-001…D-014) → `docs/analysis/` y `docs/research/` → `tools/radar-sitios/` (correr
 `extract_denue.py`, `extract_colonias.py`, `extract_puntos_optimos.py`, `audit_datos.py`,
 `build_appdata.py`, `sync_app.sh`; DENUE/Censo se re-descargan al scratchpad — el
 contenedor es efímero). El app se clona de `frankmx0x/club-pollos-radar` y se verifica
