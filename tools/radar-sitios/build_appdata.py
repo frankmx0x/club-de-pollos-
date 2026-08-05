@@ -122,7 +122,11 @@ def main():
             for i in idx:
                 cats[padron[i]["cat"]] = cats.get(padron[i]["cat"], 0) + 1
             comp = c["competencia"]
-            comp["restaurantes_2km"] = len(idx)
+            # OJO: idx ahora trae restaurantes Y anclas (D-014). "Restaurantes" debe
+            # contar solo las categorías de restaurante, no len(idx).
+            CATS_REST = ("pollo_frito", "alitas", "pollo_asado", "pollo_otro",
+                         "hamburguesas", "pizza", "otro")
+            comp["restaurantes_2km"] = sum(cats.get(k, 0) for k in CATS_REST)
             comp["frito_2km"] = cats.get("pollo_frito", 0)
             comp["alitas_2km"] = cats.get("alitas", 0)
             comp["hamburguesas_2km"] = cats.get("hamburguesas", 0)
