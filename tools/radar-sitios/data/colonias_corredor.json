@@ -103,9 +103,13 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 10,
-     "farmacia": 4,
-     "escuela": 18,
+     "minisuper": 10,
+     "farmacia": 3,
+     "naturista": 1,
+     "escuela_basica": 10,
+     "escuela_otra": 1,
+     "preescolar": 6,
+     "universidad": 1,
      "gimnasio": 2
     },
     "total": 34,
@@ -213,9 +217,11 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 6,
+     "minisuper": 6,
      "farmacia": 1,
-     "escuela": 8,
+     "escuela_otra": 1,
+     "escuela_basica": 4,
+     "preescolar": 3,
      "gimnasio": 1
     },
     "total": 16,
@@ -598,10 +604,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 40,
-     "farmacia": 35,
+     "minisuper": 35,
+     "farmacia": 22,
+     "naturista": 13,
+     "supermercado": 5,
      "banco": 23,
-     "escuela": 95,
+     "escuela_otra": 30,
+     "escuela_basica": 38,
+     "preescolar": 17,
+     "universidad": 10,
      "gimnasio": 22
     },
     "total": 215,
@@ -710,9 +721,11 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 6,
+     "minisuper": 6,
      "farmacia": 1,
-     "escuela": 8,
+     "escuela_otra": 1,
+     "escuela_basica": 4,
+     "preescolar": 3,
      "gimnasio": 1
     },
     "total": 16,
@@ -832,8 +845,10 @@
    "anclas": {
     "conteo": {
      "farmacia": 3,
-     "supermercado": 4,
-     "escuela": 19,
+     "minisuper": 4,
+     "escuela_otra": 6,
+     "escuela_basica": 8,
+     "preescolar": 5,
      "gimnasio": 2
     },
     "total": 28,
@@ -1020,10 +1035,13 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 13,
-     "farmacia": 12,
+     "minisuper": 13,
+     "farmacia": 9,
+     "naturista": 3,
      "banco": 6,
-     "escuela": 41,
+     "escuela_otra": 15,
+     "escuela_basica": 17,
+     "preescolar": 9,
      "gimnasio": 10
     },
     "total": 82,
@@ -1236,10 +1254,14 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 11,
-     "farmacia": 13,
+     "minisuper": 10,
+     "farmacia": 10,
+     "naturista": 3,
+     "supermercado": 1,
      "banco": 7,
-     "escuela": 43,
+     "escuela_otra": 15,
+     "escuela_basica": 19,
+     "preescolar": 9,
      "gimnasio": 6
     },
     "total": 80,
@@ -1463,10 +1485,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 29,
-     "farmacia": 25,
+     "supermercado": 6,
+     "minisuper": 23,
+     "naturista": 9,
+     "farmacia": 16,
      "banco": 12,
-     "escuela": 71,
+     "universidad": 4,
+     "escuela_basica": 26,
+     "escuela_otra": 29,
+     "preescolar": 12,
      "gimnasio": 29
     },
     "total": 166,
@@ -1686,10 +1713,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 28,
-     "farmacia": 23,
+     "supermercado": 5,
+     "minisuper": 23,
+     "naturista": 9,
+     "farmacia": 14,
      "banco": 11,
-     "escuela": 69,
+     "universidad": 4,
+     "escuela_otra": 28,
+     "escuela_basica": 26,
+     "preescolar": 11,
      "gimnasio": 32
     },
     "total": 163,
@@ -1892,10 +1924,14 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 10,
-     "farmacia": 12,
+     "minisuper": 9,
+     "farmacia": 9,
+     "naturista": 3,
+     "supermercado": 1,
      "banco": 7,
-     "escuela": 38,
+     "escuela_otra": 14,
+     "escuela_basica": 16,
+     "preescolar": 8,
      "gimnasio": 5
     },
     "total": 72,
@@ -2123,10 +2159,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 29,
-     "farmacia": 24,
+     "supermercado": 6,
+     "minisuper": 23,
+     "naturista": 9,
+     "farmacia": 15,
      "banco": 12,
-     "escuela": 71,
+     "universidad": 4,
+     "escuela_basica": 26,
+     "escuela_otra": 30,
+     "preescolar": 11,
      "gimnasio": 34
     },
     "total": 170,
@@ -2354,10 +2395,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 25,
-     "farmacia": 22,
+     "minisuper": 22,
+     "farmacia": 15,
+     "naturista": 7,
+     "supermercado": 3,
      "banco": 11,
-     "escuela": 37,
+     "escuela_otra": 9,
+     "escuela_basica": 17,
+     "universidad": 4,
+     "preescolar": 7,
      "gimnasio": 9
     },
     "total": 104,
@@ -2726,10 +2772,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 36,
-     "farmacia": 29,
+     "minisuper": 33,
+     "farmacia": 19,
+     "naturista": 10,
+     "supermercado": 3,
      "banco": 23,
-     "escuela": 94,
+     "escuela_otra": 30,
+     "escuela_basica": 37,
+     "preescolar": 17,
+     "universidad": 10,
      "gimnasio": 21
     },
     "total": 203,
@@ -2941,10 +2992,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 30,
-     "farmacia": 22,
+     "supermercado": 6,
+     "minisuper": 24,
+     "naturista": 9,
+     "farmacia": 13,
      "banco": 11,
-     "escuela": 63,
+     "universidad": 3,
+     "escuela_otra": 25,
+     "escuela_basica": 24,
+     "preescolar": 11,
      "gimnasio": 31
     },
     "total": 157,
@@ -3086,10 +3142,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 8,
-     "farmacia": 2,
+     "minisuper": 6,
+     "farmacia": 1,
+     "naturista": 1,
+     "supermercado": 2,
      "banco": 1,
-     "escuela": 20,
+     "escuela_otra": 3,
+     "escuela_basica": 12,
+     "preescolar": 4,
+     "universidad": 1,
      "gimnasio": 4
     },
     "total": 35,
@@ -3312,10 +3373,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 25,
-     "farmacia": 22,
+     "minisuper": 22,
+     "farmacia": 15,
+     "naturista": 7,
+     "supermercado": 3,
      "banco": 11,
-     "escuela": 39,
+     "escuela_otra": 11,
+     "escuela_basica": 17,
+     "universidad": 4,
+     "preescolar": 7,
      "gimnasio": 10
     },
     "total": 107,
@@ -3534,10 +3600,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 24,
-     "farmacia": 20,
+     "minisuper": 21,
+     "farmacia": 13,
+     "naturista": 7,
+     "supermercado": 3,
      "banco": 11,
-     "escuela": 42,
+     "escuela_otra": 11,
+     "escuela_basica": 18,
+     "universidad": 5,
+     "preescolar": 8,
      "gimnasio": 10
     },
     "total": 107,
@@ -3758,10 +3829,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 25,
-     "farmacia": 20,
+     "minisuper": 22,
+     "farmacia": 13,
+     "naturista": 7,
+     "supermercado": 3,
      "banco": 11,
-     "escuela": 45,
+     "escuela_otra": 11,
+     "escuela_basica": 21,
+     "universidad": 4,
+     "preescolar": 9,
      "gimnasio": 10
     },
     "total": 111,
@@ -4092,10 +4168,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 32,
-     "farmacia": 29,
+     "minisuper": 27,
+     "farmacia": 14,
+     "naturista": 15,
+     "supermercado": 5,
      "banco": 23,
-     "escuela": 86,
+     "escuela_otra": 28,
+     "preescolar": 17,
+     "escuela_basica": 31,
+     "universidad": 10,
      "gimnasio": 19
     },
     "total": 189,
@@ -4238,10 +4319,14 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 17,
-     "farmacia": 11,
+     "minisuper": 14,
+     "farmacia": 8,
+     "naturista": 3,
+     "supermercado": 3,
      "banco": 11,
-     "escuela": 19,
+     "escuela_otra": 6,
+     "escuela_basica": 8,
+     "preescolar": 5,
      "gimnasio": 4
     },
     "total": 62,
@@ -4697,10 +4782,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 44,
-     "farmacia": 35,
+     "minisuper": 41,
+     "farmacia": 21,
+     "naturista": 14,
+     "supermercado": 3,
      "banco": 21,
-     "escuela": 103,
+     "escuela_otra": 36,
+     "preescolar": 31,
+     "escuela_basica": 34,
+     "universidad": 2,
      "gimnasio": 25
     },
     "total": 228,
@@ -5154,10 +5244,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 47,
-     "farmacia": 39,
+     "minisuper": 43,
+     "farmacia": 24,
+     "naturista": 15,
+     "supermercado": 4,
      "banco": 29,
-     "escuela": 142,
+     "escuela_otra": 55,
+     "preescolar": 31,
+     "escuela_basica": 46,
+     "universidad": 10,
      "gimnasio": 36
     },
     "total": 293,
@@ -5562,10 +5657,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 43,
-     "farmacia": 39,
+     "minisuper": 39,
+     "farmacia": 23,
+     "naturista": 16,
+     "supermercado": 4,
      "banco": 27,
-     "escuela": 124,
+     "escuela_otra": 50,
+     "preescolar": 30,
+     "escuela_basica": 38,
+     "universidad": 6,
      "gimnasio": 27
     },
     "total": 260,
@@ -5885,10 +5985,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 35,
-     "farmacia": 31,
+     "minisuper": 32,
+     "farmacia": 22,
+     "naturista": 9,
+     "supermercado": 3,
      "banco": 21,
-     "escuela": 84,
+     "escuela_otra": 29,
+     "escuela_basica": 32,
+     "universidad": 10,
+     "preescolar": 13,
      "gimnasio": 18
     },
     "total": 189,
@@ -6308,10 +6413,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 48,
-     "farmacia": 27,
+     "minisuper": 45,
+     "naturista": 5,
+     "supermercado": 3,
+     "farmacia": 22,
      "banco": 18,
-     "escuela": 78,
+     "escuela_otra": 27,
+     "escuela_basica": 24,
+     "universidad": 6,
+     "preescolar": 21,
      "gimnasio": 12
     },
     "total": 183,
@@ -6757,10 +6867,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 53,
-     "farmacia": 33,
+     "minisuper": 49,
+     "naturista": 5,
+     "supermercado": 4,
+     "farmacia": 28,
      "banco": 20,
-     "escuela": 67,
+     "escuela_otra": 25,
+     "escuela_basica": 19,
+     "universidad": 7,
+     "preescolar": 16,
      "gimnasio": 12
     },
     "total": 185,
@@ -7158,10 +7273,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 45,
-     "farmacia": 26,
+     "minisuper": 42,
+     "naturista": 5,
+     "supermercado": 3,
+     "farmacia": 21,
      "banco": 17,
-     "escuela": 57,
+     "escuela_otra": 18,
+     "escuela_basica": 18,
+     "universidad": 5,
+     "preescolar": 16,
      "gimnasio": 9
     },
     "total": 154,
@@ -7253,9 +7373,11 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 7,
+     "minisuper": 7,
      "farmacia": 4,
-     "escuela": 10,
+     "escuela_basica": 6,
+     "escuela_otra": 1,
+     "preescolar": 3,
      "gimnasio": 5
     },
     "total": 26,
@@ -7680,10 +7802,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 41,
-     "farmacia": 36,
+     "minisuper": 36,
+     "farmacia": 22,
+     "naturista": 14,
+     "supermercado": 5,
      "banco": 25,
-     "escuela": 105,
+     "escuela_otra": 50,
+     "preescolar": 17,
+     "escuela_basica": 35,
+     "universidad": 3,
      "gimnasio": 33
     },
     "total": 240,
@@ -8229,10 +8356,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 67,
-     "farmacia": 41,
+     "minisuper": 61,
+     "naturista": 9,
+     "farmacia": 32,
+     "supermercado": 6,
      "banco": 26,
-     "escuela": 119,
+     "escuela_otra": 45,
+     "preescolar": 30,
+     "escuela_basica": 36,
+     "universidad": 8,
      "gimnasio": 25
     },
     "total": 278,
@@ -8504,10 +8636,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 35,
-     "farmacia": 25,
+     "minisuper": 31,
+     "farmacia": 18,
+     "naturista": 7,
+     "supermercado": 4,
      "banco": 11,
-     "escuela": 72,
+     "escuela_otra": 27,
+     "escuela_basica": 23,
+     "universidad": 9,
+     "preescolar": 13,
      "gimnasio": 20
     },
     "total": 163,
@@ -8914,10 +9051,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 41,
-     "farmacia": 34,
+     "minisuper": 36,
+     "farmacia": 20,
+     "naturista": 14,
+     "supermercado": 5,
      "banco": 25,
-     "escuela": 100,
+     "escuela_otra": 49,
+     "preescolar": 16,
+     "escuela_basica": 32,
+     "universidad": 3,
      "gimnasio": 31
     },
     "total": 231,
@@ -9452,10 +9594,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 57,
-     "farmacia": 43,
+     "minisuper": 52,
+     "farmacia": 27,
+     "naturista": 16,
+     "supermercado": 5,
      "banco": 33,
-     "escuela": 135,
+     "escuela_otra": 60,
+     "preescolar": 29,
+     "escuela_basica": 43,
+     "universidad": 3,
      "gimnasio": 36
     },
     "total": 304,
@@ -9676,10 +9823,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 31,
-     "farmacia": 22,
+     "minisuper": 28,
+     "naturista": 7,
+     "farmacia": 15,
+     "supermercado": 3,
      "banco": 6,
-     "escuela": 55,
+     "escuela_otra": 17,
+     "escuela_basica": 18,
+     "preescolar": 12,
+     "universidad": 8,
      "gimnasio": 20
     },
     "total": 134,
@@ -9814,10 +9966,14 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 12,
+     "minisuper": 10,
      "farmacia": 9,
+     "supermercado": 2,
      "banco": 1,
-     "escuela": 26,
+     "escuela_otra": 13,
+     "escuela_basica": 11,
+     "universidad": 1,
+     "preescolar": 1,
      "gimnasio": 13
     },
     "total": 61,
@@ -10494,10 +10650,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 71,
-     "farmacia": 53,
+     "minisuper": 65,
+     "farmacia": 38,
+     "naturista": 15,
+     "supermercado": 6,
      "banco": 34,
-     "escuela": 151,
+     "escuela_otra": 61,
+     "preescolar": 36,
+     "escuela_basica": 47,
+     "universidad": 7,
      "gimnasio": 37
     },
     "total": 346,
@@ -10928,10 +11089,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 52,
-     "farmacia": 31,
+     "minisuper": 47,
+     "naturista": 5,
+     "supermercado": 5,
+     "farmacia": 26,
      "banco": 23,
-     "escuela": 54,
+     "escuela_otra": 22,
+     "escuela_basica": 13,
+     "universidad": 7,
+     "preescolar": 12,
      "gimnasio": 11
     },
     "total": 171,
@@ -11610,10 +11776,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 77,
-     "farmacia": 53,
+     "minisuper": 69,
+     "farmacia": 38,
+     "naturista": 15,
+     "supermercado": 8,
      "banco": 32,
-     "escuela": 146,
+     "escuela_otra": 56,
+     "preescolar": 37,
+     "escuela_basica": 45,
+     "universidad": 8,
      "gimnasio": 30
     },
     "total": 338,
@@ -12078,10 +12249,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 50,
-     "farmacia": 29,
+     "minisuper": 45,
+     "naturista": 6,
+     "supermercado": 5,
+     "farmacia": 23,
      "banco": 27,
-     "escuela": 54,
+     "escuela_otra": 27,
+     "escuela_basica": 13,
+     "universidad": 7,
+     "preescolar": 7,
      "gimnasio": 16
     },
     "total": 176,
@@ -12600,10 +12776,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 55,
-     "farmacia": 42,
+     "minisuper": 49,
+     "farmacia": 31,
+     "supermercado": 6,
+     "naturista": 11,
      "banco": 33,
-     "escuela": 101,
+     "escuela_otra": 52,
+     "preescolar": 15,
+     "escuela_basica": 27,
+     "universidad": 7,
      "gimnasio": 30
     },
     "total": 261,
@@ -13144,10 +13325,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 61,
-     "farmacia": 42,
+     "minisuper": 55,
+     "farmacia": 29,
+     "supermercado": 6,
+     "naturista": 13,
      "banco": 35,
-     "escuela": 117,
+     "escuela_otra": 60,
+     "preescolar": 18,
+     "escuela_basica": 32,
+     "universidad": 7,
      "gimnasio": 32
     },
     "total": 287,
@@ -13623,10 +13809,15 @@
    ],
    "anclas": {
     "conteo": {
-     "supermercado": 47,
-     "farmacia": 30,
+     "minisuper": 42,
+     "naturista": 6,
+     "supermercado": 5,
+     "farmacia": 24,
      "banco": 27,
-     "escuela": 63,
+     "escuela_otra": 30,
+     "escuela_basica": 19,
+     "universidad": 7,
+     "preescolar": 7,
      "gimnasio": 17
     },
     "total": 184,

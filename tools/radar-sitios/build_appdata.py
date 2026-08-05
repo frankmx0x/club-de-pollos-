@@ -130,6 +130,14 @@ def main():
             comp["pollo_2km"] = sum(cats.get(k, 0) for k in CATS_POLLO)
             comp["fritos"] = [padron[i]["nombre"] for i in idx if padron[i]["cat"] == "pollo_frito"][:6]
             comp["alitas"] = [padron[i]["nombre"] for i in idx if padron[i]["cat"] == "alitas"][:8]
+            # Anclas: del mismo padrón y el mismo radio, con las categorías finas
+            # de D-014 (supermercado ≠ minisúper, farmacia ≠ naturista, escuela
+            # básica ≠ preescolar ≠ universidad ≠ arte/deporte/tutores).
+            CATS_ANCLA = ("supermercado", "minisuper", "farmacia", "naturista", "banco",
+                          "escuela_basica", "preescolar", "universidad", "escuela_otra", "gimnasio")
+            conteo = {k: cats.get(k, 0) for k in CATS_ANCLA if cats.get(k, 0)}
+            c["anclas"] = {"conteo": conteo, "total": sum(conteo.values()),
+                           "fuente": "DENUE may-2026", "confianza": "V-DENUE"}
             c["rest_idx"] = idx
 
     # Metodología (cómo se llegó a cada número) y puntos óptimos multi-colonia

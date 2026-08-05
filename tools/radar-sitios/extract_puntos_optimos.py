@@ -58,9 +58,8 @@ def main():
                 if den.categoria(row.get("nom_estab") or "") == "pollo_frito":
                     fritos.append((lat, lon))
             else:
-                for cat, fn in den.ANCLAS.items():
-                    if fn(act):
-                        anclas.append((lat, lon)); break
+                if den.ancla(act):
+                    anclas.append((lat, lon))
     cent = {k: (v[0]/v[2], v[1]/v[2]) for k, v in agsum.items() if v[2] > 0}
 
     # población por AGEB (Censo)

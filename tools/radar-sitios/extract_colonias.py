@@ -120,9 +120,9 @@ def main():
                 elif cat == "pizza":
                     pizza.append((lat, lon))
             else:
-                for cat, fn in den.ANCLAS.items():
-                    if fn(act):
-                        anclas.append((lat, lon, cat)); break
+                cat_a = den.ancla(act)
+                if cat_a:
+                    anclas.append((lat, lon, cat_a))
 
     ageb_cent = {k: (v[0] / v[2], v[1] / v[2]) for k, v in agsum.items() if v[2] > 0}
 

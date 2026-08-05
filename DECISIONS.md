@@ -260,3 +260,42 @@
   de alitas a 2 km). Del Paseo Residencial ya no está: tiene Captain Fried Chicken.
 - **Reemplaza:** corrige la clasificación de D-006 y el insight `hueco-masa` publicado el
   31-jul, que quedó **falsificado por estos datos** y fue reescrito. No toca D-010 ni D-012.
+
+## 2026-08-04 · D-014 · Las anclas se clasifican por código SCIAN exacto, no por prefijo
+
+- **Detonante:** Francisco pidió revisar si otros datos duros estaban mal clasificados, después
+  del hallazgo de D-013. La misma falla estaba en las anclas de demanda.
+- **El defecto:** las anclas se clasificaban por **prefijo** de código SCIAN, y el prefijo
+  agrupa cosas que la etiqueta no admite:
+  - `4621` → "Supermercados": **228 de 253 eran minisúperes**; supermercados reales: 25.
+    Un Soriana ancla una compra semanal; una tiendita de esquina no. Para elegir local, la
+    diferencia es la decisión completa.
+  - `46411` → "Farmacias": **47 de 172** eran *"productos naturistas, medicamentos
+    homeopáticos y de complementos alimenticios"*. 27% de inflación.
+  - `611` → "Escuelas": **177 de 528** eran escuelas de arte (52), de deporte (43), de idiomas,
+    de oficios y profesores particulares (23). Y no separaba preescolar (119 — los papás dejan
+    al niño y se van) de primaria/secundaria/prepa (203 — los alumnos compran su comida), que
+    para un QSR es la diferencia entre un ancla real y una irrelevante.
+  - `5221` → "Bancos": **limpio**, 93 de 93 banca múltiple.
+  - `71394` → "Gimnasios": prácticamente limpio (129 acondicionamiento físico + 8 clubes).
+- **Decisión:** clasificación por **código SCIAN exacto** con diccionario explícito. Categorías
+  nuevas: `supermercado` (25), `minisuper` (228), `farmacia` (125), `naturista` (47),
+  `banco` (93), `escuela_basica` (203), `preescolar` (119), `universidad` (29),
+  `escuela_otra` (177), `gimnasio` (137). Mismo principio que D-013 y que las alitas: **separar
+  en categorías honestas en vez de lumpear bajo una etiqueta que miente.**
+- **Decisión (arquitectura):** las anclas pasan al **mismo padrón** que los restaurantes
+  (2,985 registros). Sus conteos y sus listas abribles se derivan del **mismo cálculo** en
+  `build_appdata.py`, igual que la competencia. Verificado: **0 descuadres** en las 42 colonias
+  sobre competencia y anclas juntas.
+- **Hallazgo de negocio que destapa:** **El Cercado no tiene un solo supermercado a 2 km**
+  (13 minisúperes). Antes el radar decía "13 supermercados" y eso pintaba un entorno comercial
+  que no existe. Contry tiene 5 supermercados reales, no 57.
+- **Revisión de la asignación de colonias (sin cambios):** se auditaron los 12,554
+  establecimientos del corredor contra los tokens de `colonias.json`. **Ningún asentamiento cae
+  en dos colonias a la vez** — los tokens están limpios. Cobertura 70.7%, ya documentada.
+  **Pendiente marcado, no resuelto:** el centro de cada colonia se promedia con sus propios
+  establecimientos, y hay colonias con muy pocos (La Herradura 26, Del Paseo Residencial 27,
+  Los Cristales 28). Su centro —y por tanto todo su catchment de 2 km— tiene más margen de
+  error que el de Altavista, que tiene cientos. Hoy la app las presenta con la misma autoridad.
+- **Reemplaza:** corrige la definición de anclas de D-006. No toca D-013 (que corrigió la
+  clasificación de restaurantes) ni D-012.

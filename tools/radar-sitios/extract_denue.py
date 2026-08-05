@@ -101,15 +101,47 @@ def categoria(nombre: str) -> str:
             return cat
     return "otro"
 
-# Anclas de demanda: otras unidades económicas del corredor (no competidores), por SCIAN.
-# Generan tráfico / demanda alrededor de un local candidato.
-ANCLAS = {
-    "escuela": lambda a: a.startswith("611"),
-    "supermercado": lambda a: a.startswith("4621"),
-    "banco": lambda a: a.startswith("5221"),
-    "farmacia": lambda a: a.startswith("46411"),
-    "gimnasio": lambda a: a.startswith("71394"),
+# ─────────────────────────── Anclas de demanda ───────────────────────────
+#
+# Por CÓDIGO SCIAN exacto, no por prefijo. El prefijo mentía sobre la etiqueta
+# (D-014): "4621" mete 228 minisúperes junto a 25 supermercados de verdad;
+# "46411" mete 47 tiendas naturistas entre las farmacias; y "611" mete escuelas
+# de arte, de deporte y profesores particulares junto a las primarias.
+# Un Soriana y una tiendita de esquina no son la misma ancla para un local.
+ANCLA_POR_CODIGO = {
+    "462111": "supermercado",       # 25
+    "462112": "minisuper",          # 228
+    "464111": "farmacia",           # sin minisúper
+    "464112": "farmacia",           # con minisúper
+    "464113": "naturista",          # NO es farmacia: naturistas y homeopáticos
+    "522110": "banco",
+    "611111": "preescolar", "611112": "preescolar",
+    "611121": "escuela_basica", "611122": "escuela_basica",   # primaria
+    "611131": "escuela_basica", "611132": "escuela_basica",   # secundaria
+    "611142": "escuela_basica", "611151": "escuela_basica",
+    "611161": "escuela_basica", "611162": "escuela_basica",   # media superior
+    "611171": "escuela_basica", "611172": "escuela_basica",   # multinivel
+    "611211": "universidad", "611311": "universidad", "611312": "universidad",
 }
+# El resto de 611* (arte, deporte, idiomas, oficios, necesidades especiales,
+# profesores particulares) y 71394* (gimnasios y clubes) se resuelven por prefijo.
+ANCLA_POR_PREFIJO = (("611", "escuela_otra"), ("71394", "gimnasio"))
+
+# Categorías que el app agrupa como "anclas de demanda" (generan tráfico).
+CATS_ANCLA = ("supermercado", "minisuper", "farmacia", "naturista", "banco",
+              "escuela_basica", "preescolar", "universidad", "escuela_otra", "gimnasio")
+
+
+def ancla(codigo_act: str) -> str | None:
+    """Categoría de ancla por código SCIAN exacto; None si no es ancla."""
+    a = (codigo_act or "").strip()
+    if a in ANCLA_POR_CODIGO:
+        return ANCLA_POR_CODIGO[a]
+    for pref, cat in ANCLA_POR_PREFIJO:
+        if a.startswith(pref):
+            return cat
+    return None
+
 
 
 def norm(s: str) -> str:
@@ -223,16 +255,27 @@ def main() -> int:
                     pollo.append({**reg, "pollo_frito": cat == "pollo_frito"})
                 continue
 
-            for cat, fn in ANCLAS.items():  # anclas de demanda (no restaurantes)
-                if fn(act):
-                    ancla_counts.setdefault(cat, {})
-                    ancla_counts[cat][tramo] = ancla_counts[cat].get(tramo, 0) + 1
-                    anclas.append({
-                        "nombre": (row.get("nom_estab") or "").strip()[:40],
-                        "cat": cat, "tramo": tramo, "municipio": mun,
-                        "lat": lat, "lon": lon,
-                    })
-                    break
+            cat_a = ancla(act)                  # anclas de demanda (no restaurantes)
+            if cat_a:
+                ancla_counts.setdefault(cat_a, {})
+                ancla_counts[cat_a][tramo] = ancla_counts[cat_a].get(tramo, 0) + 1
+                nom_a = (row.get("nom_estab") or "").strip()
+                anclas.append({
+                    "nombre": nom_a[:40], "cat": cat_a, "tramo": tramo,
+                    "municipio": mun, "lat": lat, "lon": lon,
+                })
+                # Las anclas viven en el MISMO padrón que los restaurantes: así sus
+                # conteos también salen de un solo cálculo y también son abribles.
+                todos.append({
+                    "nombre": nom_a, "cat": cat_a, "scian": act,
+                    "actividad": (row.get("nombre_act") or "").strip(),
+                    "tramo": tramo, "colonia": (row.get("nomb_asent") or "").strip(),
+                    "municipio": mun, "ageb": (row.get("ageb") or "").strip(),
+                    "cp": (row.get("cod_postal") or "").strip(),
+                    "personal": (row.get("per_ocu") or "").strip(),
+                    "lat": lat, "lon": lon,
+                    "fuente": "DENUE INEGI 19 (may-2026)", "confianza": "V-DENUE",
+                })
 
     pollo.sort(key=lambda x: (x["municipio"], not x["pollo_frito"], x["colonia"]))
     DATA.mkdir(exist_ok=True)
@@ -246,7 +289,7 @@ def main() -> int:
     (DATA / "establecimientos_corredor.json").write_text(
         json.dumps({"_meta": {"fuente": "DENUE INEGI Nuevo León, corte may-2026",
                               "corte": "2026-05-12", "confianza": "V-DENUE",
-                              "universo": "SCIAN 722* (restaurantes) dentro del corredor",
+                              "universo": "restaurantes 722* + anclas de demanda del corredor",
                               "categoria_por": "nom_estab; NO se usa nombre_act (ver D-013)",
                               "n": len(todos)}, "establecimientos": todos},
                    ensure_ascii=False, indent=1), encoding="utf-8")
