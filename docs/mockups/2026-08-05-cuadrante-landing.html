@@ -1,0 +1,737 @@
+<title>Cuadrante — Inteligencia de ubicación para restaurantes</title>
+
+<style>
+  :root {
+    --ground: #f7f6f2;
+    --panel: #ffffff;
+    --line: #e3e1d9;
+    --ink: #1c2422;
+    --ink-2: #5b6561;
+    --ink-3: #8b948f;
+    --accent: #135e56;
+    --accent-ink: #ffffff;
+    --accent-soft: #135e5614;
+    --beta-bg: #fef3c7;
+    --beta-ink: #78350f;
+    --beta-line: #fcd34d;
+    --ok: #135e56;
+    --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #131917; --panel: #1b2220; --line: #2d3733;
+      --ink: #e9ece9; --ink-2: #a3aca7; --ink-3: #727b76;
+      --accent: #3aa79a; --accent-ink: #0c1513; --accent-soft: #3aa79a1f;
+      --beta-bg: #78350f2b; --beta-ink: #fcd34d; --beta-line: #92400e;
+      --ok: #3aa79a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #131917; --panel: #1b2220; --line: #2d3733;
+    --ink: #e9ece9; --ink-2: #a3aca7; --ink-3: #727b76;
+    --accent: #3aa79a; --accent-ink: #0c1513; --accent-soft: #3aa79a1f;
+    --beta-bg: #78350f2b; --beta-ink: #fcd34d; --beta-line: #92400e;
+    --ok: #3aa79a;
+  }
+  :root[data-theme="light"] {
+    --ground: #f7f6f2; --panel: #ffffff; --line: #e3e1d9;
+    --ink: #1c2422; --ink-2: #5b6561; --ink-3: #8b948f;
+    --accent: #135e56; --accent-ink: #ffffff; --accent-soft: #135e5614;
+    --beta-bg: #fef3c7; --beta-ink: #78350f; --beta-line: #fcd34d;
+    --ok: #135e56;
+  }
+
+  .cq { background: var(--ground); color: var(--ink); font-family: var(--sans);
+    font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; min-height: 100dvh; }
+  .cq *, .cq *::before, .cq *::after { box-sizing: border-box; }
+  .cq h1, .cq h2, .cq h3 { margin: 0; text-wrap: balance; letter-spacing: -0.025em; }
+  .cq p, .cq ul, .cq dl { margin: 0; }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 22px; }
+
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--ground) 92%, transparent);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav-in { display: flex; align-items: center; gap: 20px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px;
+    letter-spacing: -0.02em; color: var(--ink); text-decoration: none; flex: none; }
+  .logo svg { display: block; }
+  .nav-links { display: none; gap: 4px; margin-left: auto; }
+  @media (min-width: 760px) { .nav-links { display: flex; } }
+  .nav-links a { padding: 7px 12px; border-radius: 8px; font-size: 13.5px; font-weight: 550;
+    color: var(--ink-2); text-decoration: none; }
+  .nav-links a:hover { background: var(--accent-soft); color: var(--ink); }
+  .nav-cta { margin-left: auto; }
+  @media (min-width: 760px) { .nav-cta { margin-left: 8px; } }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 20px; border-radius: 10px; border: 1px solid transparent; font: inherit;
+    font-size: 14.5px; font-weight: 600; cursor: pointer; text-decoration: none;
+    transition: transform .12s, background .15s, border-color .15s; }
+  .btn:active { transform: translateY(1px); }
+  .btn-solid { background: var(--accent); color: var(--accent-ink); }
+  .btn-solid:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
+  .btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+  .btn-ghost:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .btn-sm { padding: 8px 14px; font-size: 13px; border-radius: 8px; }
+  .cq :is(a, button, input, summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* hero */
+  .hero { padding: 72px 0 64px; }
+  .hero-grid { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 920px) { .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 56px; } }
+  .beta { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px; border-radius: 999px;
+    background: var(--beta-bg); color: var(--beta-ink); border: 1px solid var(--beta-line);
+    font-size: 11.5px; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
+  .beta .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .hero h1 { margin-top: 20px; font-size: clamp(30px, 4.6vw, 46px); font-weight: 750; line-height: 1.06; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero .sub { margin-top: 18px; max-width: 54ch; font-size: 16.5px; line-height: 1.65; color: var(--ink-2); }
+  .hero-ctas { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-note { margin-top: 16px; font-size: 12.5px; color: var(--ink-3); }
+
+  /* tarjeta demo del hero (reusa la del demo grande) */
+  .zcard { background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: 0 14px 40px -18px color-mix(in srgb, var(--ink) 25%, transparent); overflow: hidden; }
+  .zcard-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    padding: 18px 22px 0; }
+  .zcard-head h3 { font-size: 17px; font-weight: 700; }
+  .zcard-head .mun { font-size: 12px; color: var(--ink-3); }
+  .zgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line);
+    margin-top: 16px; border-top: 1px solid var(--line); }
+  .zcell { background: var(--panel); padding: 14px 16px 15px; }
+  .zcell dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums;
+    font-size: 21px; font-weight: 700; line-height: 1.1; }
+  .zcell dt { margin-top: 3px; font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--ink-3); }
+  .zcell.hit dd { color: var(--accent); }
+  .zcell button.open { all: unset; cursor: pointer; display: block; width: 100%; }
+  .zcell button.open dd { text-decoration: underline; text-decoration-style: dotted;
+    text-underline-offset: 5px; }
+  .zcell button.open:hover dd { color: var(--accent); }
+  .zfoot { padding: 12px 22px 16px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--line); }
+
+  /* strip fuentes */
+  .sources { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    background: var(--panel); }
+  .sources-in { display: flex; flex-wrap: wrap; gap: 10px 34px; align-items: center;
+    justify-content: center; padding: 18px 0; }
+  .sources span { font-size: 12.5px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-3); }
+
+  section.blk { padding: 76px 0 0; }
+  .kicker { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); }
+  .blk h2 { margin-top: 12px; font-size: clamp(24px, 3.2vw, 33px); font-weight: 720; }
+  .blk .lead { margin-top: 14px; max-width: 62ch; font-size: 15.5px; line-height: 1.65; color: var(--ink-2); }
+
+  /* problema */
+  .duo { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line);
+    border-radius: 14px; overflow: hidden; margin-top: 36px; }
+  @media (min-width: 760px) { .duo { grid-template-columns: 1fr 1fr; } }
+  .duo > div { background: var(--panel); padding: 28px; }
+  .duo h3 { font-size: 16px; font-weight: 700; }
+  .duo .tagline { margin-top: 4px; font-family: var(--mono); font-size: 13px; color: var(--ink-3); }
+  .duo p { margin-top: 12px; font-size: 14px; line-height: 1.65; color: var(--ink-2); }
+
+  /* demo */
+  .demo-box { margin-top: 36px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel);
+    font: inherit; font-size: 13px; font-weight: 550; color: var(--ink-2); cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s; }
+  .chip:hover { border-color: var(--accent); color: var(--ink); }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .demo-card { margin-top: 20px; }
+  .zgrid.big { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 700px) { .zgrid.big { grid-template-columns: repeat(4, 1fr); } }
+  .drill { border-top: 1px solid var(--line); background: var(--accent-soft); padding: 16px 22px; }
+  .drill[hidden] { display: none; }
+  .drill h4 { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--accent); }
+  .drill ul { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+  .drill li { font-family: var(--mono); font-size: 13px; }
+  .drill .none { margin-top: 8px; font-size: 13.5px; color: var(--ink-2); }
+  .demo-note { margin-top: 14px; font-size: 12.5px; color: var(--ink-3); max-width: 74ch; }
+
+  /* diferenciador */
+  .proof { margin-top: 36px; display: grid; gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  @media (min-width: 860px) { .proof { grid-template-columns: 1.1fr 0.9fr; } }
+  .proof > div { background: var(--panel); padding: 30px; }
+  .proof h3 { font-size: 17px; font-weight: 700; }
+  .proof p { margin-top: 12px; font-size: 14.5px; line-height: 1.7; color: var(--ink-2); }
+  .proof p b { color: var(--ink); font-weight: 650; }
+  .ledger { font-family: var(--mono); font-size: 13px; border: 1px solid var(--line);
+    border-radius: 10px; overflow: hidden; margin-top: 6px; }
+  .ledger .row { display: flex; justify-content: space-between; gap: 14px; padding: 10px 14px;
+    border-bottom: 1px solid var(--line); }
+  .ledger .row:last-child { border-bottom: 0; }
+  .ledger .row.head { background: var(--accent-soft); font-weight: 700; color: var(--accent);
+    font-family: var(--sans); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; }
+  .ledger .bad { color: var(--ink-3); text-decoration: line-through; }
+  .ledger .good { font-weight: 700; }
+
+  /* pasos */
+  .steps { margin-top: 36px; display: grid; gap: 26px; counter-reset: paso; }
+  @media (min-width: 800px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 34px; } }
+  .step { counter-increment: paso; padding-top: 18px; border-top: 2px solid var(--line); position: relative; }
+  .step::before { content: counter(paso, decimal-leading-zero); font-family: var(--mono);
+    font-size: 13px; font-weight: 700; color: var(--accent); }
+  .step h3 { margin-top: 8px; font-size: 16px; font-weight: 700; }
+  .step p { margin-top: 8px; font-size: 14px; line-height: 1.65; color: var(--ink-2); }
+
+  /* precios */
+  .bill { display: flex; align-items: center; gap: 12px; margin-top: 26px; font-size: 13.5px; color: var(--ink-2); }
+  .switch { position: relative; width: 46px; height: 26px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--panel); cursor: pointer; padding: 0; }
+  .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px;
+    border-radius: 50%; background: var(--accent); transition: transform .18s; }
+  .switch[aria-checked="true"]::after { transform: translateX(20px); }
+  .bill .save { color: var(--accent); font-weight: 650; }
+  .plans { margin-top: 26px; display: grid; gap: 18px; }
+  @media (min-width: 900px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+  .plan { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px;
+    display: flex; flex-direction: column; }
+  .plan.star { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .plan .tag { align-self: flex-start; font-size: 10.5px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--accent); background: var(--accent-soft);
+    padding: 3px 10px; border-radius: 999px; }
+  .plan h3 { margin-top: 12px; font-size: 18px; font-weight: 700; }
+  .plan .who { margin-top: 4px; font-size: 13px; color: var(--ink-3); }
+  .price { margin-top: 18px; display: flex; align-items: baseline; gap: 6px; }
+  .price .n { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 32px;
+    font-weight: 750; letter-spacing: -0.02em; }
+  .price .per { font-size: 13px; color: var(--ink-3); }
+  .plan ul { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 9px;
+    font-size: 13.5px; color: var(--ink-2); }
+  .plan li { display: flex; gap: 9px; align-items: flex-start; }
+  .plan li svg { flex: none; margin-top: 3px; color: var(--ok); }
+  .plan .btn { margin-top: 24px; }
+  .plans-note { margin-top: 16px; font-size: 12.5px; color: var(--ink-3); }
+
+  /* faq */
+  .faq { margin-top: 34px; border-top: 1px solid var(--line); max-width: 780px; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; padding: 18px 4px; font-size: 15px; font-weight: 650;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-family: var(--mono); font-size: 18px; color: var(--ink-3);
+    transition: transform .15s; flex: none; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq .a { padding: 0 4px 20px; max-width: 68ch; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+
+  /* cta final / form */
+  .final { margin: 84px 0 0; background: var(--panel); border-top: 1px solid var(--line); }
+  .final-in { padding: 64px 0 72px; display: grid; gap: 40px; }
+  @media (min-width: 900px) { .final-in { grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; } }
+  .final h2 { font-size: clamp(23px, 3vw, 30px); font-weight: 720; }
+  .final p { margin-top: 14px; max-width: 52ch; font-size: 15px; line-height: 1.65; color: var(--ink-2); }
+  .wform { display: grid; gap: 12px; }
+  .wform label { font-size: 13px; font-weight: 650; }
+  .wform input { padding: 13px 16px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--ground); color: var(--ink); font: inherit; font-size: 15px; }
+  .wform input::placeholder { color: var(--ink-3); }
+  .wform .err { font-size: 12.5px; color: #b4231f; min-height: 16px; }
+  :root[data-theme="dark"] .wform .err { color: #f87171; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wform .err { color: #f87171; } }
+  .wform .okmsg { display: none; padding: 16px 18px; border-radius: 10px; background: var(--accent-soft);
+    border: 1px solid var(--accent); font-size: 14px; line-height: 1.6; }
+  .wform.done .okmsg { display: block; }
+  .wform.done .field, .wform.done .btn, .wform.done .err { display: none; }
+
+  footer.ft { border-top: 1px solid var(--line); }
+  .ft-in { padding: 26px 0 34px; display: flex; flex-wrap: wrap; gap: 10px 28px;
+    justify-content: space-between; font-size: 12.5px; color: var(--ink-3); }
+  .ft-in b { color: var(--ink-2); font-weight: 650; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cq * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="cq">
+  <nav class="nav" aria-label="Principal">
+    <div class="wrap nav-in">
+      <a class="logo" href="#top" aria-label="Cuadrante, inicio">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2" y="2" width="9" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <rect x="13" y="2" width="9" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <rect x="2" y="13" width="9" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <rect x="13" y="13" width="9" height="9" rx="2" fill="var(--accent)" stroke="var(--accent)" stroke-width="2"/>
+        </svg>
+        Cuadrante
+      </a>
+      <div class="nav-links">
+        <a href="#demo">Demo</a>
+        <a href="#metodo">Método</a>
+        <a href="#precios">Precios</a>
+        <a href="#faq">Preguntas</a>
+      </div>
+      <a class="btn btn-solid btn-sm nav-cta" href="#beta">Unirme a la beta</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="beta"><span class="dot"></span>Beta privada</span>
+        <h1>Elige la zona de tu próximo restaurante con números que <em>se pueden abrir</em>.</h1>
+        <p class="sub">
+          Población, competencia real y anclas de demanda alrededor de cualquier punto de la ciudad,
+          construido sobre el censo económico oficial. Cada cifra se abre con un clic y muestra los
+          negocios que la componen — antes de que firmes el contrato de renta.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" href="#demo">Probar con datos reales</a>
+          <a class="btn btn-ghost" href="#metodo">Ver cómo funciona</a>
+        </div>
+        <p class="hero-note">Sin registro para el demo. Datos reales del corredor sur de Monterrey.</p>
+      </div>
+
+      <div class="zcard" aria-label="Ejemplo de análisis de zona">
+        <div class="zcard-head">
+          <h3 id="hz-name">Las Brisas</h3>
+          <span class="mun" id="hz-mun">Monterrey · radio 2 km</span>
+        </div>
+        <dl class="zgrid">
+          <div class="zcell hit"><dd class="num" id="hz-pob">68,000</dd><dt>personas</dt></div>
+          <div class="zcell"><dd class="num" id="hz-rest">323</dd><dt>restaurantes</dt></div>
+          <div class="zcell hit"><dd class="num" id="hz-frito">0</dd><dt>pollo frito</dt></div>
+        </dl>
+        <div class="zfoot">Fuente: DENUE INEGI may-2026 + Censo 2020 · cada número es auditable</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="sources" role="group" aria-label="Fuentes de datos">
+    <div class="wrap sources-in">
+      <span>DENUE · INEGI</span>
+      <span>Censo de Población 2020</span>
+      <span>SICT Datos Viales</span>
+      <span>Observatorios de turismo</span>
+    </div>
+  </div>
+
+  <section class="blk">
+    <div class="wrap">
+      <p class="kicker">El problema</p>
+      <h2>Hoy solo hay dos maneras de elegir zona. Las dos son malas.</h2>
+      <div class="duo">
+        <div>
+          <h3>El estudio de geomarketing</h3>
+          <p class="tagline">$40,000–120,000 MXN · semanas de espera</p>
+          <p>
+            Recibes un PDF con conclusiones que no puedes cuestionar. Si el consultor contó mal la
+            competencia — y el censo se presta a contarla mal — nunca lo vas a saber.
+          </p>
+        </div>
+        <div>
+          <h3>El olfato</h3>
+          <p class="tagline">$0 · el método del 90%</p>
+          <p>
+            "Se ve que pasa gente." La causa número uno de cierre de restaurantes es la ubicación,
+            y la mayoría se decide sin un solo dato duro sobre la mesa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="demo">
+    <div class="wrap">
+      <p class="kicker">Demo en vivo</p>
+      <h2>Pruébalo con datos reales de Monterrey.</h2>
+      <p class="lead">
+        Estas son 11 zonas del corredor sur, con sus cifras reales de hoy. Elige una, y luego haz
+        clic en el número de pollo frito: verás los locales que lo componen, por nombre.
+      </p>
+
+      <div class="demo-box">
+        <div class="chips" id="demo-chips" role="group" aria-label="Elegir zona"></div>
+
+        <div class="zcard demo-card">
+          <div class="zcard-head">
+            <h3 id="dz-name">Las Brisas</h3>
+            <span class="mun" id="dz-mun">Monterrey · radio 2 km</span>
+          </div>
+          <dl class="zgrid big" id="dz-grid"></dl>
+          <div class="drill" id="dz-drill" hidden>
+            <h4 id="dz-drill-t">Locales de pollo frito a 2 km</h4>
+            <div id="dz-drill-b"></div>
+          </div>
+          <div class="zfoot">
+            DENUE INEGI (may-2026) + Censo 2020 · supermercados y minisúperes van separados —
+            el censo los agrupa y no son la misma ancla.
+          </div>
+        </div>
+
+        <p class="demo-note">
+          El producto completo cubre cualquier zona de la ciudad, agrega escolaridad, turismo,
+          aforo vehicular y estimación de venta, y exporta el reporte con cada fuente citada.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="metodo">
+    <div class="wrap">
+      <p class="kicker">Por qué se puede confiar</p>
+      <h2>El censo oficial miente en las etiquetas. Nuestro trabajo es la diferencia.</h2>
+      <div class="proof">
+        <div>
+          <h3>Un ejemplo real</h3>
+          <p>
+            El código oficial de "supermercados" en el corredor sur de Monterrey devuelve
+            <b>253 resultados</b>. Al abrirlos uno por uno: <b>228 son minisúperes</b> — tienditas
+            de esquina — y solo <b>25 son supermercados de verdad</b>. Para decidir dónde rentar un
+            local, esa diferencia lo es todo: un Soriana ancla una compra semanal; una tiendita no.
+          </p>
+          <p>
+            Encontramos y corregimos este tipo de errores porque construimos la herramienta para
+            decidir la ubicación de <b>nuestra propia franquicia</b>, con nuestro propio dinero.
+            Cada corrección quedó codificada y documentada. Por eso cada número del producto se
+            puede abrir: para que tú también puedas revisarnos.
+          </p>
+        </div>
+        <div>
+          <div class="ledger" role="img" aria-label="Ejemplo: 253 supermercados según el censo; 25 reales tras la curaduría">
+            <div class="row head"><span>"Supermercados" según el censo</span><span>253</span></div>
+            <div class="row"><span class="bad">Minisúperes contados como súper</span><span class="bad">228</span></div>
+            <div class="row"><span class="good">Supermercados reales</span><span class="good">25</span></div>
+            <div class="row head"><span>"Farmacias" según el censo</span><span>172</span></div>
+            <div class="row"><span class="bad">Tiendas naturistas</span><span class="bad">47</span></div>
+            <div class="row"><span class="good">Farmacias reales</span><span class="good">125</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <h3>Dinos tu giro y tu ciudad</h3>
+          <p>Pollo, café, pizza, gimnasio — la competencia y las anclas se definen según lo que vendes.</p>
+        </div>
+        <div class="step">
+          <h3>Corremos el censo completo</h3>
+          <p>Cada negocio de la zona, georreferenciado, clasificado y curado contra los errores conocidos de las fuentes.</p>
+        </div>
+        <div class="step">
+          <h3>Decides con el radar enfrente</h3>
+          <p>Comparas zonas, abres cualquier cifra hasta el negocio individual, y exportas el reporte con las fuentes citadas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="precios">
+    <div class="wrap">
+      <p class="kicker">Precios</p>
+      <h2>Una fracción del estudio tradicional. Y auditable.</h2>
+
+      <div class="bill">
+        <span id="bill-m">Mensual</span>
+        <button class="switch" id="bill-sw" role="switch" aria-checked="false" aria-label="Cambiar a facturación anual"></button>
+        <span id="bill-a">Anual <span class="save">— 2 meses gratis</span></span>
+      </div>
+
+      <div class="plans">
+        <div class="plan">
+          <span class="tag">Una vez</span>
+          <h3>Reporte de zona</h3>
+          <p class="who">Para decidir un local hoy</p>
+          <div class="price"><span class="n">$9,500</span><span class="per">MXN por corredor</span></div>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Hasta 40 zonas comparadas en un corredor</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Competencia, anclas y demografía auditables</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Reporte exportable con fuentes citadas</li>
+          </ul>
+          <a class="btn btn-ghost" href="#beta">Pedir un reporte</a>
+        </div>
+
+        <div class="plan star">
+          <span class="tag">Más elegido</span>
+          <h3>Expansión</h3>
+          <p class="who">Para cadenas que abren 2–10 locales al año</p>
+          <div class="price"><span class="n num" id="p-exp">$4,900</span><span class="per" id="p-exp-per">MXN / mes por ciudad</span></div>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Ciudad completa, zonas ilimitadas</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Puntos óptimos multi-zona sin doble conteo</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Actualización con cada corte del censo</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Lista de finalistas compartida con tus socios</li>
+          </ul>
+          <a class="btn btn-solid" href="#beta">Entrar a la beta</a>
+        </div>
+
+        <div class="plan">
+          <span class="tag">Marca blanca</span>
+          <h3>Franquiciador</h3>
+          <p class="who">Para redes que venden ubicaciones a franquiciatarios</p>
+          <div class="price"><span class="n num" id="p-fr">$19,500</span><span class="per" id="p-fr-per">MXN / mes, desde</span></div>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Con tu marca, para toda tu red</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Territorios y exclusividades sobre el mapa</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12l5 5L20 7"/></svg>Modelo calibrado con las ventas de tu red</li>
+          </ul>
+          <a class="btn btn-ghost" href="#beta">Hablar con nosotros</a>
+        </div>
+      </div>
+      <p class="plans-note">Precios de lanzamiento de la beta, sin IVA. El demo es gratis y no pide registro.</p>
+    </div>
+  </section>
+
+  <section class="blk" id="faq">
+    <div class="wrap">
+      <p class="kicker">Preguntas frecuentes</p>
+      <h2>Lo que nos preguntan antes de entrar.</h2>
+      <div class="faq">
+        <details>
+          <summary>¿De dónde salen los datos?</summary>
+          <p class="a">
+            Del DENUE del INEGI (el directorio oficial de todos los negocios del país, corte
+            semestral), del Censo de Población y Vivienda 2020, de los aforos viales de la SICT y
+            de los observatorios estatales de turismo. Todas son fuentes públicas oficiales; el
+            valor está en la clasificación curada y en que cada cifra es rastreable hasta el
+            negocio individual.
+          </p>
+        </details>
+        <details>
+          <summary>¿Qué tan actualizados están?</summary>
+          <p class="a">
+            El censo de negocios se actualiza dos veces al año (el corte actual es mayo 2026) y tu
+            radar se refresca con cada corte. Es una foto semestral muy completa, no un feed en
+            tiempo real — y lo decimos tal cual, porque el resto del mercado no lo aclara.
+          </p>
+        </details>
+        <details>
+          <summary>¿Funciona para giros que no son restaurantes?</summary>
+          <p class="a">
+            La metodología sí: competencia + anclas + demografía aplica a gimnasios, farmacias,
+            cafeterías o escuelas. La beta está enfocada en restaurantes porque ahí está curada la
+            clasificación; otros giros se abren después.
+          </p>
+        </details>
+        <details>
+          <summary>¿En qué ciudades está disponible?</summary>
+          <p class="a">
+            Hoy: zona metropolitana de Monterrey. Las fuentes cubren todo México, así que abrir una
+            ciudad nueva toma días, no meses — las siguientes se priorizan por la lista de espera.
+          </p>
+        </details>
+        <details>
+          <summary>¿Esto me dice dónde poner mi local?</summary>
+          <p class="a">
+            Te dice cuánta gente, cuánta competencia real y qué anclas hay alrededor de cada zona
+            candidata — y te deja verificar cada cifra. La decisión sigue siendo tuya: la
+            herramienta presenta el trade-off, no lo esconde detrás de un "score" mágico.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="final" id="beta">
+    <div class="wrap final-in">
+      <div>
+        <h2>La beta abre por lista de espera.</h2>
+        <p>
+          Estamos incorporando cadenas y franquiciadores de a poco, para calibrar el producto con
+          sus números reales. Déjanos tu correo y te contactamos con el siguiente lote — sin spam
+          y sin compromiso.
+        </p>
+      </div>
+      <form class="wform" id="wl-form" novalidate>
+        <div class="field">
+          <label for="wl-name">Nombre</label>
+          <input id="wl-name" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" />
+        </div>
+        <div class="field">
+          <label for="wl-email">Correo</label>
+          <input id="wl-email" name="correo" type="email" autocomplete="email" placeholder="tucorreo@empresa.com" required />
+        </div>
+        <div class="field">
+          <label for="wl-biz">Tu negocio <span style="font-weight:400;color:var(--ink-3)">(opcional)</span></label>
+          <input id="wl-biz" name="negocio" type="text" placeholder="Cadena de 5 sucursales, franquiciador, broker…" />
+        </div>
+        <p class="err" id="wl-err" role="alert"></p>
+        <button class="btn btn-solid" type="submit">Apuntarme a la beta</button>
+        <div class="okmsg" id="wl-ok">
+          <b>Listo — quedaste en la lista.</b> Te escribimos cuando abra el siguiente lote de la
+          beta. Mientras, el demo de arriba queda abierto para que lo compartas.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="ft">
+    <div class="wrap ft-in">
+      <span><b>Cuadrante</b> · inteligencia de ubicación para restaurantes · Monterrey, MX</span>
+      <span>Maqueta de producto en desarrollo · demo con datos reales, sin conexión a base de datos</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(() => {
+  // ── Datos REALES del corredor sur de Monterrey (DENUE may-2026 + Censo 2020) ──
+  const Z = [
+    {"n":"Las Brisas","m":"Monterrey","pob":68000,"rest":323,"frito":0,"alitas":5,"hamb":13,"sup":5,"mini":34,"farm":22,"esc":38,"fritos":[]},
+    {"n":"Tecnológico","m":"Monterrey","pob":104000,"rest":612,"frito":5,"alitas":12,"hamb":23,"sup":8,"mini":69,"farm":37,"esc":45,"fritos":["KENTUCKY FRIED CHICKEN","CRISPY TENDERS","FRIED CHICKEN LOUSIANA","CAPTAIN FRIED CHICKEN"]},
+    {"n":"Altavista","m":"Monterrey","pob":97739,"rest":605,"frito":5,"alitas":14,"hamb":28,"sup":6,"mini":65,"farm":39,"esc":46,"fritos":["KENTUCKY FRIED CHICKEN","CRISPY TENDERS","FRIED CHICKEN LOUSIANA","CAPTAIN FRIED CHICKEN"]},
+    {"n":"Contry","m":"Monterrey","pob":77698,"rest":468,"frito":3,"alitas":7,"hamb":19,"sup":5,"mini":52,"farm":27,"esc":43,"fritos":["SUC KFC 625 COUNTRY","CRISPY TENDERS","CAPTAIN FRIED CHICKEN"]},
+    {"n":"Altamira","m":"Monterrey","pob":69313,"rest":332,"frito":2,"alitas":5,"hamb":17,"sup":4,"mini":39,"farm":22,"esc":39,"fritos":["SUC KFC 625 COUNTRY","CAPTAIN FRIED CHICKEN"]},
+    {"n":"Sierra Ventana","m":"Monterrey","pob":66465,"rest":386,"frito":2,"alitas":6,"hamb":16,"sup":4,"mini":43,"farm":24,"esc":45,"fritos":["SUC KFC 625 COUNTRY","CAPTAIN FRIED CHICKEN"]},
+    {"n":"Del Paseo Residencial","m":"Monterrey","pob":57933,"rest":274,"frito":1,"alitas":4,"hamb":14,"sup":5,"mini":26,"farm":14,"esc":37,"fritos":["CAPTAIN FRIED CHICKEN"]},
+    {"n":"Villa Las Fuentes","m":"Monterrey","pob":54535,"rest":199,"frito":1,"alitas":4,"hamb":6,"sup":4,"mini":29,"farm":18,"esc":24,"fritos":["BONANZA POLLO FRITO"]},
+    {"n":"San Ángel","m":"Monterrey","pob":51996,"rest":260,"frito":1,"alitas":5,"hamb":9,"sup":3,"mini":33,"farm":22,"esc":32,"fritos":["BONANZA POLLO FRITO"]},
+    {"n":"La Estanzuela","m":"Monterrey","pob":44674,"rest":156,"frito":0,"alitas":0,"hamb":5,"sup":6,"mini":24,"farm":13,"esc":24,"fritos":[]},
+    {"n":"El Cercado","m":"Santiago","pob":13215,"rest":129,"frito":0,"alitas":2,"hamb":9,"sup":0,"mini":13,"farm":9,"esc":17,"fritos":[]}
+  ];
+  const fmt = n => n.toLocaleString("es-MX");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ── contador animado ──
+  function count(el, to) {
+    if (reduced) { el.textContent = fmt(to); return; }
+    const from = parseInt(el.dataset.v || "0", 10);
+    el.dataset.v = String(to);
+    const t0 = performance.now(), dur = 420;
+    function tick(t) {
+      const p = Math.min(1, (t - t0) / dur);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(from + (to - from) * e));
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ── hero: rota entre 3 zonas contrastantes ──
+  const heroZs = [Z[0], Z[1], Z[10]];
+  let hi = 0;
+  const hzP = document.getElementById("hz-pob"), hzR = document.getElementById("hz-rest"),
+        hzF = document.getElementById("hz-frito"), hzN = document.getElementById("hz-name"),
+        hzM = document.getElementById("hz-mun");
+  function heroPaint(z) {
+    hzN.textContent = z.n; hzM.textContent = z.m + " · radio 2 km";
+    count(hzP, z.pob); count(hzR, z.rest); count(hzF, z.frito);
+  }
+  heroPaint(heroZs[0]);
+  if (!reduced) setInterval(() => { hi = (hi + 1) % heroZs.length; heroPaint(heroZs[hi]); }, 4200);
+
+  // ── demo grande ──
+  const chips = document.getElementById("demo-chips");
+  const grid = document.getElementById("dz-grid");
+  const drill = document.getElementById("dz-drill");
+  const drillT = document.getElementById("dz-drill-t");
+  const drillB = document.getElementById("dz-drill-b");
+  let cur = Z[0], drillKey = null;
+
+  const CELLS = [
+    ["pob", "personas", true, null],
+    ["rest", "restaurantes", false, null],
+    ["frito", "pollo frito", true, "fritos"],
+    ["alitas", "alitas y boneless", false, null],
+    ["hamb", "hamburguesas", false, null],
+    ["sup", "supermercados", false, null],
+    ["mini", "minisúperes", false, null],
+    ["esc", "escuelas básicas", false, null],
+  ];
+
+  function paintGrid() {
+    grid.textContent = "";
+    for (const [k, label, hit, drillable] of CELLS) {
+      const cell = document.createElement("div");
+      cell.className = "zcell" + (hit ? " hit" : "");
+      const val = fmt(cur[k]);
+      if (drillable) {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "open";
+        b.setAttribute("aria-label", `Abrir la lista de ${label}`);
+        b.innerHTML = `<dd class="num">${val}</dd><dt>${label} — clic para abrir</dt>`;
+        b.addEventListener("click", () => toggleDrill(drillable, label));
+        cell.append(b);
+      } else {
+        cell.innerHTML = `<dd class="num">${val}</dd><dt>${label}</dt>`;
+      }
+      grid.append(cell);
+    }
+  }
+
+  function toggleDrill(key, label) {
+    if (drillKey === key && !drill.hidden) { drill.hidden = true; drillKey = null; return; }
+    drillKey = key;
+    drill.hidden = false;
+    drillT.textContent = `Locales de ${label} a 2 km de ${cur.n}`;
+    drillB.textContent = "";
+    const list = cur[key] || [];
+    if (list.length === 0) {
+      const p = document.createElement("p");
+      p.className = "none";
+      p.textContent = "Cero. No hay un solo local de esta categoría en el radio — y lo puedes verificar contra el censo.";
+      drillB.append(p);
+    } else {
+      const ul = document.createElement("ul");
+      for (const n of list) { const li = document.createElement("li"); li.textContent = n; ul.append(li); }
+      drillB.append(ul);
+      const p = document.createElement("p");
+      p.className = "none";
+      p.textContent = "En el producto completo, cada categoría se abre así — hasta el negocio individual, con su giro oficial.";
+      drillB.append(p);
+    }
+  }
+
+  function selectZone(z, btn) {
+    cur = z; drill.hidden = true; drillKey = null;
+    document.getElementById("dz-name").textContent = z.n;
+    document.getElementById("dz-mun").textContent = z.m + " · radio 2 km";
+    paintGrid();
+    chips.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === btn)));
+  }
+
+  Z.forEach((z, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = z.n;
+    b.setAttribute("aria-pressed", String(i === 0));
+    b.addEventListener("click", () => selectZone(z, b));
+    chips.append(b);
+  });
+  paintGrid();
+
+  // ── pricing toggle ──
+  const sw = document.getElementById("bill-sw");
+  const pExp = document.getElementById("p-exp"), pFr = document.getElementById("p-fr");
+  const pExpPer = document.getElementById("p-exp-per"), pFrPer = document.getElementById("p-fr-per");
+  sw.addEventListener("click", () => {
+    const annual = sw.getAttribute("aria-checked") !== "true";
+    sw.setAttribute("aria-checked", String(annual));
+    if (annual) {
+      pExp.textContent = "$49,000"; pExpPer.textContent = "MXN / año por ciudad";
+      pFr.textContent = "$195,000"; pFrPer.textContent = "MXN / año, desde";
+    } else {
+      pExp.textContent = "$4,900"; pExpPer.textContent = "MXN / mes por ciudad";
+      pFr.textContent = "$19,500"; pFrPer.textContent = "MXN / mes, desde";
+    }
+  });
+
+  // ── lista de espera (sin backend: localStorage) ──
+  const form = document.getElementById("wl-form");
+  const err = document.getElementById("wl-err");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("wl-email").value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      err.textContent = "Escribe un correo válido — es lo único indispensable.";
+      document.getElementById("wl-email").focus();
+      return;
+    }
+    err.textContent = "";
+    try {
+      const list = JSON.parse(localStorage.getItem("cq_waitlist") || "[]");
+      list.push({ n: document.getElementById("wl-name").value.trim(), e: email,
+                  b: document.getElementById("wl-biz").value.trim(), t: new Date().toISOString() });
+      localStorage.setItem("cq_waitlist", JSON.stringify(list));
+    } catch { /* storage bloqueado: la confirmación visual basta para la maqueta */ }
+    form.classList.add("done");
+  });
+})();
+</script>
