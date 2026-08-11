@@ -327,3 +327,39 @@
   presentarlas con la misma autoridad que a las demás. Cada colonia publica ahora
   `centro.metodo` y `centro.agebs`.
 - **Reemplaza:** cierra el pendiente abierto en D-014. No toca D-013 ni la clasificación.
+
+## 2026-08-10 · D-016 · La venta residencial se modela como pastel de categoría repartido, no como captura fija
+
+- **Detonante:** Francisco preguntó qué significaban los porcentajes de la fórmula de venta.
+  Al explicarlos quedó expuesto un defecto de razonamiento: la captura del 6% se aplicaba
+  **igual a todas las colonias, sin importar la competencia**. Altavista (5 fritos, 14 alitas)
+  salía con $938k — 64% más que Las Brisas ($571k), que no tiene un solo local de frito. El
+  modelo premiaba población y era ciego al hueco competitivo, contradiciendo la tesis central
+  del propio análisis.
+- **Decisión (fórmula):**
+  `pastel = pob_2km × percápita_QSR($115-160 según escolaridad) × 8%` (lo que vale la
+  categoría pollo frito dentro del QSR, share publicado de industria) y
+  `venta_residencial = pastel ÷ (1 + fritos×1.0 + alitas×0.5)` — nosotros entramos como un
+  jugador más; las alitas pesan 0.5 (mismo antojo, otro formato — consistente con D-013).
+  Turismo sin cambio: `visitantes × 5% × $220` (porcentaje sobre personas, no dinero).
+- **Decisión (arquitectura):** la venta se calcula en `build_appdata.py` con los MISMOS
+  conteos del padrón que muestra la tabla — recomputable a mano desde lo que el usuario ve.
+  `audit_datos.py` gana el check `venta recomputable (D-016)`. De paso se corrigió el check
+  del padrón, que seguía comparando restaurantes contra todo el radio (quedó desactualizado
+  tras D-014).
+- **Efecto en el ranking:** el orden ahora refleja el hueco. Las Brisas $217.6k > Altavista
+  $96.2k (antes al revés). En puntos óptimos, un punto en La Estanzuela con cero competencia
+  ($358k ref) supera al del Tec ($95k) con la mitad de población. El Cercado: $74k residencial
+  + $337k turismo = $411k.
+- **Caveat explícito del caso límite:** con CERO competidores el modelo asigna el pastel
+  completo — es el techo teórico de la categoría, no una predicción (esa demanda hoy se va a
+  otras categorías o zonas). Documentado en metodologia.json.
+- **Hallazgo incómodo que el modelo honesto destapa:** ninguna colonia llega a $600k solo con
+  su radio residencial de 2 km (máximo La Estanzuela $572k, caso límite). La meta $600k-1M
+  exige trade area mayor, tráfico vehicular y delivery — como operan las unidades reales.
+  Consecuencia: la llamada del AUV al franquiciador y el conteo de campo dejan de ser
+  opcionales; son el complemento del modelo, no un refinamiento.
+- **Reemplaza:** supersede la σ fija 4/6/8% de D-008/D-009 como mecanismo (los insumos ticket
+  $220 y percápita se mantienen). Actualizados: insight `sigma-calibrada` (reescrito),
+  `turismo-rehabilita-sur` ($448k→$411k a captura 5%), `marco-socios` (advertencia agregada),
+  metodologia.json (explica los tres % y sus bases — la pregunta que originó todo).

@@ -1,7 +1,7 @@
 {
   "_meta": {
     "proposito": "Cómo se llegó a CADA número que muestra el app — fórmula, fuente y confianza, en una línea por métrica. Para el botón ⓘ de cada dato.",
-    "actualizado": "2026-07-30"
+    "actualizado": "2026-08-10"
   },
   "metricas": [
     {
@@ -37,10 +37,10 @@
     {
       "id": "venta",
       "nombre": "Venta estimada / mes",
-      "formula": "Residentes × gasto QSR por persona ($115-160/mes según nivel de la zona) × captura 6% (escenario normal) + turismo (visitantes/mes × 5% × ticket $220) donde aplica.",
-      "fuente": "Modelo propio calibrado: mercado QSR MX (IMARC), ENIGH 2024, share del pollo ≈8% del QSR, ticket validado vs KFC",
+      "formula": "Tres porcentajes, cada uno sobre una base distinta. (1) El pastel: residentes a 2 km × su gasto mensual en comida rápida ($115-160 según escolaridad de la zona) × 8% — la fracción de ese gasto que vale la categoría pollo frito. (2) El reparto: ese pastel se divide entre los jugadores del radio — nosotros + cada local de pollo frito (peso 1) + cada local de alitas (peso 0.5). (3) Donde hay turismo: + visitantes/mes × 5% que compran × ticket $220 — este 5% es sobre PERSONAS, no dinero, por eso se multiplica por el ticket.",
+      "fuente": "Gasto QSR: mercado QSR MX (IMARC) + ENIGH 2024. Share 8%: participación publicada del pollo en QSR México. Conteos de competencia: DENUE (los mismos que muestra la tabla). Ticket: validado vs KFC.",
       "confianza": "Estimación con supuestos explícitos",
-      "nota": "ES UNA REFERENCIA, no un pronóstico. La captura (4-8%) es el supuesto clave; se calibra con el conteo de campo y el AUV real del franquiciador."
+      "nota": "ES UNA REFERENCIA para comparar zonas, no un pronóstico: solo cuenta el radio residencial de 2 km. En zonas con CERO competidores el resultado es el techo de la categoría, no lo esperado. Un local real también vende a quien pasa en coche y a delivery — eso lo mide el conteo de campo y lo calibra la venta real por unidad del franquiciador."
     },
     {
       "id": "turismo",

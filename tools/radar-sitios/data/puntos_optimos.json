@@ -2,10 +2,11 @@
  "_meta": {
   "metodo": "población ÚNICA a <=2 km (cada AGEB contado una vez) evaluada en cada centroide de AGEB del corredor; top con supresión de 1.5 km. SIN doble conteo entre colonias.",
   "percapita_ref": 140,
-  "sigma": 0.06,
+  "share_pollo": 0.08,
+  "peso_alitas": 0.5,
   "fuente": "Censo 2020 + DENUE may-2026",
   "confianza": "V-Censo aprox + V-DENUE",
-  "caveat": "Venta residencial de referencia con percápita medio $140; no incluye turismo/tráfico. El punto exacto del local se elige en campo."
+  "caveat": "Venta residencial de referencia: pastel de la categoría pollo (8% del gasto QSR, percápita medio $140) repartido entre nosotros y los competidores del radio (fritos peso 1, alitas 0.5). No incluye turismo/tráfico; el punto exacto se elige en campo."
  },
  "puntos": [
   {
@@ -13,6 +14,7 @@
    "lon": -100.29209154730599,
    "pob_2km": 101570,
    "frito_2km": 5,
+   "alitas_2km": 12,
    "anclas_2km": 338,
    "sirve_a": [
     "Tecnológico",
@@ -21,92 +23,98 @@
     "Ancira",
     "La Primavera"
    ],
-   "venta_residencial_est": 853188,
-   "vs_mejor_colonia_pct": 0.3
+   "venta_residencial_est": 94799,
+   "vs_mejor_colonia_pct": -2.3
   },
   {
    "lat": 25.634514626808507,
    "lon": -100.28867072765955,
    "pob_2km": 83629,
    "frito_2km": 2,
+   "alitas_2km": 6,
    "anclas_2km": 319,
    "sirve_a": [
     "Altamira",
-    "Sierra Ventana",
     "Burócratas Municipales",
+    "Sierra Ventana",
     "Contry",
     "Altavista"
    ],
-   "venta_residencial_est": 702483,
-   "vs_mejor_colonia_pct": -17.4
+   "venta_residencial_est": 156107,
+   "vs_mejor_colonia_pct": -19.6
   },
   {
    "lat": 25.61941114015099,
    "lon": -100.28014315128317,
    "pob_2km": 70849,
    "frito_2km": 1,
+   "alitas_2km": 5,
    "anclas_2km": 212,
    "sirve_a": [
     "Las Brisas",
     "Las Torres",
     "Del Paseo Residencial",
-    "Sierra Ventana",
-    "San Ángel"
+    "San Ángel",
+    "Sierra Ventana"
    ],
-   "venta_residencial_est": 595131,
-   "vs_mejor_colonia_pct": -30.1
+   "venta_residencial_est": 176335,
+   "vs_mejor_colonia_pct": -31.9
   },
   {
    "lat": 25.645408716574092,
    "lon": -100.27591333388885,
    "pob_2km": 59312,
    "frito_2km": 2,
+   "alitas_2km": 10,
    "anclas_2km": 280,
    "sirve_a": [
+    "Torremolinos",
     "La Primavera",
     "Villa del Río",
     "Ladrillera",
-    "Torremolinos",
     "Contry"
    ],
-   "venta_residencial_est": 498220,
-   "vs_mejor_colonia_pct": -41.5
+   "venta_residencial_est": 83037,
+   "vs_mejor_colonia_pct": -43.0
   },
   {
    "lat": 25.604142550000002,
    "lon": -100.25851249,
    "pob_2km": 59052,
    "frito_2km": 1,
+   "alitas_2km": 3,
    "anclas_2km": 135,
    "sirve_a": [
     "Ciudad Satélite",
     "Villa Las Fuentes",
     "San Ángel"
    ],
-   "venta_residencial_est": 496036,
-   "vs_mejor_colonia_pct": -41.7
+   "venta_residencial_est": 188966,
+   "vs_mejor_colonia_pct": -43.2
   },
   {
    "lat": 25.65909855081217,
    "lon": -100.3016960131472,
    "pob_2km": 55147,
    "frito_2km": 2,
+   "alitas_2km": 8,
    "anclas_2km": 189,
    "sirve_a": [
     "Nuevo Repueblo",
-    "Independencia",
     "Ancira",
+    "Independencia",
     "Roma",
     "Caracol"
    ],
-   "venta_residencial_est": 463234,
-   "vs_mejor_colonia_pct": -45.6
+   "venta_residencial_est": 88235,
+   "vs_mejor_colonia_pct": -47.0
   },
   {
    "lat": 25.647038206666664,
    "lon": -100.30860810666667,
    "pob_2km": 54551,
    "frito_2km": 2,
+   "alitas_2km": 7,
    "anclas_2km": 154,
    "sirve_a": [
     "Ancira",
@@ -115,30 +123,32 @@
     "Nuevo Repueblo",
     "Tecnológico"
    ],
-   "venta_residencial_est": 458228,
-   "vs_mejor_colonia_pct": -46.2
+   "venta_residencial_est": 93996,
+   "vs_mejor_colonia_pct": -47.5
   },
   {
    "lat": 25.589462214029833,
    "lon": -100.25734804915439,
    "pob_2km": 47957,
    "frito_2km": 0,
+   "alitas_2km": 1,
    "anclas_2km": 160,
    "sirve_a": [
     "La Estanzuela",
-    "Valle Alto",
     "La Rioja",
-    "Paseo del Vergel",
-    "Ciudad Satélite"
+    "Valle Alto",
+    "Ciudad Satélite",
+    "Paseo del Vergel"
    ],
-   "venta_residencial_est": 402838,
-   "vs_mejor_colonia_pct": -52.7
+   "venta_residencial_est": 358079,
+   "vs_mejor_colonia_pct": -53.9
   },
   {
    "lat": 25.66421833613634,
    "lon": -100.2861032234659,
    "pob_2km": 47680,
    "frito_2km": 3,
+   "alitas_2km": 10,
    "anclas_2km": 186,
    "sirve_a": [
     "Buenos Aires",
@@ -147,24 +157,25 @@
     "Ladrillera",
     "Nuevo Repueblo"
    ],
-   "venta_residencial_est": 400512,
-   "vs_mejor_colonia_pct": -52.9
+   "venta_residencial_est": 59335,
+   "vs_mejor_colonia_pct": -54.2
   },
   {
    "lat": 25.61749248843751,
    "lon": -100.26290796656251,
    "pob_2km": 47356,
    "frito_2km": 1,
+   "alitas_2km": 4,
    "anclas_2km": 149,
    "sirve_a": [
     "San Ángel",
     "Villa Las Fuentes",
-    "Las Brisas",
     "Ciudad Satélite",
+    "Las Brisas",
     "Las Torres"
    ],
-   "venta_residencial_est": 397790,
-   "vs_mejor_colonia_pct": -53.3
+   "venta_residencial_est": 132597,
+   "vs_mejor_colonia_pct": -54.5
   }
  ]
 }

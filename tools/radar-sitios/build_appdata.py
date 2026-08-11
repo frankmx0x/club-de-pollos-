@@ -134,6 +134,24 @@ def main():
             comp["pollo_2km"] = sum(cats.get(k, 0) for k in CATS_POLLO)
             comp["fritos"] = [padron[i]["nombre"] for i in idx if padron[i]["cat"] == "pollo_frito"][:6]
             comp["alitas"] = [padron[i]["nombre"] for i in idx if padron[i]["cat"] == "alitas"][:8]
+
+            # ── Venta residencial con DESCUENTO POR COMPETENCIA (D-016) ──
+            # El 6% fijo anterior ignoraba a los competidores: Altavista (5 fritos)
+            # salía con más venta que Las Brisas (0). Ahora: el pastel de la categoría
+            # (pob × percápita QSR × 8% que vale el pollo frito dentro del QSR) se
+            # reparte entre los jugadores del radio — nosotros (1) + fritos (peso 1)
+            # + alitas (peso 0.5: mismo antojo, formato distinto, D-013).
+            # Se calcula AQUÍ, con los mismos conteos que muestra la tabla, para que
+            # el número sea recomputable a mano desde lo que el usuario ve.
+            SHARE_POLLO = 0.08
+            PESO_ALITAS = 0.5
+            pob = c["demografia"]["poblacion_2km"]
+            pc = c["demografia"]["percapita_qsr"]
+            jugadores = 1 + comp["frito_2km"] + PESO_ALITAS * comp["alitas_2km"]
+            v_res = int(round(pob * pc * SHARE_POLLO / jugadores))
+            v_tur = c["venta"].get("turismo", 0)
+            c["venta"] = {"residencial": v_res, "turismo": v_tur, "total": v_res + v_tur,
+                          "jugadores_efectivos": round(jugadores, 1)}
             # Anclas: del mismo padrón y el mismo radio, con las categorías finas
             # de D-014 (supermercado ≠ minisúper, farmacia ≠ naturista, escuela
             # básica ≠ preescolar ≠ universidad ≠ arte/deporte/tutores).

@@ -251,15 +251,33 @@ def check_padron_cuadra(app, here):
         for i in idx:
             cats[pad[i]["cat"]] = cats.get(pad[i]["cat"], 0) + 1
         k = c["competencia"]
+        # El padrón trae restaurantes Y anclas (D-014): "restaurantes" suma solo
+        # las categorías de restaurante, no todo el radio.
+        CR = ("pollo_frito", "alitas", "pollo_asado", "pollo_otro",
+              "hamburguesas", "pizza", "otro")
         pares = [
             (k.get("frito_2km", 0), cats.get("pollo_frito", 0)),
             (k.get("alitas_2km", 0), cats.get("alitas", 0)),
             (k.get("hamburguesas_2km", 0), cats.get("hamburguesas", 0)),
             (k.get("pizza_2km", 0), cats.get("pizza", 0)),
-            (k.get("restaurantes_2km", 0), len(idx)),
+            (k.get("restaurantes_2km", 0), sum(cats.get(x, 0) for x in CR)),
             (k.get("pollo_2km", 0), sum(cats.get(x, 0) for x in CP)),
         ]
         mal += sum(1 for a, b in pares if a != b)
     estado = "PASS" if mal == 0 else "FALLA"
     return [("padron cuadra con el drill-down", estado,
              f"{mal} descuadres entre conteo mostrado y lista abrible")]
+
+
+def check_venta_recomputable(app, here):
+    """La venta residencial debe salir EXACTAMENTE de lo que la tabla muestra:
+    pob × percápita × 8% ÷ (1 + fritos + 0.5×alitas). Ver D-016."""
+    mal = 0
+    for c in app.get("colonias", []):
+        k, d, v = c["competencia"], c["demografia"], c["venta"]
+        jug = 1 + k.get("frito_2km", 0) + 0.5 * k.get("alitas_2km", 0)
+        esp = int(round(d["poblacion_2km"] * d["percapita_qsr"] * 0.08 / jug))
+        if v["residencial"] != esp or v["total"] != v["residencial"] + v["turismo"]:
+            mal += 1
+    return [("venta recomputable a mano (D-016)", "PASS" if mal == 0 else "FALLA",
+             f"{mal} colonias con venta que no cuadra con sus propios conteos")]

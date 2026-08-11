@@ -26,7 +26,8 @@ DATA = HERE / "data"
 R = 2.0          # radio de servicio
 SUPR = 1.5       # km mínimos entre puntos elegidos (zonas distintas)
 TOP = 10
-SIGMA, TICKET = 0.06, 220
+# D-016: share de la categoría pollo (8% del QSR) repartido entre jugadores.
+SHARE_POLLO, PESO_ALITAS, TICKET = 0.08, 0.5, 220
 
 
 def key(mun, loc, ageb):
@@ -40,7 +41,7 @@ def main():
     denue_csv, censo_csv = sys.argv[1], sys.argv[2]
 
     # centroides de AGEB (desde DENUE, solo corredor) + fritos + anclas
-    agsum, fritos, anclas = {}, [], []
+    agsum, fritos, alitas, anclas = {}, [], [], []
     with open(denue_csv, encoding="latin-1", newline="") as f:
         for row in csv.DictReader(f):
             cvem = (row.get("cve_mun") or "").strip().zfill(3)
@@ -55,8 +56,11 @@ def main():
             if act.startswith("722"):
                 # Categoría por nombre (D-013): el SCIAN 722514 mete pizzerías
                 # y taquerías en "pollo" porque su descripción las nombra a todas.
-                if den.categoria(row.get("nom_estab") or "") == "pollo_frito":
+                _cat = den.categoria(row.get("nom_estab") or "")
+                if _cat == "pollo_frito":
                     fritos.append((lat, lon))
+                elif _cat == "alitas":
+                    alitas.append((lat, lon))
             else:
                 if den.ancla(act):
                     anclas.append((lat, lon))
@@ -87,8 +91,10 @@ def main():
             continue
         p2 = sum(p for (alat, alon), p in puntos_pob if den._haversine_km(clat, clon, alat, alon) <= R)
         f2 = sum(1 for a, b in fritos if den._haversine_km(clat, clon, a, b) <= R)
+        al2 = sum(1 for a, b in alitas if den._haversine_km(clat, clon, a, b) <= R)
         a2 = sum(1 for a, b in anclas if den._haversine_km(clat, clon, a, b) <= R)
-        candidatos.append({"lat": clat, "lon": clon, "pob_2km": int(p2), "frito_2km": f2, "anclas_2km": a2})
+        candidatos.append({"lat": clat, "lon": clon, "pob_2km": int(p2), "frito_2km": f2,
+                           "alitas_2km": al2, "anclas_2km": a2})
 
     # greedy: mejor población única, suprimiendo vecinos a < SUPR km
     candidatos.sort(key=lambda x: -x["pob_2km"])
@@ -105,13 +111,16 @@ def main():
         sirve = [(c["colonia"], den._haversine_km(e["lat"], e["lon"], c["centro"]["lat"], c["centro"]["lon"]))
                  for c in colonias]
         e["sirve_a"] = [n for n, dkm in sorted(sirve, key=lambda x: x[1]) if dkm <= R][:5]
-        e["venta_residencial_est"] = int(e["pob_2km"] * 140 * SIGMA)  # percápita medio como referencia
+        # D-016: pastel de la categoría (percápita medio $140) repartido entre
+        # nosotros + fritos (peso 1) + alitas (peso 0.5) del radio del punto.
+        jug = 1 + e["frito_2km"] + PESO_ALITAS * e["alitas_2km"]
+        e["venta_residencial_est"] = int(round(e["pob_2km"] * 140 * SHARE_POLLO / jug))
         e["vs_mejor_colonia_pct"] = round(100 * e["pob_2km"] / max_col - 100, 1)
 
     out = {"_meta": {"metodo": "población ÚNICA a <=2 km (cada AGEB contado una vez) evaluada en cada centroide de AGEB del corredor; top con supresión de 1.5 km. SIN doble conteo entre colonias.",
-                     "percapita_ref": 140, "sigma": SIGMA,
+                     "percapita_ref": 140, "share_pollo": SHARE_POLLO, "peso_alitas": PESO_ALITAS,
                      "fuente": "Censo 2020 + DENUE may-2026", "confianza": "V-Censo aprox + V-DENUE",
-                     "caveat": "Venta residencial de referencia con percápita medio $140; no incluye turismo/tráfico. El punto exacto del local se elige en campo."},
+                     "caveat": "Venta residencial de referencia: pastel de la categoría pollo (8% del gasto QSR, percápita medio $140) repartido entre nosotros y los competidores del radio (fritos peso 1, alitas 0.5). No incluye turismo/tráfico; el punto exacto se elige en campo."},
            "puntos": elegidos}
     (DATA / "puntos_optimos.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
 

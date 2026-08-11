@@ -170,27 +170,32 @@
       "orden": 6,
       "categoria": "Modelo",
       "confianza": "F1",
-      "titulo": "La captura realista es 4-8% del gasto QSR local (no 10%)",
-      "resumen": "El pollo frito de cadena vale ~8% del gasto QSR; capturarlo entero es el techo, no el caso base.",
-      "detalle": "Market share publicado: el pollo ≈ 8% de las ventas QSR en México (2018), y ~1/3 de eso fue KFC. Eso acota la captura σ de UNA marca: conservador 4%, base 6%, optimista 8% (en zona sin competidores de frito te acercas al techo). Con 100k personas y ticket $220: $600k/mes pide ~4% de captura; $1M pide ~7%. Ticket $220 validado contra precios KFC 2025-26 (combos $199-299).",
+      "titulo": "La venta se modela como pastel de categoría repartido — no como captura fija",
+      "resumen": "El pollo frito vale ~8% del gasto QSR de una zona. Ese pastel se reparte entre los jugadores del radio: nosotros + fritos (peso 1) + alitas (peso 0.5).",
+      "detalle": "La versión anterior aplicaba una captura fija del 6% a todas las colonias, ignorando a la competencia: Altavista (5 fritos, 14 alitas) salía con más venta que Las Brisas (0 fritos). Corregido (D-016): pastel = población × gasto QSR por persona ($115-160/mes según escolaridad) × 8% que vale la categoría; y venta = pastel ÷ (1 + fritos + 0.5×alitas). El share del 8% viene del market share publicado del pollo en QSR México. CAVEAT del caso límite: en colonias con CERO competidores el modelo asigna el pastel completo — eso es el techo teórico de la categoría, no una predicción; hoy esa demanda se va a otras categorías o a otras zonas.",
       "evidencia": [
         {
           "dato": "Share del pollo en QSR MX",
-          "valor": "≈8% (1/3 KFC)",
-          "fuente": "prensa de industria, 2018 [F1]"
+          "valor": "≈8% (1/3 fue KFC)",
+          "fuente": "reportes de industria 2018 [F1]"
         },
         {
-          "dato": "Venta con 100k personas a σ 4/6/8%",
-          "valor": "$588k / $882k / $1,176k",
-          "fuente": "modelo catchment (docs/analysis)"
+          "dato": "Las Brisas — venta modelada (0 fritos, 5 alitas)",
+          "valor": "$217,600/mes",
+          "fuente": "modelo D-016, recomputable en el app"
         },
         {
-          "dato": "Ticket $220 vs precios KFC",
-          "valor": "combos $199-299, bucket 12 pzas ~$499",
-          "fuente": "menús KFC MX 2025-26 [F1]"
+          "dato": "Altavista — venta modelada (5 fritos, 14 alitas)",
+          "valor": "$96,235/mes",
+          "fuente": "modelo D-016"
+        },
+        {
+          "dato": "Antes (captura fija 6%)",
+          "valor": "Altavista $938k > Las Brisas $571k — orden absurdo",
+          "fuente": "modelo anterior, D-016"
         }
       ],
-      "implicacion": "El piso de $600k es cómodo; el $1M exige captura casi monopólica o tráfico extra."
+      "implicacion": "El orden entre zonas ahora refleja el hueco competitivo. Los montos absolutos son techos de radio residencial de 2 km: un local real también vende a quien pasa en coche y a delivery — eso lo mide el conteo de campo y lo calibra el AUV real del franquiciador."
     },
     {
       "id": "turismo-rehabilita-sur",
@@ -198,8 +203,8 @@
       "categoria": "Turismo",
       "confianza": "V-OSETUR",
       "titulo": "Cola de Caballo (~368k visitantes/año) rehabilita al sur: es el parque #1 de Nuevo León",
-      "resumen": "Con 8% de captura del flujo turístico, El Cercado alcanza ~$651k/mes — clava el piso de $600k.",
-      "detalle": "Dato oficial de OSETUR (datos abiertos NL): Cola de Caballo recibió 306,737 visitantes en 10 meses (~30,673/mes; picos ~41k en Semana Santa y verano) — más que Grutas García (137k) o el Mirador Asta Bandera (110k). Modelo: residencial $111k + visitantes × captura × $220. A 5% = $448k; a 8% = $651k. Es conservador: no cuenta Presa de la Boca, el pueblo, ni el pass-through de la carretera. La captura real es LA incógnita: se mide con conteo de campo (plan listo).",
+      "resumen": "Con captura del 5% del flujo, El Cercado suma ~$411k/mes (residencial $74k + turismo $337k); a 8% del flujo, ~$614k.",
+      "detalle": "Dato oficial de OSETUR (datos abiertos NL): Cola de Caballo recibió 306,737 visitantes en 10 meses (~30,673/mes; picos ~41k en Semana Santa y verano) — más que Grutas García (137k) o el Mirador Asta Bandera (110k). Modelo: residencial $74k (pastel de categoría D-016) + visitantes × captura × ticket $220. A captura turística 5%: $411k; a 8%: $614k. La captura del flujo es EL supuesto a medir en campo.",
       "evidencia": [
         {
           "dato": "Visitantes Cola de Caballo",
@@ -213,11 +218,11 @@
         },
         {
           "dato": "El Cercado a captura 5% / 8%",
-          "valor": "$448k / $651k por mes",
+          "valor": "$411k / $614k por mes",
           "fuente": "modelo catchment"
         }
       ],
-      "implicacion": "El sur es una jugada de flujo turístico real — pero exige el local SOBRE la ruta y validar la captura en campo."
+      "implicacion": "El sur sigue siendo una jugada de flujo turístico real — pero con el modelo corregido ya no clava el piso de $600k con captura del 5%: lo roza con 8%. El conteo de campo decide."
     },
     {
       "id": "tdpa-carretera",
@@ -366,7 +371,7 @@
       "confianza": "F1",
       "titulo": "Marco defendible para socios: $600k piso · $800k base · $1M upside",
       "resumen": "El piso resiste aunque los priors del franquiciador sean optimistas; el $1M depende del input más débil.",
-      "detalle": "Los priors del franquiciador (ticket $220, 100k/unidad) son soft: el ticket quedó validado contra precios reales, pero 100k/unidad es denso (KFC opera a ~347k hab/unidad nacional; Pollo Feliz <130k). Triangulado: $600k solo pide ~4% de captura (cómodo); $800k ~5.4%; $1M exige que los 100k Y la captura base se cumplan a la vez. AUV meta (~US$360-600k/año) es 1/5 a 1/10 del benchmark EE.UU. — orden de magnitud sano para value MX.",
+      "detalle": "Los priors del franquiciador (ticket $220, 100k/unidad) son soft: el ticket quedó validado contra precios reales, pero 100k/unidad es denso (KFC opera a ~347k hab/unidad nacional; Pollo Feliz <130k). Triangulado: $600k solo pide ~4% de captura (cómodo); $800k ~5.4%; $1M exige que los 100k Y la captura base se cumplan a la vez. AUV meta (~US$360-600k/año) es 1/5 a 1/10 del benchmark EE.UU. — orden de magnitud sano para value MX. ACTUALIZACIÓN D-016: con el descuento por competencia, ninguna colonia llega a $600k solo con su radio residencial de 2 km (máximo: La Estanzuela $572k, y es el caso límite de cero competidores). La meta exige trade area mayor a 2 km, tráfico vehicular y delivery — que es como operan las unidades reales. El AUV del franquiciador es la pieza que ancla esto.",
       "evidencia": [
         {
           "dato": "Ratios población/unidad",
@@ -384,7 +389,7 @@
           "fuente": "Technomic/NRN, verificado 3-0"
         }
       ],
-      "implicacion": "Presentar $1M como techo, nunca como base. Calibrar con el AUV real del franquiciador."
+      "implicacion": "Presentar $1M como techo, nunca como base. El residencial de 2 km NO sostiene el piso por sí solo: la llamada del AUV y el conteo de campo dejan de ser opcionales."
     }
   ]
 }
