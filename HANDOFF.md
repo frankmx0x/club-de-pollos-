@@ -1,6 +1,6 @@
 # HANDOFF — estado vivo
 
-> Reescrito en cada cierre de sesión. Última actualización: 2026-08-01 (America/Monterrey).
+> Reescrito en cada cierre de sesión. Última actualización: 2026-08-10 (America/Monterrey).
 > Sesión: **Etapa 6** — explorador de colonias (42), puntos óptimos multi-colonia,
 > auditoría de datos, metodología por métrica, rediseño sin emojis, deploy a prod.
 
@@ -66,21 +66,22 @@ del app. **Los datos nunca se editan a mano en el app** (D-010).
     `audit_datos.py` gana un check que falla si vuelven a discrepar. **Verificado en
     producción: 0 descuadres de 168.**
 
-## Los dos finalistas de sitio (decisión pendiente de Francisco)
+## El mapa de la decisión (modelo D-016, con descuento por competencia)
 
-| | **Contry** | **El Cercado (Santiago)** |
-|---|--:|--:|
-| Venta residencial est. | **$810k** | $111k |
-| + turismo (Cola de Caballo, 30,673 vis/mes) | — | **$337k → $448k total** (a 8%: $651k) |
-| Competencia frito 2 km | 2 | **0** |
-| Escolaridad (encaje bajo/medio) | 12.9 (alto) | 10.8 (medio) |
-| TDPA | — | ~27,144 veh/día (SICT 2014 +40%) |
+| | **Las Brisas** | **El Cercado (Santiago)** | **La Estanzuela** |
+|---|--:|--:|--:|
+| Venta residencial modelada | **$218k** | $74k | $572k (caso límite: 0 competencia) |
+| + turismo (Cola de Caballo) | — | **+$337k → $411k** (a 8% del flujo: $614k) | — |
+| Pollo frito / alitas a 2 km | **0** / 5 | **0** / 2 | **0** / 0 |
+| Personas a 2 km | 68,000 | 13,215 | 44,674 |
+| Supermercados reales | 5 | **0** | 6 |
 
-Del análisis de puntos óptimos, ya con la clasificación corregida (D-013), el mejor
-equilibrio del corredor es **P3: 70,849 personas únicas con un solo local de pollo frito**,
-sirviendo a Las Brisas + Las Torres + Del Paseo Residencial. P1 (Tec/Altavista/Roma) junta
-101,570 pero carga 5 competidores; P2 (Altamira/Sierra Ventana) 83,629 con 2. Los socios
-marcan finalistas con estrellas en la vista Colonias.
+**Lectura honesta del modelo nuevo:** ninguna colonia llega a $600k solo con su radio
+residencial de 2 km. La meta exige trade area mayor, tráfico y delivery — por eso la llamada
+del AUV al franquiciador y el conteo de campo son EL siguiente paso, no un refinamiento.
+El punto óptimo P3 (Las Brisas + Las Torres + Del Paseo, 70,849 personas únicas, 1 frito)
+sigue siendo el mejor equilibrio urbano; La Estanzuela aparece como candidato nuevo por
+hueco total, con el caveat del caso límite. Los socios marcan finalistas en el app.
 
 ## Pendientes — de Francisco
 
@@ -113,6 +114,15 @@ marcan finalistas con estrellas en la vista Colonias.
   - Bug propio detectado por la comprobación contra producción: al unificar el padrón,
     `restaurantes_2km` quedó contando también las anclas (Altavista marcaba 953 en vez de
     607). Corregido en `b18cbe1`.
+
+- **Modelo de venta corregido (D-016):** pastel de categoría (8% del QSR) repartido entre
+  nosotros + fritos (peso 1) + alitas (0.5). Venta calculada en build_appdata con los mismos
+  conteos del padrón; check de auditoría 'venta recomputable'. Metodología del app reescrita
+  explicando los tres porcentajes y sus bases.
+- **Cuadrante (el Radar como producto):** plan en `docs/plans/2026-08-05-radar-como-producto.md`
+  (fases con kill criteria) y landing con demo real sin backend en
+  `docs/mockups/2026-08-05-cuadrante-landing.html`. La reacción de Sergio al Radar es el
+  experimento #1; señal de whitelabel = que pida usarla para su red.
 
 ## Pendientes — de Claude
 
